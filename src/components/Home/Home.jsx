@@ -20,7 +20,12 @@ function Home() {
       <LogOutButton className="btn" /> */}
       {activeExercises.map(exercise => {
         return (
-          <h4>Here is the exercise: {exercise}</h4>
+          <>
+          <h4>{exercise.name}</h4>
+          <p>Edit Button</p>
+          <p>Delete Button</p>
+          <p>Log Button</p>
+          </>
         )
       })}
       <p>Add Exercise Button</p>
