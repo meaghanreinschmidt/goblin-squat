@@ -1,17 +1,28 @@
-import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+// import LogOutButton from '../LogOutButton/LogOutButton';
+import { useDispatch, useSelector } from 'react-redux';
+import ActiveExercise from '../ActiveExercise/ActiveExercise';
 
 function Home() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const activeExercises = useSelector(store => store.activeExercises);
+
+  // load active exercises
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ACTIVE_EXERCISES' });
+  }, []);
+
   return (
     <div className="container">
       <center>
       {/* <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" /> */}
-      <h4>Active Exercises Here</h4>
+      {activeExercises.map(exercise => {
+        return (
+          <h4>Here is the exercise: {exercise}</h4>
+        )
+      })}
       <p>Add Exercise Button</p>
       </center>
     </div>
