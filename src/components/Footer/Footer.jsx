@@ -1,13 +1,50 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
+import { useSelector } from 'react-redux';
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer>&copy; Prime Digital Academy</footer>;
+  const user = useSelector((store) => store.user);
+  return <footer className="App-footer">
+    {/* <Link to="/home">
+        <h2 className="nav-title">Prime Solo Project</h2>
+      </Link> */}
+      <div>
+        {/* If no user is logged in, show these links */}
+        {/* {!user.id && (
+          // If there's no user, show login/registration links
+          <Link className="navLink" to="/login">
+            Login / Register
+          </Link>
+        )} */}
+
+        {/* If a user is logged in, show these links */}
+        {user.id && (
+          <>
+            <Link className="navLink" to="/user">
+              Home
+            </Link>
+
+            <Link className="navLink" to="/completed/exercises">
+              Completed Exercises
+            </Link>
+
+            <Link className="navLink" to="/progress/chart">
+              Progress Chart
+            </Link>
+
+            <Link className="navLink" to="/user/profile">
+              User Profile
+            </Link>
+          </>
+        )}
+
+        {/* <Link className="navLink" to="/about">
+          About
+        </Link> */}
+      </div>
+        </footer>
 }
 
 export default Footer;

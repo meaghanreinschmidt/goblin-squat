@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function LoginForm() {
+  const [heading, setHeading] = useState('Goblin Squat');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
@@ -25,16 +28,20 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+    <div className="container">
+      <center>
+    <h2 className="App-header">{heading}</h2>
+    </center>
+    <br />
+    <center>
+    <form onSubmit={login}>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
+        <p>username</p>
           <input
             type="text"
             name="username"
@@ -42,11 +49,9 @@ function LoginForm() {
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
       </div>
       <div>
-        <label htmlFor="password">
-          Password:
+        <p>password</p>
           <input
             type="password"
             name="password"
@@ -54,12 +59,26 @@ function LoginForm() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <input className="btn" type="submit" name="submit" value="Sign In" />
       </div>
     </form>
+    </center>
+    <br />
+    <center>
+      <h5>New User?</h5>
+    <button
+      type="button"
+      className="btn btn_asLink"
+      onClick={() => {
+        history.push('/registration');
+      }}
+    >
+      Register Here
+    </button>
+  </center>
+  </div>
   );
 }
 

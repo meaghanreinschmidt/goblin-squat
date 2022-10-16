@@ -7,18 +7,16 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-
-import Nav from '../Nav/Nav';
+import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
+import Home from '../Home/Home';
+import CompletedExercises from '../CompletedExercises/CompletedExercises';
+import ProgressChart from '../ProgressChart/ProgressChart';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import UserProfile from '../UserProfile/UserProfile';
 
 import './App.css';
 
@@ -33,20 +31,11 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <Nav />
+      <div className="box">
+        <Header />
         <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
-
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
-            <AboutPage />
-          </Route>
+          {/* Visiting localhost:3000 will redirect to localhost:3000/login */}
+          <Redirect exact from="/" to="/login" />
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -57,15 +46,31 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
+            <Home />
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows Completed Exercises else shows LoginPage
             exact
-            path="/info"
+            path="/completed/exercises"
           >
-            <InfoPage />
+            <CompletedExercises />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Progress Chart else shows LoginPage
+            exact
+            path="/progress/chart"
+          >
+            <ProgressChart />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows User Profile else shows LoginPage
+            exact
+            path="/user/profile"
+          >
+            <UserProfile />
           </ProtectedRoute>
 
           <Route
@@ -106,7 +111,7 @@ function App() {
               <Redirect to="/user" />
               :
               // Otherwise, show the Landing page
-              <LandingPage />
+              <LoginPage />
             }
           </Route>
 
