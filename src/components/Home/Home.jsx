@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import ActiveExercise from '../ActiveExercise/ActiveExercise';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 function Home() {
   const dispatch = useDispatch();
@@ -13,24 +18,26 @@ function Home() {
   }, []);
 
   return (
-    <div className="container">
+    <Box className="container">
       <center>
       {/* <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" /> */}
       {activeExercises.map(exercise => {
         return (
-          <>
-          <h4>{exercise.name}</h4>
-          <p>Edit Button</p>
-          <p>Delete Button</p>
-          <p>Log Button</p>
-          </>
+          <Card sx={{ maxWidth: 230 }}>
+            <CardContent>
+              <Typography sx={{ fontSize: 20 }}>{exercise.name}</Typography>
+              <Button>Edit</Button>
+              <Button>Delete</Button>
+              <Button>Log</Button>
+            </CardContent>
+          </Card>
         )
       })}
-      <p>Add Exercise Button</p>
+      <Button>Add Exercise</Button>
       </center>
-    </div>
+    </Box>
   );
 }
 

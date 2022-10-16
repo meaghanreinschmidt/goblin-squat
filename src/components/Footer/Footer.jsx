@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import { useSelector } from 'react-redux';
+import HomeIcon from '@mui/icons-material/Home';
+import GradingIcon from '@mui/icons-material/Grading';
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 function Footer() {
@@ -23,19 +27,19 @@ function Footer() {
         {user.id && (
           <>
             <Link className="navLink" to="/user">
-              Home
+            <HomeIcon className="home-button"></HomeIcon>
             </Link>
 
             <Link className="navLink" to="/completed/exercises">
-              Completed Exercises
+              <GradingIcon className="completed-button"></GradingIcon>
             </Link>
 
             <Link className="navLink" to="/progress/chart">
-              Progress Chart
+              <LeaderboardIcon className="progress-icon"></LeaderboardIcon>
             </Link>
 
             <Link className="navLink" to="/user/profile">
-              User Profile
+              <AccountCircleIcon className="user-icon"></AccountCircleIcon>
             </Link>
           </>
         )}
