@@ -17,7 +17,11 @@ function* rootSaga() {
 function* fetchActiveExercises() {
   // get exercises from the DB --- NOT YET COMPLETED???
   try {
-    const activeExercises = yield axios.get('/')
+    const activeExercises = yield axios.get('/');
+    console.log('get active exercises:', activeExercises.data)
+    yield put({ type: 'SET_EXERCISE', payload: activeExercises.data });
+  } catch {
+    console.log('get active exercises error');
   }
 }
 
