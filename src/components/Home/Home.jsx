@@ -5,8 +5,12 @@ import ActiveExercise from '../ActiveExercise/ActiveExercise';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 
 function Home() {
   const dispatch = useDispatch();
@@ -28,9 +32,17 @@ function Home() {
           <Card sx={{ maxWidth: 230 }}>
             <CardContent>
               <Typography sx={{ fontSize: 20 }}>{exercise.name}</Typography>
-              <Button>Edit</Button>
-              <Button>Delete</Button>
-              <Button>Log</Button>
+              <CardActions>
+                <Button>
+                  <EditIcon className="edit-icon"></EditIcon>
+                </Button>
+                <Button>
+                  <DeleteIcon className="delete-icon"></DeleteIcon>
+                </Button>
+                <Button>
+                  <AddTaskIcon className="log-icon"></AddTaskIcon>
+                </Button>
+              </CardActions>
             </CardContent>
           </Card>
         )
