@@ -9,9 +9,10 @@ const LogExercise = () => {
             <center>
             <h4>"Title of exercise here"</h4>
             <h5>"Sets Here with checkmark button"</h5>
-            <h5>"Notes Here</h5>
+            <h5>"Notes Here"</h5>
             <br />
             <Button onClick={() => history.push('/')}>Cancel</Button>
+            {/* Complete should send entire form to "completed exercises" */}
             <Button>Complete</Button>
             </center>
         </>

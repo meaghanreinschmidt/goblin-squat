@@ -16,6 +16,7 @@ import EditExercise from '../EditExercise/EditExercise';
 import LogExercise from '../LogExercise/LogExercise';
 import CompletedExercises from '../CompletedExercises/CompletedExercises';
 import ProgressChart from '../ProgressChart/ProgressChart';
+import EditProfile from '../EditProfile/EditProfile';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import UserProfile from '../UserProfile/UserProfile';
@@ -94,6 +95,13 @@ function App() {
             path="/user/profile"
           >
             <UserProfile />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact 
+            path="/edit/profile"
+          >
+            <EditProfile />
           </ProtectedRoute>
 
           <Route
