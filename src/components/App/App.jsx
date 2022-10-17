@@ -9,9 +9,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
+import AddExercise from '../AddExercise/AddExercise';
+import EditExercise from '../EditExercise/EditExercise';
+import LogExercise from '../LogExercise/LogExercise';
 import CompletedExercises from '../CompletedExercises/CompletedExercises';
 import ProgressChart from '../ProgressChart/ProgressChart';
 import LoginPage from '../LoginPage/LoginPage';
@@ -47,6 +49,27 @@ function App() {
             path="/user"
           >
             <Home />
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            exact
+            path="/add/exercise"
+          >
+            <AddExercise />
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            exact 
+            path="/edit/exercise"
+          >
+            <EditExercise />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact 
+            path="/log/exercise"
+          >
+            <LogExercise />
           </ProtectedRoute>
 
           <ProtectedRoute

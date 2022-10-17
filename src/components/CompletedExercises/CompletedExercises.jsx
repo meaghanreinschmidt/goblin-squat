@@ -6,7 +6,8 @@ function CompletedExercise() {
       <center>
         <h3>Completed Exercises</h3>
         <div>
-          <p>Exercises Here</p>
+          <p>Exercise Name with Date Completed on Card</p>
+          <p>Click on card brings user to exercise details</p>
         </div>
       </center>
     </div>

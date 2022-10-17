@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import ActiveExercise from '../ActiveExercise/ActiveExercise';
+import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -14,6 +15,7 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 
 function Home() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const activeExercises = useSelector(store => store.activeExercises);
 
   // load active exercises
@@ -29,25 +31,30 @@ function Home() {
       <LogOutButton className="btn" /> */}
       {activeExercises.map(exercise => {
         return (
-          <Card sx={{ maxWidth: 230 }}>
+          <Grid>
+          <Card variant="outlined" sx={{ maxWidth: 230 }}>
             <CardContent>
               <Typography sx={{ fontSize: 20 }}>{exercise.name}</Typography>
               <CardActions>
-                <Button>
+                {/* This button should take the user to the edit page */}
+                <Button onClick={() => history.push('/edit/exercise')}>
                   <EditIcon className="edit-icon"></EditIcon>
                 </Button>
                 <Button>
                   <DeleteIcon className="delete-icon"></DeleteIcon>
                 </Button>
-                <Button>
+                <Button onClick={() => history.push('/log/exercise')}>
                   <AddTaskIcon className="log-icon"></AddTaskIcon>
                 </Button>
               </CardActions>
             </CardContent>
           </Card>
+          <br />
+          </Grid>
         )
       })}
-      <Button>Add Exercise</Button>
+      <br />
+      <Button onClick={() => history.push('/add/exercise')}>Add Exercise</Button>
       </center>
     </Box>
   );
