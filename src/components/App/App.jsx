@@ -28,6 +28,7 @@ function App() {
 
   const user = useSelector(store => store.user);
 
+  // May need to add this to multiple pages if data from other users is still being stored
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
