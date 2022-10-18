@@ -31,6 +31,13 @@ const AddExercise = () => {
         setSetList([...setList, {set_number: "", reps: "", weight: ""}]);
     }
 
+    // Update to DELETE dispatch/axios eventually 
+    const deleteSet = index => {
+        const list = [...setList];
+        list.splice(index, 1);
+        setSetList(list);
+    }
+
     const addExercise = event => {
         // Don't reloaad on form submit
         event.preventDefault();
@@ -79,6 +86,7 @@ const AddExercise = () => {
                     <Button
                         type="button"
                         value="Remove"
+                        onClick={() => deleteSet(i)}
                     >X</Button>
                 </div>
             )
