@@ -1,5 +1,5 @@
 // Used to store exercises returned from the server
-const activeExercises = (state = [], action) => {
+const exerciseList = (state = [], action) => {
     switch (action.type) {
       case 'SET_EXERCISE':
         return action.payload;
@@ -8,4 +8,4 @@ const activeExercises = (state = [], action) => {
     }
   }
 
-export default activeExercises;
+export default exerciseList;

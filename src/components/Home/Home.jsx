@@ -16,7 +16,7 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 function Home() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const activeExercises = useSelector(store => store.activeExercises);
+  const exerciseList = useSelector(store => store.exerciseList);
 
   // load active exercises
   useEffect(() => {
@@ -29,7 +29,7 @@ function Home() {
       {/* <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" /> */}
-      {activeExercises.map(exercise => {
+      {exerciseList.map(exercise => {
         return (
           <Grid>
           <Card variant="outlined" sx={{ maxWidth: 230 }}>
