@@ -43,6 +43,22 @@ router.put('/', (req, res) => {
   // PUT route code here
 });
 
+// PUT (complete) exercise
+router.put('/completed/:id', (req, res) => {
+  if (req.isAuthenticated()) {
+    const queryText = `UPDATE "exercise" SET "completed" = 'TRUE', "completed_at" = CURRENT_DATE
+                       WHERE "user_id" = $1;`;
+    pool.query(queryText, [req.body.completed, req.body.completed_at, req.params.id, req.user.id]).then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(403);
+  }
+})
+
 // POST exercise to home page
 router.post('/', (req, res) => {
   // POST route code here
