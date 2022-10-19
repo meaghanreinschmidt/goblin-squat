@@ -12,13 +12,14 @@ CREATE TABLE "user" (
 CREATE TABLE "exercise" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR (25),
+    "completed" BOOLEAN DEFAULT 'false',
+    "completed_at" DATE DEFAULT '1111-11-11', 
 	"user_id" INT REFERENCES "user"
 );
 
 CREATE TABLE "workout" (
 	"id" SERIAL PRIMARY KEY,
 	"exercise_id" INT REFERENCES "exercise",
-	"completed_at" TIMESTAMP, 
 	"notes" TEXT
 );
 
@@ -30,8 +31,8 @@ CREATE TABLE "set" (
 	"workout_id" INT REFERENCES "workout" 
 );
 
-INSERT INTO "exercise" ("name", "user_id")
-VALUES ('Bench Press', '1'), ('Front Squat', '1'), ('Mile Run', '1');
+INSERT INTO "exercise" ("name", "completed", "completed_at", "user_id")
+VALUES ('Bench Press', 'false', '1111-11-11', '1'), ('Front Squat', 'false', '1111-11-11', '1'), ('Mile Run', 'true', '2022-10-19', '1');
 
 INSERT INTO "workout" ("exercise_id", "notes")
 VALUES ('1', '1st set was light, maxed out on 2nd rep of 3rd set'),
