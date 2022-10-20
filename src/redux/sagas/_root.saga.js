@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import exerciseSaga from './exercise.saga';
 import workoutSaga from './workout.saga';
+import setSaga from './set.saga';
 
 
 
@@ -17,6 +18,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     exerciseSaga(), 
-    workoutSaga()
+    workoutSaga(),
+    setSaga()
   ]);
 }
