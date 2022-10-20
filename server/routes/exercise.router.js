@@ -60,8 +60,39 @@ router.put('/completed/:id', (req, res) => {
 })
 
 // POST exercise to home page
-router.post('/', (req, res) => {
-  // POST route code here
+router.post('/', async (req, res) => {
+  if (req.isAuthenticated()) {
+    const db = await pool.connect();
+      try {
+        if (req.isAuthenticated()) {
+          await db.query('BEGIN');
+          const queryText = `INSERT INTO "exercise" ("name", "user_id")
+                             VALUES ($1, $2) RETURNING "id"`;
+          const result = await db.query(queryText, [req.body.name, req.user.id]);
+          const query2 = `INSERT INTO "workout" ("exercise_id", "notes")
+                          VALUES ($1, $2)`;
+          await.db.query(query2, [req.user.id, result.rows[0].id]);
+          const sets = req.body;
+            for (let i = 0; i < sets.length; i += 1) {
+              let queryText = `INSERT INTO "sets" ("set_number", "reps", "weight", "workout_id")
+                               VALUES ($1, $2, $3, $4);`;
+              await db.query(queryText, [i, sets[i].reps, sets[i].weight, sets[i].workout_id]);
+            }
+          await db.query('COMMIT');
+          res.sendStatus(201);
+        } else {
+          res.sendStatus(403); // Forbidden
+        }
+      } catch (e) {
+        await db.query('ROLLBACK');
+        console.log(e);
+        res.sendStatus(500);
+      } finally {
+        db.release();
+      }
+  } else {
+    res.sendStatus(403); // Forbidden
+  }
 });
 
 // DELETE exercise 
