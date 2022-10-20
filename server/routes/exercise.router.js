@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// GET exercise name for exercises NOT YET COMPLETED
+// GET exercise for exercises NOT YET COMPLETED
 router.get('/', (req, res) => {
   console.log('/exercise GET route');
   console.log('is authenticated?', req.isAuthenticated());
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 
-// GET COMPLETED execise name and completed_at date
+// GET COMPLETED execise 
 router.get('/completed', (req, res) => {
   console.log('/completed/exercise GET route');
   console.log('is authenticated?', req.isAuthenticated());
