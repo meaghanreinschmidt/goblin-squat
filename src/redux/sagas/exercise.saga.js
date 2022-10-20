@@ -25,6 +25,19 @@ function* fetchCompleteExercises() {
   }
 }
 
+// gets data for one exericse
+function* fetchSingleExercise(action) {
+  try {
+    // Get one exercise's details
+    const oneExercise = yield axios.get(`/api/exercise/${action.payload}`);
+    console.log('get one exericse:', oneExercise.data);
+    yield put ({ type: 'SET_ONE_EXERCISE', payload: oneExercise.data });
+  } catch (error) {
+    console.log('Error fetching single exercise', error);
+    alert('Something went wrong!');
+  }
+}
+
 // CREATE 
 function* addExercise(action) {
   try {
@@ -46,6 +59,7 @@ function* addExercise(action) {
 function* exerciseSaga() {
     yield takeLatest('FETCH_ACTIVE_EXERCISES', fetchActiveExercises);
     yield takeLatest('FETCH_COMPLETE_EXERCISES', fetchCompleteExercises);
+    yield takeLatest('FETCH_ONE_EXERCISE', fetchSingleExercise);
     yield takeLatest('ADD_EXERCISE', addExercise);
 }
 

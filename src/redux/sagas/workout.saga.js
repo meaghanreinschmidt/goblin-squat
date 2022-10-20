@@ -13,8 +13,21 @@ function* fetchWorkout() {
     }
 }
 
+function* fetchSingleWorkout() {
+    try {
+        // get one workout
+        const oneWorkout = yield axios.get(`/api/workout/${action.payload}`);
+        yield put ({ type: 'SET_ONE_WORKOUT', payload: oneWorkout.data});
+    } catch (error) {
+        console.log('Error fetching workout', error);
+        alert('Something went wrong!');
+    }
+
+}
+
 function* workoutSaga() {
     yield takeLatest('FETCH_WORKOUTS', fetchWorkout);
+    yield takeLatest('FETCH_ONE_WORKOUT', fetchSingleWorkout);
 }
 
 export default workoutSaga;

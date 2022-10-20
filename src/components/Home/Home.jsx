@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import ExerciseItem from '../ExerciseItem/ExerciseItem';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -16,7 +17,7 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 function Home() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const exerciseList = useSelector(store => store.exerciseList);
+  const exerciseList = useSelector(store => store.exerciseList.exerciseList);
 
   // load active exercises
   useEffect(() => {
@@ -31,27 +32,8 @@ function Home() {
       <LogOutButton className="btn" /> */}
       {exerciseList.map(exercise => {
         return (
-          <Grid>
-          <Card variant="outlined" sx={{ maxWidth: 230 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 20 }}>{exercise.name}</Typography>
-              <CardActions>
-                {/* This button should take the user to the edit page */}
-                <Button onClick={() => history.push('/edit/exercise')}>
-                  <EditIcon className="edit-icon"></EditIcon>
-                </Button>
-                <Button>
-                  <DeleteIcon className="delete-icon"></DeleteIcon>
-                </Button>
-                <Button onClick={() => history.push('/log/exercise')}>
-                  <AddTaskIcon className="log-icon"></AddTaskIcon>
-                </Button>
-              </CardActions>
-            </CardContent>
-          </Card>
-          <br />
-          </Grid>
-        )
+          <ExerciseItem exercise={exercise} />
+        );
       })}
       <br />
       <Button onClick={() => history.push('/add/exercise')}>Add Exercise</Button>

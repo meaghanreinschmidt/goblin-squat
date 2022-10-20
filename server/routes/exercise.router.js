@@ -30,12 +30,28 @@ router.get('/completed', (req, res) => {
     let queryText = `SELECT * FROM "exercise" WHERE "completed" = 'TRUE' AND "user_id" = $1`;
     pool.query(queryText, [req.user.id]).then((result) => {
       res.send(result.rows);
+      console.log(result.rows);
     }).catch((error) => {
       console.log(error);
       res.sendStatus(500);
     });
   } else {
     res.sendStatus(403); // Forbidden
+  }
+});
+
+// GET request for a specific exercise
+router.get('/:id', (req, res) => {
+  if (req.isAuthenticated()) {
+    const queryText = 'SELECT * FROM "exercise" WHERE id = $1';
+    pool.query(queryText, [req.params.id])
+      .then((result) => {
+        res.send(result.rows[0]);
+      })
+      .catch((err) => {
+        console.log('Error: get one exercise', err);
+        res.sendStatus(500);
+      });
   }
 });
 

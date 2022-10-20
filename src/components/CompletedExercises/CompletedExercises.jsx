@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 function CompletedExercise() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const exerciseList = useSelector(store => store.exerciseList);
+  const exerciseList = useSelector(store => store.exerciseList.exerciseList);
 
   // load completed exercises
   useEffect(() => {
