@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import exerciseSaga from './exercise.saga';
+import workoutSaga from './workout.saga';
 
 
 

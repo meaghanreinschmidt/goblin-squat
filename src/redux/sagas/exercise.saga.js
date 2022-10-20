@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { actionChannel, put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 // READ
 function* fetchActiveExercises() {
