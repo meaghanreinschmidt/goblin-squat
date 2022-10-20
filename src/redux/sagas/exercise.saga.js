@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { actionChannel, put, takeLatest } from 'redux-saga/effects';
 
 // READ
 function* fetchActiveExercises() {
@@ -26,8 +26,17 @@ function* fetchCompleteExercises() {
 }
 
 // CREATE 
-function* addExercise() {
-
+function* addExercise(action) {
+  try {
+    yield axios({
+      method: 'POST', 
+      url: '/api/exercise',
+      data: action.payload
+    })
+    yield put ({ type: 'FETCH_ACTIVE_EXERCISES'})
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // EDIT

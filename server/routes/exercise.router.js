@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
   }
 });
 
+
 // GET COMPLETED execise name and completed_at date
 router.get('/completed', (req, res) => {
   console.log('/completed/exercise GET route');
@@ -71,7 +72,7 @@ router.post('/', async (req, res) => {
           const result = await db.query(queryText, [req.body.name, req.user.id]);
           const query2 = `INSERT INTO "workout" ("exercise_id", "notes")
                           VALUES ($1, $2)`;
-          await.db.query(query2, [req.user.id, result.rows[0].id]);
+          await db.query(query2, [req.user.id, result.rows[0].id]);
           const sets = req.body;
             for (let i = 0; i < sets.length; i += 1) {
               let queryText = `INSERT INTO "sets" ("set_number", "reps", "weight", "workout_id")

@@ -7,8 +7,11 @@ import Button from '@mui/material/Button';
 const AddExercise = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const exerciseList = useSelector(store => store.exerciseList);
+    const [exerciseName, setExerciseName] = useState([]);
     
-    const [exerciseName, setExerciseName] = useState({name: ""});
+    // const [exerciseName, setExerciseName] = useState({name: ""}); 
     const [setList, setSetList] = useState([]);
     const [noteField, setNoteField]= useState([]);
 
