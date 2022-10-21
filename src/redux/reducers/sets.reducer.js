@@ -1,5 +1,5 @@
 // Used to store sets returned from the server
-const setList = (state = [], action) => {
+const set = (state = [], action) => {
     switch (action.type) {
         case 'SET_SET':
             return action.payload;
@@ -8,4 +8,4 @@ const setList = (state = [], action) => {
     }
 }
 
-export default setList;
+export default set;

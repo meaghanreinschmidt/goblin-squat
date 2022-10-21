@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 // Used to store exercises returned from the server
-const exerciseList = (state = [], action) => {
+const exercises = (state = [], action) => {
     switch (action.type) {
       case 'SET_EXERCISE':
         return action.payload;
@@ -9,9 +9,9 @@ const exerciseList = (state = [], action) => {
     }
   }
 
-const exerciseItem = (state = [], action) => {
+const exerciseDetails = (state = [], action) => {
   switch (action.type) {
-    case 'SET_ONE_EXERCISE':
+    case 'SET_EXERCISE_DETAILS':
       return action.payload;
     default:
       return state;
@@ -19,6 +19,6 @@ const exerciseItem = (state = [], action) => {
 }
 
 export default combineReducers({
-  exerciseList,
-  exerciseItem,
+  exercises,
+  exerciseDetails,
 });

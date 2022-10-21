@@ -4,20 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ExerciseItem from '../ExerciseItem/ExerciseItem';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddTaskIcon from '@mui/icons-material/AddTask';
+
 
 function Home() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const exerciseList = useSelector(store => store.exerciseList.exerciseList);
+  const exercises = useSelector(store => store.exercises.exercises);
 
   // load active exercises
   useEffect(() => {
@@ -30,7 +23,7 @@ function Home() {
       {/* <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" /> */}
-      {exerciseList.map(exercise => {
+      {exercises.map(exercise => {
         return (
           <ExerciseItem exercise={exercise} />
         );

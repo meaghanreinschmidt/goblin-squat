@@ -7,31 +7,30 @@ const EditExercise = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
-    const exercise = useSelector(store => store.exerciseList.exerciseItem);
-    // const set = useSelector(store => store.oneExerciseSet);
-    // const workout = useSelector(store => store.oneWorkout);
+    const exercises = useSelector(store => store.exercises.exerciseDetails);
+    const workout = useSelector(store => store.workout);
+    const setList = useSelector(store => store.setList);
 
     // get details for each exercise
     const getExercise = () => {
-        dispatch({ type: 'FETCH_ONE_EXERCISE', payload: id })
-        // dispatch({ type: 'FETCH_ONE_WORKOUT', payload: id })
-        // dispatch({ type: 'FETCH_ONE_SET', payload: id });
+        dispatch({ type: 'FETCH_EXERCISE_DETAILS', payload: id })
+        // dispatch({ type: 'FETCH_WORKOUTS' })
+        // dispatch({ type: 'FETCH_SETS' });
     }
     
     useEffect(() => {
         getExercise();
     }, [id]);
     
-    console.log('this is the exercise:', {exercise});
+    console.log('this is the exercise:', {exercises});
 
     return (
         <>
             <center>
-            <h4>{exercise.name}</h4>
-            
-            <h5>"Already Added Input fields here with delete buttons"</h5>
+            <h4>{exercises.name}</h4>
+            {/* STILL TRYING TO GET SETS */}
             <Button>+ Add a Set</Button>
-            <h5>"Already Added Note block here with delete button</h5>
+            <h5>{exercises.notes}</h5>
             <Button>+ Add a Note Block</Button>
             <br />
             <Button onClick={() => history.push('/')}>Cancel</Button>

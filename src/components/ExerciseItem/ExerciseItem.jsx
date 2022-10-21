@@ -12,12 +12,6 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 function ExerciseItem({exercise}) {
     const history = useHistory();
 
-    // button click to go to Edit page
-    // const handleSingleExercise = () => {
-    //     console.log(`editing exercise at ${exercise.id}`);
-    //     history.push(`/edit/exercise/${exercise.id}`);
-    //   }
-
     return (
         <Grid>
           <Card variant="outlined" sx={{ maxWidth: 230 }}>

@@ -1,5 +1,5 @@
 // Used to store worokout (notes) returned from the server 
-const workoutNotes = (state = [], action) => {
+const workout = (state = [], action) => {
     switch (action.type) {
         case 'SET_WORKOUT':
             return action.payload;
@@ -8,4 +8,4 @@ const workoutNotes = (state = [], action) => {
     }
 }
 
-export default workoutNotes;
+export default workout;

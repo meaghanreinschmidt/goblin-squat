@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 function CompletedExercise() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const exerciseList = useSelector(store => store.exerciseList.exerciseList);
+  const exercises = useSelector(store => store.exercises.exercises);
 
   // load completed exercises
   useEffect(() => {
@@ -23,7 +23,7 @@ function CompletedExercise() {
   return (
     <Box className="container">
       <center>
-        {exerciseList.map(exercise => {
+        {exercises.map(exercise => {
           return (
             <Grid>
               <Card variant="outlined" sx={{ maxWidth: 230 }}>

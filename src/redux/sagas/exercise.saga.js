@@ -25,15 +25,17 @@ function* fetchCompleteExercises() {
   }
 }
 
-// gets data for one exericse
-function* fetchSingleExercise(action) {
+// gets data for one exercise including sets and workout
+function* fetchExerciseDetails(action) {
   try {
     // Get one exercise's details
-    const oneExercise = yield axios.get(`/api/exercise/${action.payload}`);
-    console.log('get one exericse:', oneExercise.data);
-    yield put ({ type: 'SET_ONE_EXERCISE', payload: oneExercise.data });
+    const exerciseDetails = yield axios.get(`/api/exercise/${action.payload}`);
+    console.log('get exercise details:', exerciseDetails.data);
+    yield put ({ type: 'SET_EXERCISE_DETAILS', payload: exerciseDetails.data });
+    // yield put ({ type: 'SET_WORKOUT', payload: workouts.data });
+    // yield put ({ type: 'SET_SET', payload: sets.data});
   } catch (error) {
-    console.log('Error fetching single exercise', error);
+    console.log('Error fetching exercise details', error);
     alert('Something went wrong!');
   }
 }
@@ -59,7 +61,7 @@ function* addExercise(action) {
 function* exerciseSaga() {
     yield takeLatest('FETCH_ACTIVE_EXERCISES', fetchActiveExercises);
     yield takeLatest('FETCH_COMPLETE_EXERCISES', fetchCompleteExercises);
-    yield takeLatest('FETCH_ONE_EXERCISE', fetchSingleExercise);
+    yield takeLatest('FETCH_EXERCISE_DETAILS', fetchExerciseDetails);
     yield takeLatest('ADD_EXERCISE', addExercise);
 }
 
