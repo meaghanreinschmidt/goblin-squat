@@ -6,8 +6,7 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
     if (req.isAuthenticated()) {
       console.log(req.params.id);
-      const queryText = `SELECT *
-                         FROM "exercise" 
+      const queryText = `SELECT * FROM "exercise" 
                          JOIN "workout" ON "workout"."exercise_id" = "exercise"."id"
                          JOIN "set" ON "set"."exercise_id" = "exercise"."id"
                          WHERE "exercise"."id" = $1

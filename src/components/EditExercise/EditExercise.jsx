@@ -8,18 +8,16 @@ const EditExercise = () => {
     const history = useHistory();
     const { id } = useParams();
     const exercises = useSelector(store => store.exercises.exerciseDetails);
-    const workout = useSelector(store => store.workout);
-    const setList = useSelector(store => store.setList);
 
     // get details for each exercise
-    const getExercise = () => {
+    const getDetails = () => {
         dispatch({ type: 'FETCH_EXERCISE_DETAILS', payload: id })
         // dispatch({ type: 'FETCH_WORKOUTS' })
         // dispatch({ type: 'FETCH_SETS' });
     }
     
     useEffect(() => {
-        getExercise();
+        getDetails();
     }, [id]);
     
     console.log('this is the exercise:', {exercises});

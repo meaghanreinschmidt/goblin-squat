@@ -20,6 +20,22 @@ router.get('/', (req, res) => {
   }
 });
 
+// // get specific exercise detail
+// router.get('/:id', (req, res) => {
+//   if (req.isAuthenticated()) {
+//     console.log(req.params.id);
+//     const queryText = `SELECT * FROM "exercise" WHERE "id" = $1;`
+//     pool.query(queryText, [req.params.id])
+//       .then((result) => {
+//         res.send(result.rows[0]);
+//       })
+//       .catch((err) => {
+//         console.log('Error: get one exercise', err);
+//         res.sendStatus(500);
+//       });
+//   }
+// });
+
 
 // GET COMPLETED execise 
 router.get('/completed', (req, res) => {
