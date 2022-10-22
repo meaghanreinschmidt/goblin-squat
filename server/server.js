@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const exerciseRouter = require('./routes/exercise.router');
 const specificExerciseRouter = require('./routes/specificExercise.router');
+const specificCompletedExerciseRouter = require('./routes/specificCompletedExercise.router');
 const workoutRouter = require('./routes/workout.router');
 const setRouter = require('./routes/set.router');
 
@@ -29,6 +30,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/exercise', exerciseRouter);
 app.use('/api/exercise', specificExerciseRouter);
+app.use('/api/exercise/completed', specificCompletedExerciseRouter);
 app.use('/api/workout', workoutRouter);
 app.use('/api/set', setRouter);
 

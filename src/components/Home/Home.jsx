@@ -25,7 +25,7 @@ function Home() {
       <LogOutButton className="btn" /> */}
       {exercises.map(exercise => {
         return (
-          <ExerciseItem exercise={exercise} />
+          <ExerciseItem key={exercise.id} exercise={exercise} />
         );
       })}
       <br />

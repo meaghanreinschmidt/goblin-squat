@@ -15,6 +15,7 @@ import AddExercise from '../AddExercise/AddExercise';
 import EditExercise from '../EditExercise/EditExercise';
 import LogExercise from '../LogExercise/LogExercise';
 import CompletedExercises from '../CompletedExercises/CompletedExercises';
+import CompletedExerciseDetails from '../CompletedExerciseDetails/CompletedExerciseDetails';
 import ProgressChart from '../ProgressChart/ProgressChart';
 import EditProfile from '../EditProfile/EditProfile';
 import LoginPage from '../LoginPage/LoginPage';
@@ -83,6 +84,14 @@ function App() {
             path="/exercise/completed"
           >
             <CompletedExercises />
+          </ProtectedRoute>
+        
+          <ProtectedRoute
+            // logged in shows Completed exercise else shows loginPage
+            exact 
+            path="/exercise/completed/:id"
+          >
+            <CompletedExerciseDetails />
           </ProtectedRoute>
 
           <ProtectedRoute

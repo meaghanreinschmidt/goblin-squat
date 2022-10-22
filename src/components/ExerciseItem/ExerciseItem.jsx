@@ -14,7 +14,6 @@ function ExerciseItem({exercise}) {
 
     const handleEditView = () => {
       console.log('clicked into handleEditView');
-      // dispatch({ type: 'FETCH_EXERCISE_DETAILS', payload: exercise.id})
       history.push(`/edit/exercise/${exercise.id}`);
     }
     return (
