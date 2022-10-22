@@ -13,7 +13,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
 import AddExercise from '../AddExercise/AddExercise';
 import EditExercise from '../EditExercise/EditExercise';
-import LogExercise from '../LogExercise/LogExercise';
 import CompletedExercises from '../CompletedExercises/CompletedExercises';
 import CompletedExerciseDetails from '../CompletedExerciseDetails/CompletedExerciseDetails';
 import ProgressChart from '../ProgressChart/ProgressChart';
@@ -69,13 +68,6 @@ function App() {
             path="/edit/exercise/:id"
           >
             <EditExercise />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact 
-            path="/log/exercise"
-          >
-            <LogExercise />
           </ProtectedRoute>
 
           <ProtectedRoute

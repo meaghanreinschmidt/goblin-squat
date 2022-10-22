@@ -20,22 +20,6 @@ router.get('/', (req, res) => {
   }
 });
 
-// // get specific exercise detail
-// router.get('/:id', (req, res) => {
-//   if (req.isAuthenticated()) {
-//     console.log(req.params.id);
-//     const queryText = `SELECT * FROM "exercise" WHERE "id" = $1;`
-//     pool.query(queryText, [req.params.id])
-//       .then((result) => {
-//         res.send(result.rows[0]);
-//       })
-//       .catch((err) => {
-//         console.log('Error: get one exercise', err);
-//         res.sendStatus(500);
-//       });
-//   }
-// });
-
 
 // GET COMPLETED execise 
 router.get('/completed', (req, res) => {
@@ -63,7 +47,7 @@ router.put('/', (req, res) => {
 });
 
 // PUT (complete) exercise
-router.put('/completed/:id', (req, res) => {
+router.put('/complete/:id', (req, res) => {
   if (req.isAuthenticated()) {
     const queryText = `UPDATE "exercise" SET "completed" = 'TRUE', "completed_at" = CURRENT_DATE
                        WHERE "user_id" = $1;`;
@@ -115,8 +99,34 @@ router.post('/', async (req, res) => {
 });
 
 // DELETE exercise 
-router.delete('/:id', (req, res) => {
-  // DELETE route code here
+router.delete('/delete/:id', (req, res) => {
+  console.log('in exercise DELETE /delete/:id')
+  if (req.isAuthenticated()) {
+    const queryText = `DELETE FROM "set"
+    WHERE "exercise_id" = $1;`;
+    pool.query(queryText, [req.params.id])
+      .then((result) => {
+        const workoutQueryText = `DELETE FROM "workout"
+                                  WHERE "exercise_id" = $1;`
+        pool.query(workoutQueryText, [req.params.exerciseid])
+          .then(result => {
+            const setQueryText = `DELETE FROM "exercise" WHERE "id" = $1 AND "user_id" = $2;`
+            pool.query(setQueryText, [req.params.exerciseid, req.user.id])
+              .then(result => {
+                res.sendStatus(200);
+              })
+              .catch(error => {
+                console.log('error in delete from exercise', error);
+                res.sendStatus(500);
+              })
+          })
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(403);
+  }
 });
 
 module.exports = router;

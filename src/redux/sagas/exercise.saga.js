@@ -59,7 +59,7 @@ function* fetchCompleteExerciseDetails(action) {
 function* addExercise() {
   try {
       yield axios.post('/api/exercise', { name: action.payload });
-      yield put({ type: 'FETCH_EXERCISE' });
+      yield put({ type: 'FETCH_ACTIVE_EXERCISES' });
       yield put({ type: 'FETCH_SETS'});
       yield put({ type: 'FETCH_WORKOUTS'});
   } catch (error) {
@@ -68,9 +68,27 @@ function* addExercise() {
   }
 }
 
-// EDIT
+// Complete Exercise 
+function* completeExercise() {
+  try {
+    yield axios.put(`/api/exercise/complete/${action.payload}`);
+    yield put({ type: 'FETCH_ACTIVE_EXERCISES'});
+  } catch (error) {
+    console.log('Error with completeExercise saga:', error);
+    alert('Something went wrong!');
+  }
+}
 
 // DELETE
+function* deleteExercise(action) {
+  try {
+    yield axios.delete(`/api/exercise/delete/${action.payload}`);
+    yield put({ type: 'FETCH_ACTIVE_EXERCISES' });
+  } catch (error) {
+    console.log('Error with deleteExercise saga:', error);
+    alert('Something went wrong!');
+  }
+}
 
 function* exerciseSaga() {
     yield takeLatest('FETCH_ACTIVE_EXERCISES', fetchActiveExercises);
@@ -78,6 +96,8 @@ function* exerciseSaga() {
     yield takeLatest('FETCH_EXERCISE_DETAILS', fetchExerciseDetails);
     yield takeLatest('FETCH_COMPLETE_EXERCISE_DETAILS', fetchCompleteExerciseDetails);
     yield takeLatest('ADD_EXERCISE', addExercise);
+    yield takeLatest('CLICK_COMPLETE_EXERCISE', completeExercise);
+    yield takeLatest('DELETE_EXERCISE', deleteExercise);
 }
 
 export default exerciseSaga;
