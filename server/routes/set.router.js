@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+
 // GET sets specific exercise
 router.get('/:id', (req, res) => {
         let queryText = `SELECT "set"."set_number", "set"."reps", "set"."weight" FROM "set"

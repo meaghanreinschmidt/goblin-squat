@@ -56,16 +56,15 @@ function* fetchCompleteExerciseDetails(action) {
 }
 
 // CREATE 
-function* addExercise(action) {
+function* addExercise() {
   try {
-    yield axios({
-      method: 'POST', 
-      url: '/api/exercise',
-      data: action.payload
-    })
-    yield put ({ type: 'FETCH_ACTIVE_EXERCISES'})
+      yield axios.post('/api/exercise', { name: action.payload });
+      yield put({ type: 'FETCH_EXERCISE' });
+      yield put({ type: 'FETCH_SETS'});
+      yield put({ type: 'FETCH_WORKOUTS'});
   } catch (error) {
-    console.log(error);
+      console.log('Add exercise failed', error);
+      alert('Something went wrong');
   }
 }
 

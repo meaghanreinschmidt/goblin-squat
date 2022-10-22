@@ -8,12 +8,38 @@ const AddExercise = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const exerciseList = useSelector(store => store.exerciseList);
-    const [exerciseName, setExerciseName] = useState([]);
-    
-    // const [exerciseName, setExerciseName] = useState({name: ""}); 
+    const exercise = useSelector(store => store.exercises);
+    const set = useSelector(store => store.set);
+    const workout = useSelector(store => store.workout);
+    const [exerciseName, setExerciseName] = useState('');
     const [setList, setSetList] = useState([]);
     const [noteField, setNoteField]= useState([]);
+
+    useEffect(() => {
+        fetchExercises();
+    }, []);
+
+    const fetchExercises = () => {
+        dispatch({ type: 'FETCH_EXERCISE'});
+        // dispatch({ type: 'FETCH_SETS'});
+        // dispatch({ type: 'FETCH_WORKOUTS'});
+    }
+
+    const addNewExerciseName = (e) => {
+        e.preventDefault();
+        dispatch({ type: 'ADD_EXERCISE', payload: exerciseName });
+    }
+
+    const addNewExerciseSet = (e) => {
+        e.preventDefault();
+        dispatch({ type: 'ADD_EXERCISE', payload: sets });
+    }
+
+    const addNewExerciseNote = (e) => {
+        e.preventDefault();
+        dispatch({ type: 'ADD_EXERCISE', payload: notes });
+    }
+
 
     const handleChange = (e, index) => {
         const { name, value } = e.target;
