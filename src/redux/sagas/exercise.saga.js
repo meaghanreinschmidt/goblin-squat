@@ -19,7 +19,7 @@ function* fetchCompleteExercises() {
   try {
     const completedExercises = yield axios.get('/api/exercise/completed');
     console.log('get completed exercises:', completedExercises.data)
-    yield put ({ type: 'SET_EXERCISE', payload: completedExercises.data});
+    yield put ({ type: 'SET_COMPLETE_EXERCISE', payload: completedExercises.data});
   } catch (error) {
     console.log('get completed exercises', error);
   }
@@ -30,8 +30,11 @@ function* fetchExerciseDetails(action) {
   try {
     // Get one exercise's details
     const exerciseDetails = yield axios.get(`/api/exercise/${action.payload}`);
-    console.log('get exercise details:', exerciseDetails.data);
+    const exerciseSets = yield axios.get(`/api/set/${action.payload}`);
+    const exerciseNotes = yield axios.get(`/api/workout/${action.payload}`);
     yield put ({ type: 'SET_EXERCISE_DETAILS', payload: exerciseDetails.data });
+    yield put ({ type: 'SET_SETS', payload: exerciseSets.data});
+    yield put ({ type: 'SET_WORKOUT', payload: exerciseNotes.data});
     // yield put ({ type: 'SET_WORKOUT', payload: workouts.data });
     // yield put ({ type: 'SET_SET', payload: sets.data});
   } catch (error) {

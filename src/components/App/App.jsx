@@ -80,7 +80,7 @@ function App() {
           <ProtectedRoute
             // logged in shows Completed else shows LoginPage
             exact
-            path="/completed/exercises"
+            path="/exercise/completed"
           >
             <CompletedExercises />
           </ProtectedRoute>

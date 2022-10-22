@@ -8,12 +8,12 @@ const EditExercise = () => {
     const history = useHistory();
     const { id } = useParams();
     const exercises = useSelector(store => store.exercises.exerciseDetails);
+    const sets = useSelector(store => store.set);
+    const workout = useSelector(store => store.workout);
 
     // get details for each exercise
     const getDetails = () => {
         dispatch({ type: 'FETCH_EXERCISE_DETAILS', payload: id })
-        // dispatch({ type: 'FETCH_WORKOUTS' })
-        // dispatch({ type: 'FETCH_SETS' });
     }
     
     useEffect(() => {
@@ -21,14 +21,38 @@ const EditExercise = () => {
     }, [id]);
     
     console.log('this is the exercise:', {exercises});
-
+    console.log('these are the sets:', {sets})
     return (
         <>
             <center>
             <h4>{exercises.name}</h4>
             {/* STILL TRYING TO GET SETS */}
+            <p>Sets: </p>
+            {sets.map(set => {
+                return (
+                    <table>
+                        <tr>
+                            <th>Set #</th>
+                            <th>Reps</th>
+                            <th>Weight</th>
+                        </tr>
+                        <tr>
+                            <td>{set.set_number}</td>
+                            <td>{set.reps}</td>
+                            <td>{set.weight}</td>
+                        </tr>
+                    </table>
+                )
+            })}
             <Button>+ Add a Set</Button>
-            <h5>{exercises.notes}</h5>
+            <p>Notes: </p>
+            {workout.map(workout => {
+                return (
+                    <>
+                        <h5>{workout.notes}</h5>
+                    </>
+                )
+            })}
             <Button>+ Add a Note Block</Button>
             <br />
             <Button onClick={() => history.push('/')}>Cancel</Button>

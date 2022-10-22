@@ -13,13 +13,14 @@ import Typography from '@mui/material/Typography';
 function CompletedExercise() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const exercises = useSelector(store => store.exercises.exercises);
+  const exercises = useSelector(store => store.exercises.completedExercise);
 
   // load completed exercises
   useEffect(() => {
     dispatch({ type: 'FETCH_COMPLETE_EXERCISES' });
   }, []);
 
+  console.log('here are the completed exercises:', {exercises})
   return (
     <Box className="container">
       <center>

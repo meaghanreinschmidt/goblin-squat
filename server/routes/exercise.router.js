@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 
 // GET COMPLETED execise 
 router.get('/completed', (req, res) => {
-  console.log('/completed/exercise GET route');
+  console.log('/exercise/completed GET route');
   console.log('is authenticated?', req.isAuthenticated());
   console.log('req.user', req.user);
   if (req.isAuthenticated()) {
@@ -48,7 +48,7 @@ router.get('/completed', (req, res) => {
       res.send(result.rows);
       console.log(result.rows);
     }).catch((error) => {
-      console.log(error);
+      console.log('Error: get completed exercise:', error);
       res.sendStatus(500);
     });
   } else {

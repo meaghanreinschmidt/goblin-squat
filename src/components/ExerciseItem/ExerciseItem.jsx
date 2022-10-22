@@ -12,6 +12,11 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 function ExerciseItem({exercise}) {
     const history = useHistory();
 
+    const handleEditView = () => {
+      console.log('clicked into handleEditView');
+      // dispatch({ type: 'FETCH_EXERCISE_DETAILS', payload: exercise.id})
+      history.push(`/edit/exercise/${exercise.id}`);
+    }
     return (
         <Grid>
           <Card variant="outlined" sx={{ maxWidth: 230 }}>
@@ -19,7 +24,7 @@ function ExerciseItem({exercise}) {
               <Typography sx={{ fontSize: 20 }}>{exercise.name}</Typography>
               <CardActions>
                 {/* This button should take the user to the edit page */}
-                <Button onClick={() => history.push(`/edit/exercise/${exercise.id}`)}>
+                <Button onClick={handleEditView}>
                   <EditIcon className="edit-icon"></EditIcon>
                 </Button>
                 <Button>
