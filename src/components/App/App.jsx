@@ -13,6 +13,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
 import AddExercise from '../AddExercise/AddExercise';
 import EditExercise from '../EditExercise/EditExercise';
+import WorkoutLog from '../WorkoutLog/WorkoutLog';
 import CompletedExercises from '../CompletedExercises/CompletedExercises';
 import CompletedExerciseDetails from '../CompletedExerciseDetails/CompletedExerciseDetails';
 import ProgressChart from '../ProgressChart/ProgressChart';
@@ -70,10 +71,17 @@ function App() {
             <EditExercise />
           </ProtectedRoute>
 
+          <ProtectedRoute 
+            exact
+            path="/workout/log"
+          >
+            <WorkoutLog />
+          </ProtectedRoute>
+
           <ProtectedRoute
             // logged in shows Completed else shows LoginPage
             exact
-            path="/exercise/completed"
+            path="/workout/completed/:id"
           >
             <CompletedExercises />
           </ProtectedRoute>
@@ -81,7 +89,7 @@ function App() {
           <ProtectedRoute
             // logged in shows Completed exercise else shows loginPage
             exact 
-            path="/exercise/completed/:id"
+            path="/workout/exercise/completed/:id"
           >
             <CompletedExerciseDetails />
           </ProtectedRoute>

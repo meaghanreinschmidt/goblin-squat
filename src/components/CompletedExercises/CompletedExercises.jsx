@@ -8,20 +8,20 @@ import CompletedExerciseItem from '../CompletedExerciseItem/CompletedExerciseIte
 function CompletedExercise() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const exercises = useSelector(store => store.exercises.completedExercise);
+  const workout = useSelector(store => store.workouts.completedWorkoutExercises);
 
   // load completed exercises
   useEffect(() => {
-    dispatch({ type: 'FETCH_COMPLETE_EXERCISES' });
+    dispatch({ type: 'FETCH_COMPLETE_WORKOUT_EXERCISES' });
   }, []);
 
   
 
-  console.log('here are the completed exercises:', {exercises})
+  
   return (
     <Box className="container">
       <center>
-        {exercises.map(exercise => {
+        {workout.map(exercise => {
           return (
             <CompletedExerciseItem key={exercise.id} exercise={exercise}/>
           )

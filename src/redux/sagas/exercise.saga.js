@@ -1,32 +1,9 @@
 import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
 
-// READ
-function* fetchActiveExercises() {
-  // get exercises from the DB --- NOT YET COMPLETED
-  try {
-    const activeExercises = yield axios.get("/api/exercise");
-    console.log("get active exercises:", activeExercises.data);
-    yield put({ type: "SET_EXERCISE", payload: activeExercises.data });
-  } catch (error) {
-    console.log("get active exercises error", error);
-  }
-}
 
-// READ
-function* fetchCompleteExercises() {
-  // get exercises from the DB -- COMPLETED
-  try {
-    const completedExercises = yield axios.get("/api/exercise/completed");
-    console.log("get completed exercises:", completedExercises.data);
-    yield put({
-      type: "SET_COMPLETE_EXERCISE",
-      payload: completedExercises.data,
-    });
-  } catch (error) {
-    console.log("get completed exercises", error);
-  }
-}
+
+
 
 // gets data for one exercise including sets and workout
 function* fetchExerciseDetails(action) {
@@ -83,10 +60,10 @@ function* addExercise() {
 // Complete Exercise
 function* completeExercise() {
   try {
-    yield axios.put(`/api/exercise/complete/${action.payload}`);
-    yield put({ type: "FETCH_ACTIVE_EXERCISES" });
+    yield axios.put(`/api/workout/complete/${action.payload}`);
+    yield put({ type: "FETCH_ACTIVE_WORKOUT" });
   } catch (error) {
-    console.log("Error with completeExercise saga:", error);
+    console.log("Error with completeWorkout saga:", error);
     alert("Something went wrong!");
   }
 }
@@ -103,8 +80,8 @@ function* deleteExercise(action) {
 }
 
 function* exerciseSaga() {
-  yield takeLatest("FETCH_ACTIVE_EXERCISES", fetchActiveExercises);
-  yield takeLatest("FETCH_COMPLETE_EXERCISES", fetchCompleteExercises);
+  // yield takeLatest("FETCH_ACTIVE_EXERCISES", fetchActiveExercises);
+  // yield takeLatest("FETCH_COMPLETE_EXERCISES", fetchCompleteExercises);
   yield takeLatest("FETCH_EXERCISE_DETAILS", fetchExerciseDetails);
   yield takeLatest(
     "FETCH_COMPLETE_EXERCISE_DETAILS",

@@ -30,7 +30,7 @@ function Footer() {
             <HomeIcon className="home-button"></HomeIcon>
             </Link>
 
-            <Link className="navLink" to="/exercise/completed">
+            <Link className="navLink" to="/workout/log">
               <GradingIcon className="completed-button"></GradingIcon>
             </Link>
 

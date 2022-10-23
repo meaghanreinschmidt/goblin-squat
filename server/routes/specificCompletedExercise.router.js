@@ -5,13 +5,13 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
     if (req.isAuthenticated()) {
       console.log(req.params.id);
-      const queryText = `SELECT * FROM "exercise" WHERE "completed" = 'TRUE' AND "id" = $1;`
+      const queryText = `SELECT * FROM "exercise" WHERE "id" = $1;`
       pool.query(queryText, [req.params.id])
         .then((result) => {
           res.send(result.rows[0]);
         })
         .catch((err) => {
-          console.log('Error: get one complete exercise', err);
+          console.log('Error: getting completed exercise', err);
           res.sendStatus(500);
         });
     }

@@ -11,7 +11,7 @@ function Home() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  const exercises = useSelector((store) => store.exercises.exercises);
+  const workout = useSelector(store => store.workouts.workouts);
 
   // load active exercises
   useEffect(() => {
@@ -19,16 +19,14 @@ function Home() {
   }, []);
 
   const getActiveExercises = () => {
-    dispatch({ type: "FETCH_ACTIVE_EXERCISES", payload: { id } });
+    dispatch({ type: 'FETCH_ACTIVE_WORKOUT', payload: { id } });
   };
 
   return (
     <Box className="container">
       <center>
-        {/* <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" /> */}
-        {exercises.map((exercise) => {
+        <h3>Current Workout</h3>
+        {workout.map((exercise) => {
           return <ExerciseItem key={exercise.id} exercise={exercise} />;
         })}
         <br />
