@@ -29,6 +29,11 @@ function ActiveWorkoutItem({workout}) {
         dispatch({ type: 'DELETE_WORKOUT', payload: id});
     }
 
+    const handleComplete = (id) => {
+        console.log('handling complete', id);
+        dispatch({ type: 'COMPLETE_WORKOUT', payload: id});
+    }
+
     return (
         <Grid>
             <Card>
@@ -45,6 +50,7 @@ function ActiveWorkoutItem({workout}) {
                     </Button>
                     <Button>
                     <CheckCircleOutlineIcon
+                        onClick={() => handleComplete(workout.id)}
                         className="complete-icon"
                     ></CheckCircleOutlineIcon>
                     </Button>

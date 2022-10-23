@@ -64,6 +64,17 @@ function* fetchCompleteWorkout() {
     }
   }
 
+  // UPDATE
+  function* completeWorkout(action) {
+    try {
+      yield axios.put(`/api/workout/complete/${action.payload}`);
+      yield put({ type: 'FETCH_ACTIVE_WORKOUT' });
+    } catch (error) {
+      console.log('Error with completeWorkout saga', error);
+      alert('Something went wrong!');
+    }
+  }
+
   // DELETE
   function* deleteWorkout(action) {
     try {
@@ -95,6 +106,7 @@ function* workoutSaga() {
     yield takeLatest('FETCH_COMPLETE_WORKOUT', fetchCompleteWorkout);
     yield takeLatest('FETCH_COMPLETE_WORKOUT_EXERCISES', fetchCompleteWorkoutExercises);
     yield takeLatest('ADD_WORKOUT', addWorkout);
+    yield takeLatest('COMPLETE_WORKOUT', completeWorkout);
     yield takeLatest('DELETE_WORKOUT', deleteWorkout);
     // yield takeLatest('FETCH_ONE_WORKOUT', fetchSingleWorkout);
 }
