@@ -2,14 +2,15 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// GET workout NOT YET COMPLETED
-router.get("/", (req, res) => {
-    console.log("/workout GET route");
-    console.log("is authenticated?", req.isAuthenticated());
-    console.log("req.user", req.user);
+// GOOD AND WORKING
+// GET active workout on home page
+router.get('/', (req, res) => {
+    // console.log("/workout GET route");
+    // console.log("is authenticated?", req.isAuthenticated());
+    // console.log("req.user", req.user);
     if (req.isAuthenticated()) {
       let queryText = `SELECT * FROM "workout"
-                       WHERE "completed" = 'FALSE' AND "user_id" = $1`;
+                       WHERE "workout"."completed" = 'FALSE' AND "workout"."user_id" = $1`;
       pool
         .query(queryText, [req.user.id])
         .then((result) => {
@@ -23,6 +24,21 @@ router.get("/", (req, res) => {
       res.sendStatus(403); // Forbidden
     }
   });
+
+// GET active workout details on click
+router.get('/:id', (req, res) => {
+  if (req.isAuthenticated()) {
+    let queryText = `SELECT * FROM "workout" WHERE "id" = $1 AND "user_id" = $2`;
+    pool.query(queryText, [req.params.id, req.user.id])
+      .then((result) => {
+        res.send(result.rows[0]);
+      })
+      .catch((err) => {
+        console.log('ERROR: Get one workout', err);
+        res.sendStatus(500);
+      })
+  }
+})
 
 // GET COMPLETED workout
 router.get("/completed", (req, res) => {
@@ -76,19 +92,19 @@ router.get("/completed", (req, res) => {
 //     });
 // });
 
-router.get('/completed/:id', (req, res) => {
-  if (req.isAuthenticated()) {
-    console.log(req.params.id);
-    const queryText = `SELECT * FROM "exercise" WHERE "id" = $1;`
-    pool.query(queryText, [req.params.id])
-      .then((result) => {
-        res.send(result.rows[0]);
-      })
-      .catch((err) => {
-        console.log('Error: getting completed workout exercises', err);
-        res.sendStatus(500);
-      });
-  }
-});
+// router.get('/completed/:id', (req, res) => {
+//   if (req.isAuthenticated()) {
+//     console.log(req.params.id);
+//     const queryText = `SELECT * FROM "exercise" WHERE "id" = $1;`
+//     pool.query(queryText, [req.params.id])
+//       .then((result) => {
+//         res.send(result.rows[0]);
+//       })
+//       .catch((err) => {
+//         console.log('Error: getting completed workout exercises', err);
+//         res.sendStatus(500);
+//       });
+//   }
+// });
 
 module.exports = router;

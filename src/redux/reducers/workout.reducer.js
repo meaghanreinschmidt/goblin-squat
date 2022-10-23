@@ -10,6 +10,16 @@ const workouts = (state = [], action) => {
     }
 }
 
+// Used to store workout details (name)
+const workoutDetails = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_WORKOUT_DETAILS':
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 // Used to store completed exercises returned from the server
 const completedWorkouts = (state = [], action) => {
     switch (action.type) {
@@ -31,6 +41,7 @@ const completedWorkouts = (state = [], action) => {
 
   export default combineReducers({
     workouts,
+    workoutDetails,
     completedWorkouts,
     completedWorkoutExercises,
   });

@@ -5,13 +5,26 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchActiveWorkout() {
     // get exercises from the DB --- NOT YET COMPLETED
     try {
-      const activeExercises = yield axios.get('/api/workout');
-      console.log("get active workout:", activeExercises.data);
-      yield put({ type: 'SET_WORKOUT', payload: activeExercises.data });
+      const activeWorkouts = yield axios.get('/api/workout');
+      console.log("get active workout:", activeWorkouts.data);
+      yield put({ type: 'SET_WORKOUT', payload: activeWorkouts.data });
     } catch (error) {
       console.log("get active workout error", error);
     }
   }
+
+function* fetchActiveWorkoutDetails(action) {
+  try {
+    // Get one workout's details
+    const workoutDetails = yield axios.get(`api/workout/${action.payload}`);
+    const exercises = yield axios.get(`api/exercise/${action.payload}`);
+    yield put ({ type: 'SET_WORKOUT_DETAILS', payload: workoutDetails.data})
+    yield put ({ type: 'SET_EXERCISES', payload: exercises.data });
+  } catch (error) {
+    console.log('Error fetching workout', error);
+    alert('Something went wrong!');
+  }
+}
 
 // READ
 function* fetchCompleteWorkout() {
@@ -65,6 +78,7 @@ function* fetchSingleWorkout() {
 
 function* workoutSaga() {
     yield takeLatest('FETCH_ACTIVE_WORKOUT', fetchActiveWorkout);
+    yield takeLatest('FETCH_ACTIVE_WORKOUT_DETAILS', fetchActiveWorkoutDetails);
     yield takeLatest('FETCH_COMPLETE_WORKOUT', fetchCompleteWorkout);
     yield takeLatest('FETCH_COMPLETE_WORKOUT_EXERCISES', fetchCompleteWorkoutExercises);
     yield takeLatest('FETCH_ONE_WORKOUT', fetchSingleWorkout);

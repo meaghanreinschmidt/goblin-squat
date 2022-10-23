@@ -11,6 +11,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
+import ActiveWorkoutDetails from '../ActiveWorkoutDetails/ActiveWorkoutDetails';
 import AddExercise from '../AddExercise/AddExercise';
 import EditExercise from '../EditExercise/EditExercise';
 import WorkoutLog from '../WorkoutLog/WorkoutLog';
@@ -53,6 +54,14 @@ function App() {
             path="/user"
           >
             <Home />
+          </ProtectedRoute>
+
+          {/* Workout Details page */}
+          <ProtectedRoute 
+            exact
+            path="/workout/details/:id"
+          >
+            <ActiveWorkoutDetails />
           </ProtectedRoute>
           
           {/* Add Exercise page */}

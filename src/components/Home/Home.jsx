@@ -13,7 +13,7 @@ function Home() {
   const { id } = useParams();
   const workout = useSelector(store => store.workouts.workouts);
 
-  // load active exercises
+  // load active workouts
   useEffect(() => {
     getActiveWorkout();
   }, []);
@@ -32,7 +32,7 @@ function Home() {
           )
         })}
         <br />
-        <Button>Create Workout</Button>
+        <Button>Start Workout</Button>
       </center>
     </Box>
   );

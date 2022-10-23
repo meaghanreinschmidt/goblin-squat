@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 // Used to store exercises returned from the server
 const exercises = (state = [], action) => {
     switch (action.type) {
-      case 'SET_EXERCISE':
+      case 'SET_EXERCISES':
         return action.payload;
       default: 
         return state;
