@@ -53,14 +53,7 @@ function Home() {
   return (
     <Box className="container">
       <center>
-        {/* MAP through workouts and get active workouts */}
-        {workout.map(workout => {
-          return (
-            <ActiveWorkoutItem workout={workout}/>
-          )
-        })}
-        <br />
-        <Button variant="outlined" onClick={handleClickOpen}>Start Workout</Button>
+      <Button variant="outlined" onClick={handleClickOpen}>Start Workout</Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Enter Name of Workout</DialogTitle>
           <DialogContent>
@@ -83,6 +76,18 @@ function Home() {
             </form>
           </DialogContent>
         </Dialog>
+        <br />
+        <br />
+        {workout.map(workout => {
+          return (
+            <>
+            <ActiveWorkoutItem workout={workout}/>
+            <br />
+            </>
+          )
+        })}
+
+        
       </center>
     </Box>
   );

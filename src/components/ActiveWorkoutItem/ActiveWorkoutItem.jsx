@@ -8,7 +8,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
+import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ExerciseItem from "../ExerciseItem/ExerciseItem";
 
 function ActiveWorkoutItem({workout}) {
@@ -32,12 +34,19 @@ function ActiveWorkoutItem({workout}) {
             <Card>
                 <CardContent>
                     <Typography>{workout.name}</Typography>
-                    <Button onClick={handleDetails}>Details</Button>
+                    <Button onClick={handleDetails}>
+                        <EditIcon className="edit-icon"></EditIcon>
+                    </Button>
                     <Button>
                         <DeleteIcon
                             onClick={() => handleDelete(workout.id)}
                             className="delete-icon"
                         ></DeleteIcon>
+                    </Button>
+                    <Button>
+                    <CheckCircleOutlineIcon
+                        className="complete-icon"
+                    ></CheckCircleOutlineIcon>
                     </Button>
                     {/* <Button onClick={() => history.push("/add/exercise")}>
                     Add Exercise
