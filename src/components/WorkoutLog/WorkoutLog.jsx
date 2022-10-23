@@ -18,6 +18,7 @@ function WorkoutLog() {
     return (
         <Box>
             <center>
+                <h3>Completed Workouts</h3>
                 {workouts.map(workout => {
                     return (
                         <WorkoutItem key={workout.id} workout={workout} />

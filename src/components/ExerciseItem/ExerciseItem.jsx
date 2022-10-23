@@ -22,10 +22,10 @@ function ExerciseItem({ exercise }) {
   const { id } = useParams();
   // const exercises = useSelector((store) => store.exercises.exercises);
 
-  // const handleEditView = () => {
-  //   console.log("clicked into handleEditView");
-  //   history.push(`/edit/exercise/${exercise.id}`);
-  // };
+  const handleView = () => {
+    console.log("clicked into handleEditView");
+    history.push(`/edit/exercise/${exercise.id}`);
+  };
 
   const handleDelete = (inputId) => {
     console.log("handling Delete", id);
@@ -44,9 +44,9 @@ function ExerciseItem({ exercise }) {
           <Typography sx={{ fontSize: 20 }}>{exercise.name}</Typography>
           <CardActions>
             {/* This button should take the user to the edit page */}
-            {/* <Button onClick={handleEditView}>
+            <Button onClick={handleView}>
               <EditIcon className="edit-icon"></EditIcon>
-            </Button> */}
+            </Button>
             <Button>
               <DeleteIcon
                 onClick={() => handleDelete(id)}

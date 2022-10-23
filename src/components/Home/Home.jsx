@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
-import ExerciseItem from "../ExerciseItem/ExerciseItem";
+import ActiveWorkoutItem from "../ActiveWorkoutItem/ActiveWorkoutItem";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
@@ -15,24 +15,24 @@ function Home() {
 
   // load active exercises
   useEffect(() => {
-    getActiveExercises();
+    getActiveWorkout();
   }, []);
 
-  const getActiveExercises = () => {
+  const getActiveWorkout = () => {
     dispatch({ type: 'FETCH_ACTIVE_WORKOUT', payload: { id } });
   };
 
   return (
     <Box className="container">
       <center>
-        <h3>Current Workout</h3>
-        {workout.map((exercise) => {
-          return <ExerciseItem key={exercise.id} exercise={exercise} />;
+        {/* MAP through workouts and get active workouts */}
+        {workout.map(workout => {
+          return (
+            <ActiveWorkoutItem workout={workout}/>
+          )
         })}
         <br />
-        <Button onClick={() => history.push("/add/exercise")}>
-          Add Exercise
-        </Button>
+        <Button>Create Workout</Button>
       </center>
     </Box>
   );
