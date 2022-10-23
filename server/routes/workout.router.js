@@ -64,6 +64,21 @@ router.get("/completed", (req, res) => {
     }
   });
 
+  // POST workout to home page
+  router.post('/', (req, res) => {
+    if (req.isAuthenticated()) {
+      const queryText = `INSERT INTO "workout" ("name", "user_id")
+                         VALUES ($1, $2);`;
+      pool.query(queryText, [req.body.name, req.user.id])
+      .then((result) => {
+        res.sendStatus(200);
+      }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+    };
+  });
+
 // // GET workout notes for specific exercise
 // router.get('/:id', (req, res) => {
 //         let queryText = `SELECT "workout"."notes" FROM "workout"

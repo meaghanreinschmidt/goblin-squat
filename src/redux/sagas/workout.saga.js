@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// READ
+// READ GOOD
 function* fetchActiveWorkout() {
     // get exercises from the DB --- NOT YET COMPLETED
     try {
@@ -13,6 +13,7 @@ function* fetchActiveWorkout() {
     }
   }
 
+// READ GOOD
 function* fetchActiveWorkoutDetails(action) {
   try {
     // Get one workout's details
@@ -52,36 +53,37 @@ function* fetchCompleteWorkout() {
     }
   }
 
-// // READ
-// function* fetchWorkout() {
-//     // get workout from the DB -- this is to get the notes 
+  function* addWorkout(action) {
+    try {
+      yield axios.post('/api/workout', action.payload);
+      yield put({ type: 'FETCH_ACTIVE_WORKOUT'});
+    } catch (error) {
+      console.log('Add Workout failed', error);
+      alert('Something went wrong!');
+    }
+  }
+
+// function* fetchSingleWorkout() {
 //     try {
-//         const workouts = yield axios.get('/api/workout');
-//         console.log('get workout', workouts.data)
-//         yield put ({ type: 'SET_WORKOUT', payload: workouts.data });
+//         // get one workout
+//         const oneWorkout = yield axios.get(`/api/workout/${action.payload}`);
+//         yield put ({ type: 'SET_ONE_WORKOUT', payload: oneWorkout.data});
 //     } catch (error) {
-//         console.log('get workout error', error);
+//         console.log('Error fetching workout', error);
+//         alert('Something went wrong!');
 //     }
+
 // }
 
-function* fetchSingleWorkout() {
-    try {
-        // get one workout
-        const oneWorkout = yield axios.get(`/api/workout/${action.payload}`);
-        yield put ({ type: 'SET_ONE_WORKOUT', payload: oneWorkout.data});
-    } catch (error) {
-        console.log('Error fetching workout', error);
-        alert('Something went wrong!');
-    }
 
-}
 
 function* workoutSaga() {
     yield takeLatest('FETCH_ACTIVE_WORKOUT', fetchActiveWorkout);
     yield takeLatest('FETCH_ACTIVE_WORKOUT_DETAILS', fetchActiveWorkoutDetails);
     yield takeLatest('FETCH_COMPLETE_WORKOUT', fetchCompleteWorkout);
     yield takeLatest('FETCH_COMPLETE_WORKOUT_EXERCISES', fetchCompleteWorkoutExercises);
-    yield takeLatest('FETCH_ONE_WORKOUT', fetchSingleWorkout);
+    yield takeLatest('ADD_WORKOUT', addWorkout);
+    // yield takeLatest('FETCH_ONE_WORKOUT', fetchSingleWorkout);
 }
 
 export default workoutSaga;
