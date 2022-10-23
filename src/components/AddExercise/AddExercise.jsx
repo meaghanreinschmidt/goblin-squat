@@ -1,190 +1,172 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const AddExercise = () => {
-    const history = useHistory();
-    const dispatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-    const exercise = useSelector(store => store.exercises);
-    const set = useSelector(store => store.set);
-    const workout = useSelector(store => store.workout);
-    const [exerciseName, setExerciseName] = useState('');
-    const [setList, setSetList] = useState([]);
-    const [noteField, setNoteField]= useState([]);
+  const exercise = useSelector((store) => store.exercises);
+  const set = useSelector((store) => store.set);
+  const workout = useSelector((store) => store.workout);
+  const [exerciseName, setExerciseName] = useState("");
+  const [setList, setSetList] = useState([]);
+  const [notesField, setNotesField] = useState("");
 
-    useEffect(() => {
-        fetchExercises();
-    }, []);
+  useEffect(() => {
+    fetchExercises();
+  }, []);
 
-    const fetchExercises = () => {
-        dispatch({ type: 'FETCH_EXERCISE'});
-        // dispatch({ type: 'FETCH_SETS'});
-        // dispatch({ type: 'FETCH_WORKOUTS'});
-    }
+  const fetchExercises = () => {
+    dispatch({ type: "FETCH_EXERCISE" });
+    // dispatch({ type: 'FETCH_SETS'});
+    // dispatch({ type: 'FETCH_WORKOUTS'});
+  };
 
-    const addNewExerciseName = (e) => {
-        e.preventDefault();
-        dispatch({ type: 'ADD_EXERCISE', payload: exerciseName });
-    }
+  //   const addNewExerciseName = (e) => {
+  //     e.preventDefault();
+  //     dispatch({ type: "ADD_EXERCISE", payload: exerciseName });
+  //   };
 
-    const addNewExerciseSet = (e) => {
-        e.preventDefault();
-        dispatch({ type: 'ADD_EXERCISE', payload: sets });
-    }
+  //   const addNewExerciseSet = (e) => {
+  //     e.preventDefault();
+  //     dispatch({ type: "ADD_EXERCISE", payload: sets });
+  //   };
 
-    const addNewExerciseNote = (e) => {
-        e.preventDefault();
-        dispatch({ type: 'ADD_EXERCISE', payload: notes });
-    }
+  //   const addNewExerciseNote = (e) => {
+  //     e.preventDefault();
+  //     dispatch({ type: "ADD_EXERCISE", payload: notes });
+  //   };
 
+  const handleSetChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...setList];
+    list[index][name] = value;
+    setSetList(list);
+  };
 
-    const handleChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...setList];
-        list[index][name] = value;
-        setSetList(list);
-    }
+  const handleNotesChange = (e) => {
+    const { value } = e.target;
+    setNotesField(value);
+  };
 
-    const handleNoteChange = (e, index) => {
-        const { name, value } = e.target;
-        const field = [...noteField];
-        field[index][name] = value;
-        setNoteField(field);
-    }
+  // Adding Set
+  const handleAddInput = () => {
+    console.log("clicking add set");
+    setSetList([...setList, { set_number: "", reps: "", weight: "" }]);
+  };
 
-    // Adding Set
-    const handleAddInput = () => {
-        console.log('clicking add set');
-        setSetList([...setList, {set_number: "", reps: "", weight: ""}]);
-    }
+  const deleteSet = (index) => {
+    const list = [...setList];
+    list.splice(index, 1);
+    setSetList(list);
+  };
 
-    // Adding Note
-    const handleAddNote = () => {
-        console.log('clicking add note');
-        setNoteField([...noteField, {notes: ""}]);
-    }
+  const deleteNote = (index) => {
+    const field = [...notesField];
+    field.splice(index, 1);
+    setNotesField(field);
+  };
 
-    // Update to DELETE dispatch/axios eventually 
-    const deleteSet = index => {
-        const list = [...setList];
-        list.splice(index, 1);
-        setSetList(list);
-    }
+  const handleSubmit = (event) => {
+    // Don't reload on form submit
+    event.preventDefault();
+    // Tell redux that we want to add a new exercise
+    //   console.log('Adding exercise name', {exerciseName});
+    // DISPATCH HERE -- examples commented out
+    dispatch({
+      type: "ADD_EXERCISE",
+      payload: {
+        name: exerciseName,
+        sets: setList,
+        notes: notesField,
+      },
+    });
+    history.push("/");
+    // post exercise.name/card to home
+    // post name, set.set_number, set.reps, set.weight to edit exercise/complete exercise
+  };
 
-    // Update to DELETE dispatch/axios eventually
-    const deleteNote = index => {
-        const field = [...noteField];
-        field.splice(index, 1);
-        setNoteField(field);
-    }
-
-    // const addExercise = event => {
-    //     // Don't reloaad on form submit
-    //     event.preventDefault();
-    //     // Tell redux that we want to add a new exercise
-    //     console.log('Adding exercise name', {exerciseName});
-    //     // DISPATCHS HERE -- examples commented out
-    //     dispatch({ type: 'SET_EXERCISE', payload: {exerciseName: exerciseName}});
-    //     history.push('/');
-    //     // post exercise.name/card to home
-    //     // post name, set.set_number, set.reps, set.weight to edit exercise/complete exercise
-    // }
-
-    return (
-        <center>
-        <TextField 
-            type="text"
-            name="name"
-            placeholder="name of exercise"
-            value={exerciseName.name}
-            onChange={(event) => setExerciseName({...exerciseName, name: event.target.value})}
+  return (
+    <center>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          type="text"
+          name="name"
+          placeholder="name of exercise"
+          value={exerciseName.name}
+          onChange={(event) =>
+            setExerciseName({ ...exerciseName, name: event.target.value })
+          }
         />
         <br />
         <br />
         {setList.map((set, i) => {
-            return (
-                <div key={i} className="box">
-                    <TextField 
-                        type="number"
-                        name="set_number"
-                        size="small"
-                        sx={{ width: 75 }}
-                        placeholder="set #"
-                        value={set.set_number}
-                        onChange={e => handleChange(e, i)}
-                    />
-                    <TextField 
-                        type="text"
-                        name="reps"
-                        size="small"
-                        sx={{ width: 75 }}
-                        placeholder="reps"
-                        value={set.reps}
-                        onChange={e => handleChange(e, i)}
-                    />
-                    <TextField 
-                        type="text"
-                        name="weight"
-                        size="small"
-                        sx={{ width: 75 }}
-                        placeholder="weight"
-                        value={set.weight}
-                        onChange={e => handleChange(e, i)}
-                    />
-                    <Button
-                        type="button"
-                        value="Remove"
-                        onClick={() => deleteSet(i)}
-                    >X</Button>
-                    <br />
-                    <br />
-                </div>
-            )
+          return (
+            <div key={i} className="box">
+              <TextField
+                type="number"
+                name="set_number"
+                size="small"
+                sx={{ width: 75 }}
+                placeholder="set #"
+                value={set.set_number}
+                onChange={(e) => handleSetChange(e, i)}
+              />
+              <TextField
+                type="text"
+                name="reps"
+                size="small"
+                sx={{ width: 75 }}
+                placeholder="reps"
+                value={set.reps}
+                onChange={(e) => handleSetChange(e, i)}
+              />
+              <TextField
+                type="text"
+                name="weight"
+                size="small"
+                sx={{ width: 75 }}
+                placeholder="weight"
+                value={set.weight}
+                onChange={(e) => handleSetChange(e, i)}
+              />
+              <Button type="button" value="Remove" onClick={() => deleteSet(i)}>
+                X
+              </Button>
+              <br />
+              <br />
+            </div>
+          );
         })}
-        <Button
-            type="button"
-            value="Add"
-            onClick={handleAddInput}
-            >+ Add a Set
+        <Button type="button" value="Add" onClick={handleAddInput}>
+          + Add a Set
         </Button>
         <br />
-        {noteField.map((note, i) => {
-            return (
-                <div key={i} className="box">
-                    <TextField
-                        type="text"
-                        name="notes"
-                        multiline
-                        placeholder="notes"
-                        value={note.notes}
-                        onChange={e => handleNoteChange(e, i)}
-                    />
-                    <Button 
-                        type="button"
-                        value="Remove"
-                        onClick={() => deleteNote(i)}
-                    >X</Button>
-                    <br />
-                    <br />
-                </div>
-            )
-        })}
-        <Button 
-            type="button"
-            value="Add"
-            onClick={handleAddNote}
-            >+ Add a Note
-        </Button>
+        <div className="box">
+          <TextField
+            type="text"
+            name="notes"
+            multiline
+            placeholder="notes"
+            value={note.notes}
+            onChange={(e) => handleNotesChange(e)}
+          />
+          <Button type="button" value="Remove" onClick={() => deleteNote(i)}>
+            X
+          </Button>
+          <br />
+          <br />
+        </div>
         <br />
-        <Button onClick={() => history.push('/')}>Cancel</Button>
+        <Button onClick={() => history.push("/")}>Cancel</Button>
         {/* This button should save all of the input fields and title and post them to the home page */}
-        <Button>Save</Button>
-        </center>
-    )
-}
-
+        <Button type="submit">Save</Button>
+      </form>
+    </center>
+  );
+};
 
 export default AddExercise;
