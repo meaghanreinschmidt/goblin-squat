@@ -79,6 +79,36 @@ router.get("/completed", (req, res) => {
     };
   });
 
+  // DELETE workout 
+  router.delete('/delete/:id', (req, res) => {
+    if (req.isAuthenticated()) {
+      const queryText = `DELETE FROM "set" WHERE "exercise_id" = $1;`;
+      pool.query(queryText, [req.params.id])
+      .then((result) => {
+        const queryText2 = `DELETE FROM "exercise" WHERE "workout_id" = $1;`;
+        pool.query(queryText2, [req.params.id])
+        .then((result) => {
+          const queryText3 = `DELETE FROM "workout" WHERE "id" = $1 AND "user_id" = $2;`;
+          pool.query(queryText3, [req.params.id, req.user.id])
+          .then((result) => {
+            res.sendStatus(200);
+          }).catch((error) => {
+            console.log('error in delete from workout', error);
+            res.sendStatus(500);
+          });
+        }).catch((error) => {
+          console.log(error);
+          res.sendStatus(500);
+        });
+      }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+    } else {
+      res.sendStatus(403);
+    }
+  });
+
 // // GET workout notes for specific exercise
 // router.get('/:id', (req, res) => {
 //         let queryText = `SELECT "workout"."notes" FROM "workout"

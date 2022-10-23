@@ -8,6 +8,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
+import DeleteIcon from "@mui/icons-material/Delete";
 import ExerciseItem from "../ExerciseItem/ExerciseItem";
 
 function ActiveWorkoutItem({workout}) {
@@ -21,12 +22,23 @@ function ActiveWorkoutItem({workout}) {
         history.push(`/workout/details/${workout.id}`);
     }
 
+    const handleDelete = (id) => {
+        console.log('handling delete', id);
+        dispatch({ type: 'DELETE_WORKOUT', payload: id});
+    }
+
     return (
         <Grid>
             <Card>
                 <CardContent>
                     <Typography>{workout.name}</Typography>
                     <Button onClick={handleDetails}>Details</Button>
+                    <Button>
+                        <DeleteIcon
+                            onClick={() => handleDelete(workout.id)}
+                            className="delete-icon"
+                        ></DeleteIcon>
+                    </Button>
                     {/* <Button onClick={() => history.push("/add/exercise")}>
                     Add Exercise
                     </Button> */}
