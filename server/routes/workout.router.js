@@ -64,20 +64,20 @@ router.get('/:id', (req, res) => {
   }
 })
 
-// // GET completed workout details on click
-// router.get('/completed/details/:id', (req, res) => {
-//   if (req.isAuthenticated()) {
-//     let queryText = `SELECT * FROM "workout" WHERE "id" = $1`;
-//     pool.query(queryText, [req.params.id])
-//       .then((result) => {
-//         res.send(result.rows[0]);
-//       })
-//       .catch((err) => {
-//         console.log('ERROR: Get one workout', err);
-//         res.sendStatus(500);
-//       })
-//   }
-// })
+// GET completed workout details on click
+router.get('/completed/details/:id', (req, res) => {
+  if (req.isAuthenticated()) {
+    let queryText = `SELECT * FROM "workout" WHERE "id" = $1`;
+    pool.query(queryText, [req.params.id])
+      .then((result) => {
+        res.send(result.rows[0]);
+      })
+      .catch((err) => {
+        console.log('ERROR: Get one workout', err);
+        res.sendStatus(500);
+      })
+  }
+})
 
 // GOOD AND WORKING
 // PUT (complete workout)

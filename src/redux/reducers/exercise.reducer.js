@@ -9,6 +9,16 @@ const exercises = (state = [], action) => {
     }
   }
 
+// Used to store exercises from Active Workouts
+const completedWorkoutExercises = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_COMPLETED_EXERCISES':
+      return action.payload;
+    default: 
+      return state;
+  }
+}
+
 // Used to store exercise details
 const exerciseDetails = (state = [], action) => {
   switch (action.type) {
@@ -19,7 +29,7 @@ const exerciseDetails = (state = [], action) => {
   }
 }
 
-// const completedExerciseDetails = (state = [], action) => {
+// const completedWorkoutExerciseDetails = (state = [], action) => {
 //   switch (action.type) {
 //     case 'SET_COMPLETE_EXERCISE_DETAILS':
 //       return action.payload;
@@ -30,6 +40,7 @@ const exerciseDetails = (state = [], action) => {
 
 export default combineReducers({
   exercises,
+  completedWorkoutExercises,
   exerciseDetails,
   // completedExerciseDetails
 });

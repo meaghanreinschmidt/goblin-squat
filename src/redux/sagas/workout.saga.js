@@ -25,7 +25,7 @@ function* fetchCompleteWorkout() {
 
 // GOOD
 // Gets workout details (name) and exercises
-function* fetchWorkoutDetails(action) {
+function* fetchActiveWorkoutDetails(action) {
   try {
     // Get one workout's details
     const workoutDetails = yield axios.get(`/api/workout/${action.payload}`);
@@ -38,33 +38,19 @@ function* fetchWorkoutDetails(action) {
   }
 }
 
-// // Gets workout details for completed workout
-// function* fetchCompletedWorkoutDetails(action) {
-//   try {
-//     // Get one workout's details
-//     const workoutDetails = yield axios.get(`/api/workout/completed/${action.payload}`);
-//     const exercises = yield axios.get(`/api/exercise/${action.payload}`);
-//     yield put ({ type: 'SET_COMPLETED_WORKOUT_DETAILS', payload: workoutDetails.data})
-//     yield put ({ type: 'SET_EXERCISES', payload: exercises.data });
-//   } catch (error) {
-//     console.log('Error fetching workout', error);
-//     alert('Something went wrong!');
-//   }
-// }
-
-
-
-
-  // // READ
-  // function* fetchCompleteWorkoutExercises(action) {
-  //   // get exercises from completed workout
-  //   try {
-  //     const completedExercises = yield axios.get(`/api/workout/completed/${action.payload}`);
-  //     yield put({ type: 'SET_COMPLETE_WORKOUT_EXERCISES', payload: completedExercises.data});
-  //   } catch (error) {
-  //     console.log("get completed workout exercises", error);
-  //   }
-  // }
+// Gets workout details for completed workout
+function* fetchCompletedWorkoutDetails(action) {
+  try {
+    // Get one workout's details
+    const workoutDetails = yield axios.get(`/api/workout/completed/details/${action.payload}`);
+    const exercises = yield axios.get(`/api/exercise/completed/${action.payload}`);
+    yield put ({ type: 'SET_COMPLETED_WORKOUT_DETAILS', payload: workoutDetails.data})
+    yield put ({ type: 'SET_COMPLETED_EXERCISES', payload: exercises.data });
+  } catch (error) {
+    console.log('Error fetching workout', error);
+    alert('Something went wrong!');
+  }
+}
 
   // GOOD AND WORKING
   // CREATE
@@ -110,7 +96,8 @@ function* fetchWorkoutDetails(action) {
 function* workoutSaga() {
     yield takeLatest('FETCH_ACTIVE_WORKOUT', fetchActiveWorkout);
     yield takeLatest('FETCH_COMPLETE_WORKOUT', fetchCompleteWorkout);
-    yield takeLatest('FETCH_WORKOUT_DETAILS', fetchWorkoutDetails);
+    yield takeLatest('FETCH_ACTIVE_WORKOUT_DETAILS', fetchActiveWorkoutDetails);
+    yield takeLatest('FETCH_COMPLETED_WORKOUT_DETAILS', fetchCompletedWorkoutDetails)
     yield takeLatest('ADD_WORKOUT', addWorkout);
     yield takeLatest('COMPLETE_WORKOUT', completeWorkout);
     yield takeLatest('DELETE_WORKOUT', deleteWorkout);

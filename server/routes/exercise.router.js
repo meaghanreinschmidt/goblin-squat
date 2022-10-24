@@ -21,8 +21,30 @@ router.get('/', (req, res) => {
 })
 
 // GOOD
-// GET exercise names on workout details
+// GET exercise names on ACTIVE workout details
 router.get('/:id', (req, res) => {
+  // console.log("/exercise GET route");
+  // console.log("is authenticated?", req.isAuthenticated());
+  // console.log("req.user", req.user);
+  if (req.isAuthenticated()) {
+    let queryText = `SELECT "exercise"."name", "exercise"."id" FROM "exercise"
+                     JOIN "workout" ON "workout"."id" = "exercise"."workout_id"
+                     WHERE "workout"."id" = $1 AND "workout"."user_id" = $2`;
+    pool
+      .query(queryText, [req.params.id, req.user.id])
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('ERROR: get exercises', error);
+        res.sendStatus(500);
+      });
+  } else {
+    res.sendStatus(403); // Forbidden
+  }
+});
+
+router.get('/completed/:id', (req, res) => {
   // console.log("/exercise GET route");
   // console.log("is authenticated?", req.isAuthenticated());
   // console.log("req.user", req.user);
@@ -88,19 +110,20 @@ router.post("/", async (req, res) => {
       if (req.isAuthenticated()) {
         await db.query("BEGIN");
         // INSERT exercise into workout - HOW DO I TARGET workout_id
-        const queryText = `INSERT INTO "exercise" ("name", "notes")
-                          VALUES ($1, $2) 
+        const queryText1 = `INSERT INTO "exercise" ("name", "notes", "workout_id")
+                          VALUES ($1, $2, $3) 
                           RETURNING "id"`;
-        const result = await db.query(queryText, [
+        const result = await db.query(queryText1, [
           req.body.name,
           req.body.notes,
+          req.body.workout_id
         ]);
         const exerciseId = result.rows[0].id;
         const set = req.body.sets;
         for (let i = 0; i < set.length; i += 1) {
-          let queryText = `INSERT INTO "set" ("set_number", "reps", "weight", "exercise_id")
+          let queryText2 = `INSERT INTO "set" ("set_number", "reps", "weight", "exercise_id")
                                VALUES ($1, $2, $3, $4);`;
-          await db.query(queryText, [
+          await db.query(queryText2, [
             i,
             set[i].reps,
             set[i].weight,

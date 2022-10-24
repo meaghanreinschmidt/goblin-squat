@@ -30,29 +30,19 @@ const completedWorkouts = (state = [], action) => {
     }
   }
 
-// // Used to store completed workout details returned from the server
-// const completedWorkoutDetails = (state = [], action) => {
-//   switch (action.type) {
-//     case 'SET_COMPLETE_WORKOUT_DETAILS':
-//       return action.payload;
-//     default:
-//       return state;
-//   }
-// }
-
-//   const completedWorkoutExercises = (state = [], action) => {
-//     switch (action.type) {
-//       case 'SET_COMPLETE_WORKOUT_EXERCISES':
-//         return action.payload;
-//       default:
-//         return state;
-//     }
-//   }
+// Used to store completed workout details returned from the server
+const completedWorkoutDetails = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_COMPLETED_WORKOUT_DETAILS':
+      return action.payload;
+    default:
+      return state;
+  }
+}
 
   export default combineReducers({
     workouts,
     workoutDetails,
     completedWorkouts,
-    // completedWorkoutDetails
-    // completedWorkoutExercises,
+    completedWorkoutDetails
   });

@@ -17,17 +17,18 @@ function ActiveWorkoutDetails() {
 
     const handleAdd = () => {
         console.log('clicked add exercise');
-        history.push('/add/exercise');
+        history.push(`/add/exercise/${id}`);
     }
 
     const getWorkoutDetails = () => {
-        dispatch({ type: 'FETCH_WORKOUT_DETAILS', payload: { id }});
+        dispatch({ type: 'FETCH_ACTIVE_WORKOUT_DETAILS', payload: id });
     }
 
     useEffect(() => {
         getWorkoutDetails();
     }, [id]);
 
+    console.log({exercises});
     return (
         <center>
         <Card>

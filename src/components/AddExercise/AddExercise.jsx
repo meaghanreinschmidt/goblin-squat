@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const AddExercise = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { id } = useParams();
+  console.log('id:', id);
 
   // const exercise = useSelector((store) => store.exercises);
   // const set = useSelector((store) => store.set);
@@ -66,6 +68,7 @@ const AddExercise = () => {
         name: exerciseName.name,
         sets: setList,
         notes: notesField,
+        workout_id: id
       },
     });
     history.push("/");
