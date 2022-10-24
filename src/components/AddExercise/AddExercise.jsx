@@ -8,9 +8,9 @@ const AddExercise = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const exercise = useSelector((store) => store.exercises);
-  const set = useSelector((store) => store.set);
-  const workout = useSelector((store) => store.workout);
+  // const exercise = useSelector((store) => store.exercises);
+  // const set = useSelector((store) => store.set);
+  // const workout = useSelector((store) => store.workout);
   const [exerciseName, setExerciseName] = useState("");
   const [setList, setSetList] = useState([]);
   const [notesField, setNotesField] = useState("");
@@ -20,25 +20,9 @@ const AddExercise = () => {
   }, []);
 
   const fetchExercises = () => {
-    dispatch({ type: "FETCH_EXERCISE" });
-    // dispatch({ type: 'FETCH_SETS'});
-    // dispatch({ type: 'FETCH_WORKOUTS'});
+    dispatch({ type: 'FETCH_EXERCISES' });
   };
 
-  //   const addNewExerciseName = (e) => {
-  //     e.preventDefault();
-  //     dispatch({ type: "ADD_EXERCISE", payload: exerciseName });
-  //   };
-
-  //   const addNewExerciseSet = (e) => {
-  //     e.preventDefault();
-  //     dispatch({ type: "ADD_EXERCISE", payload: sets });
-  //   };
-
-  //   const addNewExerciseNote = (e) => {
-  //     e.preventDefault();
-  //     dispatch({ type: "ADD_EXERCISE", payload: notes });
-  //   };
 
   const handleSetChange = (e, index) => {
     const { name, value } = e.target;
@@ -64,11 +48,11 @@ const AddExercise = () => {
     setSetList(list);
   };
 
-  const deleteNote = (index) => {
-    const field = [...notesField];
-    field.splice(index, 1);
-    setNotesField(field);
-  };
+  // const deleteNote = (index) => {
+  //   const field = [...notesField];
+  //   field.splice(index, 1);
+  //   setNotesField(field);
+  // };
 
   const handleSubmit = (event) => {
     // Don't reload on form submit
@@ -79,7 +63,7 @@ const AddExercise = () => {
     dispatch({
       type: "ADD_EXERCISE",
       payload: {
-        name: exerciseName,
+        name: exerciseName.name,
         sets: setList,
         notes: notesField,
       },
@@ -151,17 +135,17 @@ const AddExercise = () => {
             name="notes"
             multiline
             placeholder="notes"
-            value={note.notes}
+            value={notesField.notes}
             onChange={(e) => handleNotesChange(e)}
           />
-          <Button type="button" value="Remove" onClick={() => deleteNote(i)}>
+          {/* <Button type="button" value="Remove" onClick={() => deleteNote(i)}>
             X
-          </Button>
+          </Button> */}
           <br />
           <br />
         </div>
         <br />
-        <Button onClick={() => history.push("/")}>Cancel</Button>
+        <Button onClick={() => history.goBack()}>Cancel</Button>
         {/* This button should save all of the input fields and title and post them to the home page */}
         <Button type="submit">Save</Button>
       </form>

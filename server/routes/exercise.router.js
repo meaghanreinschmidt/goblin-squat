@@ -2,6 +2,25 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
+// GOOD
+// GET exercise for Add Exercise
+router.get('/', (req, res) => {
+  if (req.isAuthenticated()) {
+    let queryText = `SELECT "exercise"."name", "exercise"."notes", "set"."set_number", "set"."reps", "set"."weight" FROM "exercise"
+                     JOIN "set" ON "set"."exercise_id" = "exercise"."id"
+                     WHERE "exercise"."id" = $1;`;
+    pool.query(queryText, [req.params.id]).then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+  } else {
+    res.sendStatus(403);``
+  }
+})
+
+// GOOD
 // GET exercise names on workout details
 router.get('/:id', (req, res) => {
   // console.log("/exercise GET route");
@@ -25,7 +44,8 @@ router.get('/:id', (req, res) => {
   }
 });
 
-// GET exercise details
+// GOOD
+// GET exercise details on click
 router.get('/details/:id', (req, res) => {
   if (req.isAuthenticated()) {
     let queryText = `SELECT * FROM "exercise" WHERE "id" = $1`;
@@ -41,24 +61,24 @@ router.get('/details/:id', (req, res) => {
 })
 
 
-// PUT (complete) exercise
-router.put("/complete/:id", (req, res) => {
-  if (req.isAuthenticated()) {
-    const queryText = `UPDATE "exercise" SET "completed" = 'TRUE', "completed_at" = CURRENT_DATE
-                       WHERE "user_id" = $1 AND WHERE "id" = $2;`;
-    pool
-      .query(queryText, [req.user.id, req.params.id])
-      .then((result) => {
-        res.send(result.rows);
-      })
-      .catch((error) => {
-        console.log(error);
-        res.sendStatus(500);
-      });
-  } else {
-    res.sendStatus(403);
-  }
-});
+// // PUT (complete) exercise
+// router.put("/complete/:id", (req, res) => {
+//   if (req.isAuthenticated()) {
+//     const queryText = `UPDATE "exercise" SET "completed" = 'TRUE', "completed_at" = CURRENT_DATE
+//                        WHERE "user_id" = $1 AND WHERE "id" = $2;`;
+//     pool
+//       .query(queryText, [req.user.id, req.params.id])
+//       .then((result) => {
+//         res.send(result.rows);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//         res.sendStatus(500);
+//       });
+//   } else {
+//     res.sendStatus(403);
+//   }
+// });
 
 // POST exercise to home page
 router.post("/", async (req, res) => {
@@ -67,23 +87,23 @@ router.post("/", async (req, res) => {
     try {
       if (req.isAuthenticated()) {
         await db.query("BEGIN");
-        const queryText = `INSERT INTO "exercise" ("name", "user_id", "notes")
-                             VALUES ($1, $2, $3) RETURNING "id"`;
+        // INSERT exercise into workout - HOW DO I TARGET workout_id
+        const queryText = `INSERT INTO "exercise" ("name", "notes")
+                          VALUES ($1, $2) 
+                          RETURNING "id"`;
         const result = await db.query(queryText, [
           req.body.name,
-          req.user.id,
           req.body.notes,
         ]);
         const exerciseId = result.rows[0].id;
-
-        const sets = req.body.sets;
-        for (let i = 0; i < sets.length; i += 1) {
-          let queryText = `INSERT INTO "sets" ("set_number", "reps", "weight", "exercise_id")
-                               VALUES ($1, $2, $3, $4, $5);`;
+        const set = req.body.sets;
+        for (let i = 0; i < set.length; i += 1) {
+          let queryText = `INSERT INTO "set" ("set_number", "reps", "weight", "exercise_id")
+                               VALUES ($1, $2, $3, $4);`;
           await db.query(queryText, [
             i,
-            sets[i].reps,
-            sets[i].weight,
+            set[i].reps,
+            set[i].weight,
             exerciseId,
           ]);
         }
@@ -105,17 +125,16 @@ router.post("/", async (req, res) => {
 });
 
 // DELETE exercise
-router.delete("/delete/:id", (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   console.log("in exercise DELETE /delete/:id");
   if (req.isAuthenticated()) {
-    const queryText = `DELETE FROM "set"
-    WHERE "exercise_id" = $1;`;
+    const queryText = `DELETE FROM "set" WHERE "exercise_id" = $1;`;
     pool
       .query(queryText, [req.params.id])
       .then((result) => {
-        const setQueryText = `DELETE FROM "exercise" WHERE "id" = $1 AND "user_id" = $2;`;
+        const queryText1 = `DELETE FROM "exercise" WHERE "id" = $1;`;
         pool
-          .query(setQueryText, [req.params.id, req.user.id])
+          .query(queryText1, [req.params.id])
           .then((result) => {
             res.sendStatus(200);
           })

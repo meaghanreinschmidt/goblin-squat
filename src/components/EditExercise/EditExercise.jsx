@@ -24,7 +24,7 @@ function EditExercise() {
             <center>
             <h4>{exercises.name}</h4>
             {/* STILL TRYING TO GET SETS */}
-            {/* <p>Sets: </p>
+            <p>Sets: </p>
             {sets.map(set => {
                 return (
                     <table>
@@ -40,20 +40,15 @@ function EditExercise() {
                         </tr>
                     </table>
                 )
-            })} */}
-            <Button>+ Add a Set</Button>
-            <p>Notes: </p>
-            {/* {workout.map(workout => {
-                return (
-                    <>
-                        <h5>{workout.notes}</h5>
-                    </>
-                )
-            })} */}
-            <Button>+ Add a Note Block</Button>
+            })}
+            {/* <Button>+ Add a Set</Button> */}
+            <h5>Notes: </h5>
+            <p>{exercises.notes}</p>
+            {/* <Button>+ Add a Note Block</Button> */}
             <br />
-            <Button onClick={() => history.push('/')}>Cancel</Button>
-            <Button>Save</Button>
+            {/* PUSH TO PREVIOUS PAGE - WORKOUT DETAILS */}
+            <Button onClick={() => history.goBack()}>Back</Button>
+            {/* <Button>Save</Button> */}
             </center>
         </>
     )

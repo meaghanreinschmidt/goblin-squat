@@ -28,7 +28,7 @@ function ExerciseItem({exercise}) {
 
   const handleDelete = (inputId) => {
     console.log("handling Delete", id);
-    dispatch({ type: "DELETE_EXERCISE", payload: inputId });
+    dispatch({ type: 'DELETE_EXERCISE', payload: inputId });
   };
 
   const handleComplete = (exerciseId) => {

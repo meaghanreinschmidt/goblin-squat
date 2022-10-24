@@ -15,6 +15,11 @@ function ActiveWorkoutDetails() {
     const workout = useSelector(store => store.workouts.workoutDetails);
     const exercises = useSelector(store => store.exercises.exercises);
 
+    const handleAdd = () => {
+        console.log('clicked add exercise');
+        history.push('/add/exercise');
+    }
+
     const getWorkoutDetails = () => {
         dispatch({ type: 'FETCH_ACTIVE_WORKOUT_DETAILS', payload: id });
     }
@@ -28,7 +33,7 @@ function ActiveWorkoutDetails() {
         <Card>
             <CardContent>
                 <h3>{workout.name}</h3>
-                <Button>Add Exercise</Button>
+                <Button onClick={handleAdd}>Add Exercise</Button>
                 <br />
                 <br />
                 {exercises.map(exercise => {
