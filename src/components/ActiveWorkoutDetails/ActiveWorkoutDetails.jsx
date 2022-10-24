@@ -27,7 +27,10 @@ function ActiveWorkoutDetails() {
         <center>
         <Card>
             <CardContent>
-                <Typography>{workout.name}</Typography>
+                <h3>{workout.name}</h3>
+                <Button>Add Exercise</Button>
+                <br />
+                <br />
                 {exercises.map(exercise => {
                     return (
                         <ExerciseItem exercise={exercise} />
@@ -35,6 +38,7 @@ function ActiveWorkoutDetails() {
                 })}
             </CardContent>
         </Card>
+        
         </center>
     )
 }

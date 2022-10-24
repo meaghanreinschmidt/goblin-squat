@@ -16,16 +16,15 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-function ExerciseItem({ exercise }) {
+function ExerciseItem({exercise}) {
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
-  // const exercises = useSelector((store) => store.exercises.exercises);
 
   const handleView = () => {
-    console.log("clicked into handleEditView");
-    history.push(`/edit/exercise/${exercise.id}`);
-  };
+    console.log('clicked on single exercise');
+    history.push(`/exercise/details/${exercise.id}`);
+  }
 
   const handleDelete = (inputId) => {
     console.log("handling Delete", id);

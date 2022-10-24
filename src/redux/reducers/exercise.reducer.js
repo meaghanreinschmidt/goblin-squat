@@ -9,8 +9,7 @@ const exercises = (state = [], action) => {
     }
   }
 
-
-
+// Used to store exercise details
 const exerciseDetails = (state = [], action) => {
   switch (action.type) {
     case 'SET_EXERCISE_DETAILS':
@@ -20,17 +19,17 @@ const exerciseDetails = (state = [], action) => {
   }
 }
 
-const completedExerciseDetails = (state = [], action) => {
-  switch (action.type) {
-    case 'SET_COMPLETE_EXERCISE_DETAILS':
-      return action.payload;
-    default:
-      return state;
-  }
-}
+// const completedExerciseDetails = (state = [], action) => {
+//   switch (action.type) {
+//     case 'SET_COMPLETE_EXERCISE_DETAILS':
+//       return action.payload;
+//     default:
+//       return state;
+//   }
+// }
 
 export default combineReducers({
   exercises,
   exerciseDetails,
-  completedExerciseDetails
+  // completedExerciseDetails
 });

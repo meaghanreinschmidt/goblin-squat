@@ -11,7 +11,6 @@ import Typography from "@mui/material/Typography";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import ExerciseItem from "../ExerciseItem/ExerciseItem";
 
 function ActiveWorkoutItem({workout}) {
     const dispatch = useDispatch();

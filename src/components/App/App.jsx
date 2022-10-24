@@ -75,7 +75,7 @@ function App() {
           {/* Edit Exercise page */}
           <ProtectedRoute 
             exact 
-            path="/edit/exercise/:id"
+            path="/exercise/details/:id"
           >
             <EditExercise />
           </ProtectedRoute>

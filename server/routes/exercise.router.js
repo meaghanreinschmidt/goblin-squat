@@ -2,13 +2,13 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
-// GET exercises for each active workout
+// GET exercise names on workout details
 router.get('/:id', (req, res) => {
   // console.log("/exercise GET route");
   // console.log("is authenticated?", req.isAuthenticated());
   // console.log("req.user", req.user);
   if (req.isAuthenticated()) {
-    let queryText = `SELECT "exercise"."name" FROM "exercise"
+    let queryText = `SELECT "exercise"."name", "exercise"."id" FROM "exercise"
                      JOIN "workout" ON "workout"."id" = "exercise"."workout_id"
                      WHERE "workout"."id" = $1 AND "workout"."user_id" = $2`;
     pool
@@ -24,6 +24,22 @@ router.get('/:id', (req, res) => {
     res.sendStatus(403); // Forbidden
   }
 });
+
+// GET exercise details
+router.get('/details/:id', (req, res) => {
+  if (req.isAuthenticated()) {
+    let queryText = `SELECT * FROM "exercise" WHERE "id" = $1`;
+    pool.query(queryText, [req.params.id])
+      .then((result) => {
+        res.send(result.rows[0]);
+      })
+      .catch((err) => {
+        console.log('ERROR: Get one exercise details', err);
+        res.sendStatus(500);
+      })
+  }
+})
+
 
 // PUT (complete) exercise
 router.put("/complete/:id", (req, res) => {

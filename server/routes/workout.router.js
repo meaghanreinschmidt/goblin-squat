@@ -41,6 +41,7 @@ router.get('/:id', (req, res) => {
   }
 })
 
+// GOOD AND WORKING
 // PUT (complete workout)
 router.put('/complete/:id', (req, res) => {
   if (req.isAuthenticated()) {
