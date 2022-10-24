@@ -15,7 +15,7 @@ import ActiveWorkoutDetails from '../ActiveWorkoutDetails/ActiveWorkoutDetails';
 import AddExercise from '../AddExercise/AddExercise';
 import EditExercise from '../EditExercise/EditExercise';
 import WorkoutLog from '../WorkoutLog/WorkoutLog';
-import CompletedWorkoutExercises from '../CompletedWorkoutExercises/CompletedWorkoutExercises';
+import CompletedWorkoutDetails from '../CompletedWorkoutDetails/CompletedWorkoutDetails';
 import CompletedExerciseDetails from '../CompletedExerciseDetails/CompletedExerciseDetails';
 import ProgressChart from '../ProgressChart/ProgressChart';
 import EditProfile from '../EditProfile/EditProfile';
@@ -92,7 +92,7 @@ function App() {
             exact
             path="/workout/completed/:id"
           >
-            <CompletedWorkoutExercises />
+            <CompletedWorkoutDetails />
           </ProtectedRoute>
         
           <ProtectedRoute

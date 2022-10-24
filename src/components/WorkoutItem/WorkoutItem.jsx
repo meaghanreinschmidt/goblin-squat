@@ -7,8 +7,10 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function WorkoutItem({ workout }) {
+    const dispatch = useDispatch();
     const history = useHistory();
     
     
@@ -17,13 +19,25 @@ function WorkoutItem({ workout }) {
         history.push(`/workout/completed/${workout.id}`)
     }
 
+    const handleDelete = (id) => {
+        console.log('handling delete', id);
+        dispatch({ type: 'DELETE_WORKOUT', payload: id});
+    }
+
     return (
         <Grid>
             <Card variant="outlined" sx={{ maxWidth: 230 }}>
                 <CardContent>
-                    <Typography sx={{ fontSize: 20 }}>{workout.completed_at}</Typography>
+                    <Typography sx={{ fontSize: 20 }}>{workout.name}</Typography>
+                    <Typography sx={{ fontSize: 15 }}>{workout.completed_at}</Typography>
                     <CardActions>
                         <Button onClick={handleDetailView}>Details</Button>
+                        <Button>
+                            <DeleteIcon
+                                onClick={() => handleDelete(workout.id)}
+                                className="delete-icon"
+                            ></DeleteIcon>
+                        </Button>
                     </CardActions>
                 </CardContent>
             </Card>

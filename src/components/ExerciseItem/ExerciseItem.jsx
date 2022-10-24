@@ -31,10 +31,10 @@ function ExerciseItem({exercise}) {
     dispatch({ type: 'DELETE_EXERCISE', payload: inputId });
   };
 
-  const handleComplete = (exerciseId) => {
-    console.log("clicked on complete button");
-    dispatch({ type: "CLICK_COMPLETE_EXERCISE", payload: exerciseId });
-  };
+  // const handleComplete = (exerciseId) => {
+  //   console.log("clicked on complete button");
+  //   dispatch({ type: "CLICK_COMPLETE_EXERCISE", payload: exerciseId });
+  // };
 
   return (
     <Grid>
@@ -52,12 +52,11 @@ function ExerciseItem({exercise}) {
                 className="delete-icon"
               ></DeleteIcon>
             </Button>
-            <Button>
+            {/* <Button>
               <CheckCircleOutlineIcon
-                onClick={() => handleComplete(id)}
                 className="complete-icon"
               ></CheckCircleOutlineIcon>
-            </Button>
+            </Button> */}
           </CardActions>
         </CardContent>
       </Card>

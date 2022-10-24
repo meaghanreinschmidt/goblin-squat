@@ -6,19 +6,14 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import ExerciseItem from '../ExerciseItem/ExerciseItem';
 
-function ActiveWorkoutDetails() {
+function CompletedWorkoutDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
     const workout = useSelector(store => store.workouts.workoutDetails);
     const exercises = useSelector(store => store.exercises.exercises);
 
-    const handleAdd = () => {
-        console.log('clicked add exercise');
-        history.push('/add/exercise');
-    }
 
     const getWorkoutDetails = () => {
         dispatch({ type: 'FETCH_WORKOUT_DETAILS', payload: { id }});
@@ -33,14 +28,13 @@ function ActiveWorkoutDetails() {
         <Card>
             <CardContent>
                 <h3>{workout.name}</h3>
-                <Button onClick={handleAdd}>Add Exercise</Button>
                 <br />
                 <br />
-                {exercises.map(exercise => {
+                {/* {exercises.map(exercise => {
                     return (
                         <ExerciseItem exercise={exercise} />
                     )
-                })}
+                })} */}
             </CardContent>
         </Card>
         
@@ -48,4 +42,4 @@ function ActiveWorkoutDetails() {
     )
 }
 
-export default ActiveWorkoutDetails;
+export default CompletedWorkoutDetails;
