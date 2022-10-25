@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Footer.css';
 import { useSelector } from 'react-redux';
+import Paper from '@mui/material/Paper';
+import { AppBar } from '@material-ui/core';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
@@ -20,6 +22,8 @@ function Footer() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  
   console.log('navigation icon clicked:', value);
 
   return <footer className="App-footer">

@@ -173,7 +173,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+        <Footer style={{ marginTop: '10px' }}/>
       </div>
     </Router>
   );
