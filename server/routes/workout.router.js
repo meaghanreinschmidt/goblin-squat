@@ -119,11 +119,11 @@ router.post('/', (req, res) => {
 // DELETE workout 
 router.delete('/delete/:id', (req, res) => {
   if (req.isAuthenticated()) {
-    const queryText = `DELETE FROM "set" WHERE "exercise_id" = $1;`;
-     pool.query(queryText, [req.params.id])
+    const queryText = `DELETE FROM "set" WHERE "exercise_id" = $1 AND "id" = $2;`;
+     pool.query(queryText, [req.params.id, req.params.id])
      .then((result) => {
-       const queryText2 = `DELETE FROM "exercise" WHERE "workout_id" = $1;`;
-       pool.query(queryText2, [req.params.id])
+       const queryText2 = `DELETE FROM "exercise" WHERE "workout_id" = $1 AND "id" = $2;`;
+       pool.query(queryText2, [req.params.id, req.params.id])
        .then((result) => {
          const queryText3 = `DELETE FROM "workout" WHERE "id" = $1 AND "user_id" = $2;`;
          pool.query(queryText3, [req.params.id, req.user.id])

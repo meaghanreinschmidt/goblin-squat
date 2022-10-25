@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 })
 
 // GOOD
-// // GET exercise names on ACTIVE workout details
+// GET exercise names on ACTIVE workout details DELETES exercises
 router.get('/:id', (req, res) => {
   // console.log("/exercise GET route");
   // console.log("is authenticated?", req.isAuthenticated());

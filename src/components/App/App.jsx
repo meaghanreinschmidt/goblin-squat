@@ -167,13 +167,13 @@ function App() {
               <LoginPage />
             }
           </Route>
-
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
+          
         </Switch>
-        <Footer />
+        <Footer style={{ marginTop: '10px' }}/>
       </div>
     </Router>
   );
