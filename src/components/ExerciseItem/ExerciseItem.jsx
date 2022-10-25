@@ -26,9 +26,9 @@ function ExerciseItem({exercise}) {
     history.push(`/exercise/details/${exercise.id}`);
   }
 
-  const handleDelete = (inputId) => {
-    console.log("handling Delete", id);
-    dispatch({ type: 'DELETE_EXERCISE', payload: inputId });
+  const handleDelete = () => {
+    console.log("handling Delete", exercise.id);
+    dispatch({ type: 'DELETE_EXERCISE', payload: exercise });
   };
 
   // const handleComplete = (exerciseId) => {
@@ -48,7 +48,7 @@ function ExerciseItem({exercise}) {
             </Button>
             <Button>
               <DeleteIcon
-                onClick={() => handleDelete(id)}
+                onClick={() => handleDelete()}
                 className="delete-icon"
               ></DeleteIcon>
             </Button>

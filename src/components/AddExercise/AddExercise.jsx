@@ -71,7 +71,7 @@ const AddExercise = () => {
         workout_id: id
       },
     });
-    history.push("/");
+    history.push('/');
     // post exercise.name/card to home
     // post name, set.set_number, set.reps, set.weight to edit exercise/complete exercise
   };

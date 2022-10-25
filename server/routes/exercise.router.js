@@ -6,7 +6,7 @@ const router = express.Router();
 // GET exercise for Add Exercise
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
-    let queryText = `SELECT "exercise"."name", "exercise"."notes", "set"."set_number", "set"."reps", "set"."weight" FROM "exercise"
+    let queryText = `SELECT "exercise"."workout_id", "exercise"."name", "exercise"."notes", "set"."set_number", "set"."reps", "set"."weight" FROM "exercise"
                      JOIN "set" ON "set"."exercise_id" = "exercise"."id"
                      WHERE "exercise"."id" = $1;`;
     pool.query(queryText, [req.params.id]).then((result) => {
@@ -21,18 +21,21 @@ router.get('/', (req, res) => {
 })
 
 // GOOD
-// GET exercise names on ACTIVE workout details
+// // GET exercise names on ACTIVE workout details
 router.get('/:id', (req, res) => {
   // console.log("/exercise GET route");
   // console.log("is authenticated?", req.isAuthenticated());
-  // console.log("req.user", req.user);
+  console.log("req.user", req.user.id);
+  console.log('req params', req.params.id);
+
   if (req.isAuthenticated()) {
-    let queryText = `SELECT "exercise"."name", "exercise"."id" FROM "exercise"
-                     JOIN "workout" ON "workout"."id" = "exercise"."workout_id"
+    let queryText = `SELECT "exercise"."name", "exercise"."id", "exercise"."workout_id" FROM "exercise"
+                     LEFT JOIN "workout" ON "workout"."id" = "exercise"."workout_id"
                      WHERE "workout"."id" = $1 AND "workout"."user_id" = $2`;
     pool
       .query(queryText, [req.params.id, req.user.id])
       .then((result) => {
+        console.log(result.rows);
         res.send(result.rows);
       })
       .catch((error) => {

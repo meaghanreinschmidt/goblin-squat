@@ -1,9 +1,10 @@
 import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
 
-function* fetchExercise() {
+function* fetchExercise(action) {
+  console.log(action.payload);
   try {
-    const exercises = yield axios.get(`/api/exercise`);
+    const exercises = yield axios.get(`/api/exercise/${action.payload}`);
     console.log('get exercise', exercises.data);
     yield put({ type: 'SET_EXERCISES', payload: exercises.data });
   } catch (error) {
@@ -52,7 +53,7 @@ function* fetchExerciseDetails(action) {
 // CREATE
 function* addExercise(action) {
   try {
-    yield axios.post('/api/exercise', action.payload);
+    yield axios.post('/api/exercise/', action.payload);
     yield put({ type: 'FETCH_EXERCISES' });
   } catch (error) {
     console.log("Add exercise failed", error);
@@ -73,9 +74,10 @@ function* addExercise(action) {
 
 // DELETE
 function* deleteExercise(action) {
+  const workoutId = action.payload.workout_id;
   try {
-    yield axios.delete(`/api/exercise/delete/${action.payload}`);
-    yield put({ type: 'FETCH_EXERCISES' });
+    yield axios.delete(`/api/exercise/delete/${action.payload.id}`);
+    yield put({ type: 'FETCH_EXERCISES', payload: workoutId });
   } catch (error) {
     console.log("Error with deleteExercise saga:", error);
     alert("Something went wrong!");
