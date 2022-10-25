@@ -45,7 +45,7 @@ function* fetchCompletedWorkoutDetails(action) {
     const workoutDetails = yield axios.get(`/api/workout/completed/details/${action.payload}`);
     const exercises = yield axios.get(`/api/exercise/completed/${action.payload}`);
     yield put ({ type: 'SET_COMPLETED_WORKOUT_DETAILS', payload: workoutDetails.data})
-    yield put ({ type: 'SET_COMPLETED_EXERCISES', payload: exercises.data });
+    yield put ({ type: 'SET_EXERCISES', payload: exercises.data });
   } catch (error) {
     console.log('Error fetching workout', error);
     alert('Something went wrong!');
