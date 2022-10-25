@@ -8,7 +8,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
 import ActiveWorkoutDetails from '../ActiveWorkoutDetails/ActiveWorkoutDetails';
@@ -179,7 +179,7 @@ function App() {
           </Route>
           
         </Switch>
-        <Footer style={{ marginTop: '10px' }}/>
+        <Nav style={{ marginTop: '10px' }}/>
       </div>
     </Router>
   );

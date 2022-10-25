@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import Footer from '../Footer/Footer';
 
 function UserProfile() {
   const history = useHistory();
@@ -24,6 +25,10 @@ function UserProfile() {
       <br />
       <LogOutButton className="btn" />
       </center>
+      <br />
+      <br />
+      <br />
+      <Footer />
     </div>
   );
 }
