@@ -17,13 +17,13 @@ const AddExercise = () => {
   const [setList, setSetList] = useState([]);
   const [notesField, setNotesField] = useState("");
 
-  useEffect(() => {
-    fetchExercises();
-  }, []);
+  // useEffect(() => {
+  //   fetchExercises();
+  // }, []);
 
-  const fetchExercises = () => {
-    dispatch({ type: 'FETCH_EXERCISES' });
-  };
+  // const fetchExercises = () => {
+  //   dispatch({ type: 'FETCH_EXERCISES' });
+  // };
 
 
   const handleSetChange = (e, index) => {
@@ -78,6 +78,8 @@ const AddExercise = () => {
 
   return (
     <center>
+      <br />
+      <br />
       <form onSubmit={handleSubmit}>
         <TextField
           type="text"
@@ -128,9 +130,11 @@ const AddExercise = () => {
             </div>
           );
         })}
+        <br />
         <Button type="button" value="Add" onClick={handleAddInput}>
           + Add a Set
         </Button>
+        <br />
         <br />
         <div className="box">
           <TextField
