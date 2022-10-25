@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import './ViewExercise.css';
 
 function ViewExercise() {
     const dispatch = useDispatch();
@@ -22,24 +23,28 @@ function ViewExercise() {
     return (
         <>
             <center>
+                <br />
+                <br />
                 <h4>{exercises.name}</h4>
                 <h5>Sets: </h5>
+                <table>
+                    <tr>
+                        <th>Set #</th>
+                        <th>Reps</th>
+                        <th>Weight</th>
+                    </tr>
                 {sets.map(set => {
                     return (
-                        <table>
-                            <tr>
-                                <th>Set #</th>
-                                <th>Reps</th>
-                                <th>Weight</th>
-                            </tr>
-                            <tr>
-                                <td>{set.set_number}</td>
-                                <td>{set.reps}</td>
-                                <td>{set.weight}</td>
-                            </tr>
-                        </table>
+                        <tr>
+                            <td>{set.set_number}</td>
+                            <td>{set.reps}</td>
+                            <td>{set.weight}</td>
+                        </tr>
+                        
                     )
                 })}
+                </table>
+                <br />
                 <h5>Notes: </h5>
                 <p>{exercises.notes}</p>
                 <br />

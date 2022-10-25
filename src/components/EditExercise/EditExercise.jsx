@@ -22,25 +22,27 @@ function EditExercise() {
     return (
         <>
             <center>
+                <br />
+                <br />
             <h4>{exercises.name}</h4>
             {/* STILL TRYING TO GET SETS */}
             <h5>Sets: </h5>
+                <table>
+                    <tr>
+                        <th>Set #</th>
+                        <th>Reps</th>
+                        <th>Weight</th>
+                    </tr>
             {sets.map(set => {
                 return (
-                    <table>
-                        <tr>
-                            <th>Set #</th>
-                            <th>Reps</th>
-                            <th>Weight</th>
-                        </tr>
-                        <tr>
-                            <td>{set.set_number}</td>
-                            <td>{set.reps}</td>
-                            <td>{set.weight}</td>
-                        </tr>
-                    </table>
+                    <tr>
+                        <td>{set.set_number}</td>
+                        <td>{set.reps}</td>
+                        <td>{set.weight}</td>
+                    </tr>
                 )
             })}
+            </table>
             {/* <Button>+ Add a Set</Button> */}
             <h5>Notes: </h5>
             <p>{exercises.notes}</p>
