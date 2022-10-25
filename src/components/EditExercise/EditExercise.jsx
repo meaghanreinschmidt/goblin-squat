@@ -24,7 +24,7 @@ function EditExercise() {
             <center>
             <h4>{exercises.name}</h4>
             {/* STILL TRYING TO GET SETS */}
-            <p>Sets: </p>
+            <h5>Sets: </h5>
             {sets.map(set => {
                 return (
                     <table>
