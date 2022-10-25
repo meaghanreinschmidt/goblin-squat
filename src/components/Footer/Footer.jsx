@@ -26,8 +26,8 @@ function Footer() {
   
   console.log('navigation icon clicked:', value);
 
-  return <footer className="App-footer">
-      <div>
+  return (
+      <div className="navbar">
         {/* If a user is logged in, show these links */}
         {user.id && (
           <BottomNavigation
@@ -35,16 +35,16 @@ function Footer() {
             value={value}
             onChange={(event, setValue) => handleChange(event, setValue)}  
           >
-            <BottomNavigationAction label="Home" icon={<HomeIcon />}
+            <BottomNavigationAction className="link" label="Home" icon={<HomeIcon />}
               onClick={() => {history.push('/user')}} />
 
-            <BottomNavigationAction label="Log" icon={<GradingIcon />}
+            <BottomNavigationAction className="link" label="Log" icon={<GradingIcon />}
               onClick={() => {history.push('/workout/log')}} />
 
-            <BottomNavigationAction label="Progress" icon={<LeaderboardIcon />}
+            <BottomNavigationAction className="link" label="Progress" icon={<LeaderboardIcon />}
               onClick={() => {history.push('/progress/chart')}} />
 
-            <BottomNavigationAction label="Profile" icon={<AccountCircleIcon />}
+            <BottomNavigationAction className="link" label="Profile" icon={<AccountCircleIcon />}
               onClick={() => {history.push('/user/profile')}} />
 
           </BottomNavigation>
@@ -54,7 +54,7 @@ function Footer() {
           About
         </Link> */}
       </div>
-        </footer>
+  )
 }
 
 export default Footer;

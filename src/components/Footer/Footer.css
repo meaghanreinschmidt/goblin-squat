@@ -4,56 +4,33 @@
   text-align: center;
 } */
 
-.nav {
-  /* flex box layout */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 0 0 30px;
-  background-color: #00acb0;
+.navbar {
   overflow: hidden;
-}
-
-.nav a {
-  text-decoration: none;
-}
-
-.nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
-  margin: 0;
-}
-
-.navLink {
-  display: inline-block;
-  color: #f2f2f2;
-  background-color: #676767;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   text-align: center;
-  padding: 24px 10px;
-  text-decoration: none;
-  font-size: 15px;
+  padding: 20px;
+  /* position: relative; */
+  /* width: 100%; */
+  background-color: #2d2d2d;
 
-  /* these last two make the logout button in
-  the nav bar look like another link */
-  border: none;
-  cursor: pointer;
-  outline: 0;
+}
+
+.link {
+  float: center;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 
 /* .navLink:hover {
   background-color: #008183;
 } */
 
-.App-footer {
-  text-align: center;
-  padding: 20px;
-  position: relative;
-  width: 100%;
-  background-color: #676767;
-}
 
 
   
