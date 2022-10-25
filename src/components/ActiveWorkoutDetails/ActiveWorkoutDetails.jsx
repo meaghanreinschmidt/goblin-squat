@@ -44,7 +44,7 @@ function ActiveWorkoutDetails() {
                 })}
             </CardContent>
         </Card>
-        
+        <Button onClick={() => history.goBack()}>Back</Button>
         </center>
     )
 }
