@@ -1,17 +1,16 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 
 function ProgressChart() {
   return (
-    <div className="container">
+    <Box className="container">
       <center>
-        <br />
-        <br />
         <h3>Progress Chart</h3>
         <div>
           <p>Coming Soon...</p>
         </div>
       </center>
-    </div>
+    </Box>
   );
 }
 
