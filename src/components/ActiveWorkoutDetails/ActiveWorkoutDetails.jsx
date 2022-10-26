@@ -28,7 +28,6 @@ function ActiveWorkoutDetails() {
         getWorkoutDetails();
     }, [id]);
 
-    console.log({exercises});
     return (
         <center>
             <h3>{workout.name}</h3>

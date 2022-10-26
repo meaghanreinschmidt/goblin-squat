@@ -21,7 +21,6 @@ import axios from "axios";
 function ExerciseItem({exercise}) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { id } = useParams();
   const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
