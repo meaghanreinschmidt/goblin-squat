@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Footer from '../Footer/Footer';
 
 function LoginForm() {
   const [heading, setHeading] = useState('Goblin Squat');
@@ -60,6 +61,7 @@ function LoginForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
       </div>
+      <br />
       <div>
         <input className="btn" type="submit" name="submit" value="Sign In" />
       </div>
@@ -67,16 +69,20 @@ function LoginForm() {
     </center>
     <br />
     <center>
-      <h5>New User?</h5>
-    <button
+      <p>New User?</p>
+    <input
       type="button"
-      className="btn btn_asLink"
+      className="btn"
+      value="Register"
       onClick={() => {
         history.push('/registration');
       }}
-    >
-      Register Here
-    </button>
+    />
+  <br />
+  <br />
+  <br />
+  <br />
+  <Footer />
   </center>
   </div>
   );
