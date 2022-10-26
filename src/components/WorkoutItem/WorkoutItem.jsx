@@ -24,12 +24,17 @@ function WorkoutItem({ workout }) {
         dispatch({ type: 'DELETE_WORKOUT', payload: id});
     }
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+    }
+
     return (
         <Grid>
             <Card variant="outlined" sx={{ maxWidth: 230 }}>
                 <CardContent>
                     <Typography sx={{ fontSize: 20 }}>{workout.name}</Typography>
-                    <Typography sx={{ fontSize: 15 }}>{workout.completed_at}</Typography>
+                    <Typography sx={{ fontSize: 15 }}>{formatDate(workout.completed_at)}</Typography>
                     <CardActions>
                         <Button onClick={handleDetailView}>Details</Button>
                         <Button>
