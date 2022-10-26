@@ -5,6 +5,7 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom";
+import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -14,12 +15,17 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Checkbox from '@mui/material/Checkbox';
 
 function ExerciseItem({exercise}) {
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const handleView = () => {
     console.log('clicked on single exercise');
@@ -52,11 +58,11 @@ function ExerciseItem({exercise}) {
                 className="delete-icon"
               ></DeleteIcon>
             </Button>
-            {/* <Button>
-              <CheckCircleOutlineIcon
-                className="complete-icon"
-              ></CheckCircleOutlineIcon>
-            </Button> */}
+            <Checkbox 
+              checked={checked}
+              onChange={handleChange}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
           </CardActions>
         </CardContent>
       </Card>
