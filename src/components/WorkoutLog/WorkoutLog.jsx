@@ -16,8 +16,9 @@ function WorkoutLog() {
     console.log('workouts:', {workouts});
     
     return (
-        <Box>
+        <Box className="container">
             <center>
+                
                 <h3>Completed Workouts</h3>
                 {workouts.map(workout => {
                     return (

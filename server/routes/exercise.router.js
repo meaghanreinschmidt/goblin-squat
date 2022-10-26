@@ -86,24 +86,22 @@ router.get('/details/:id', (req, res) => {
 })
 
 
-// // PUT (complete) exercise
-// router.put("/complete/:id", (req, res) => {
-//   if (req.isAuthenticated()) {
-//     const queryText = `UPDATE "exercise" SET "completed" = 'TRUE', "completed_at" = CURRENT_DATE
-//                        WHERE "user_id" = $1 AND WHERE "id" = $2;`;
-//     pool
-//       .query(queryText, [req.user.id, req.params.id])
-//       .then((result) => {
-//         res.send(result.rows);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//         res.sendStatus(500);
-//       });
-//   } else {
-//     res.sendStatus(403);
-//   }
-// });
+// PUT mark exercise complete
+router.put('/:id', (req, res) => {
+  if (req.isAuthenticated()) {
+    const queryText = `UPDATE "exercise" SET "completed" = 'TRUE' WHERE "id" = $1;`
+    pool.query(queryText, [req.params.id])
+      .then(() => {
+        res.sendStatus(200);
+      }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  } else {
+    res.sendStatus(403); // Forbidden
+  }
+});
+
 
 // POST exercise to home page
 router.post("/", async (req, res) => {
@@ -127,7 +125,7 @@ router.post("/", async (req, res) => {
           let queryText2 = `INSERT INTO "set" ("set_number", "reps", "weight", "exercise_id")
                                VALUES ($1, $2, $3, $4);`;
           await db.query(queryText2, [
-            i,
+            set[i].set_number,
             set[i].reps,
             set[i].weight,
             exerciseId,

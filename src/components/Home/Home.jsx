@@ -53,6 +53,8 @@ function Home() {
   return (
     <Box className="container">
       <center>
+        <h3>Active Workouts</h3>
+        <br />
       <Button variant="outlined" onClick={handleClickOpen}>Start Workout</Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Enter Name of Workout</DialogTitle>

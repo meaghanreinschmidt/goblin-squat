@@ -5,6 +5,10 @@ import { useHistory } from 'react-router-dom';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [currentGym, setCurrentGym] = useState('');
+  const [favoriteLift, setFavoriteLift] = useState('');
+  
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -17,6 +21,9 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        name: name,
+        current_gym: currentGym,
+        favorite_lift: favoriteLift
       },
     });
   }; // end registerUser
@@ -51,6 +58,34 @@ function RegisterForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
       </div>
+      <div>
+        <p>name</p>
+          <input 
+            type="name"
+            name="name"
+            value={name}
+            required
+            onChange={(event) => setName(event.target.value)}
+          />
+      </div>
+      <div>
+        <p>current gym</p>
+          <input 
+            type="current_gym"
+            name="current_gym"
+            value={currentGym}
+            onChange={(event) => setCurrentGym(event.target.value)}
+        />
+      </div>
+      <div>
+        <p>favorite lift</p>
+          <input  
+            type="favorite_lift"
+            name="favorite_lift"
+            value={favoriteLift}
+            onChange={(event) => setFavoriteLift(event.target.value)}
+        />
+      </div>
       <br />
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
@@ -60,7 +95,7 @@ function RegisterForm() {
           type="button"
           className="btn btn_asLink"
           onClick={() => {
-            history.push('/login');
+            history.push('/user');
           }}
         >
           Cancel

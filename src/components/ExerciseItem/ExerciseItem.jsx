@@ -5,6 +5,7 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom";
+import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -14,12 +15,27 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Checkbox from '@mui/material/Checkbox';
+import axios from "axios";
 
 function ExerciseItem({exercise}) {
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    setChecked(event.target.checked);
+    console.log('check complete');
+    axios.put(`/api/exercise/${exercise.id}`)
+      .then(() => {
+        dispatch({ type: 'FETCH_ACTIVE_EXERCISES' });
+      }).catch((error) => {
+        console.log(error);
+        alert('Something went wrong!');
+      });
+  };
 
   const handleView = () => {
     console.log('clicked on single exercise');
@@ -30,11 +46,6 @@ function ExerciseItem({exercise}) {
     console.log("handling Delete", exercise.id);
     dispatch({ type: 'DELETE_EXERCISE', payload: exercise });
   };
-
-  // const handleComplete = (exerciseId) => {
-  //   console.log("clicked on complete button");
-  //   dispatch({ type: "CLICK_COMPLETE_EXERCISE", payload: exerciseId });
-  // };
 
   return (
     <Grid>
@@ -52,11 +63,11 @@ function ExerciseItem({exercise}) {
                 className="delete-icon"
               ></DeleteIcon>
             </Button>
-            {/* <Button>
-              <CheckCircleOutlineIcon
-                className="complete-icon"
-              ></CheckCircleOutlineIcon>
-            </Button> */}
+            <Checkbox 
+              checked={checked} 
+              onClick={handleChange}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
           </CardActions>
         </CardContent>
       </Card>

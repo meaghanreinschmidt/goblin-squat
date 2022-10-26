@@ -1,17 +1,24 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 
 function ProgressChart() {
   return (
-    <div className="container">
+    <Box className="container">
       <center>
-        <br />
-        <br />
         <h3>Progress Chart</h3>
+        <p>Coming soon...</p>
+        <br />
+        <h4>Technologies Used</h4>
         <div>
-          <p>Coming Soon...</p>
+          <p>HTML, CSS, JavaScript, Node.js, Express.js, React, Redux, Redux Sagas, Material UI, PostgreSQL</p>
         </div>
+        <br />
+        <h4>Acknowledgements</h4>
+          <p>My partner Maddie, friends, and family</p>
+          <p>Prime faculty and staff</p>
+          <p>Members of the Phrygian cohort</p>
       </center>
-    </div>
+    </Box>
   );
 }
 

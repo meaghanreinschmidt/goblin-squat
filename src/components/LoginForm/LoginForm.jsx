@@ -30,7 +30,7 @@ function LoginForm() {
   return (
     <div className="container">
       <center>
-    <h2 className="App-header">{heading}</h2>
+    <h2 className="App-header">Welcome to goblin squat!</h2>
     </center>
     <br />
     <center>
