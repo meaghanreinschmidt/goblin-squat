@@ -16,6 +16,7 @@ import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from '@mui/material/Checkbox';
+import axios from "axios";
 
 function ExerciseItem({exercise}) {
   const history = useHistory();
@@ -24,7 +25,16 @@ function ExerciseItem({exercise}) {
   const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
+    event.preventDefault();
     setChecked(event.target.checked);
+    console.log('check complete');
+    axios.put(`/api/exercise/${exercise.id}`)
+      .then(() => {
+        dispatch({ type: 'FETCH_ACTIVE_EXERCISES' });
+      }).catch((error) => {
+        console.log(error);
+        alert('Something went wrong!');
+      });
   };
 
   const handleView = () => {
@@ -36,11 +46,6 @@ function ExerciseItem({exercise}) {
     console.log("handling Delete", exercise.id);
     dispatch({ type: 'DELETE_EXERCISE', payload: exercise });
   };
-
-  // const handleComplete = (exerciseId) => {
-  //   console.log("clicked on complete button");
-  //   dispatch({ type: "CLICK_COMPLETE_EXERCISE", payload: exerciseId });
-  // };
 
   return (
     <Grid>
@@ -59,8 +64,8 @@ function ExerciseItem({exercise}) {
               ></DeleteIcon>
             </Button>
             <Checkbox 
-              checked={checked}
-              onChange={handleChange}
+              checked={checked} 
+              onClick={handleChange}
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </CardActions>

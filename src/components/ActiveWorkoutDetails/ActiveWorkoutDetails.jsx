@@ -31,10 +31,8 @@ function ActiveWorkoutDetails() {
     console.log({exercises});
     return (
         <center>
-        <Card>
-            <CardContent>
-                <h3>{workout.name}</h3>
-                <Button onClick={handleAdd}>Add Exercise</Button>
+            <h3>{workout.name}</h3>
+            <Button onClick={handleAdd}>Add Exercise</Button>
                 <br />
                 <br />
                 {exercises.map(exercise => {
@@ -42,8 +40,6 @@ function ActiveWorkoutDetails() {
                         <ExerciseItem exercise={exercise} />
                     )
                 })}
-            </CardContent>
-        </Card>
         <Button onClick={() => history.goBack()}>Back</Button>
         </center>
     )
