@@ -127,7 +127,7 @@ router.post("/", async (req, res) => {
           let queryText2 = `INSERT INTO "set" ("set_number", "reps", "weight", "exercise_id")
                                VALUES ($1, $2, $3, $4);`;
           await db.query(queryText2, [
-            i,
+            set[i].set_number,
             set[i].reps,
             set[i].weight,
             exerciseId,

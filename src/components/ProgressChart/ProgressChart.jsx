@@ -14,8 +14,7 @@ function ProgressChart() {
         </div>
         <br />
         <h4>Acknowledgements</h4>
-          <p>My partner Maddie for supporting me endlessly through this process.</p>
-          <p>My family and friends</p>
+          <p>My partner Maddie, friends, and family</p>
           <p>Prime faculty and staff</p>
           <p>Members of the Phrygian cohort</p>
       </center>
