@@ -50,7 +50,7 @@ router.post('/logout', (req, res) => {
 router.put('/:id', (req, res) => {
   if (req.isAuthenticated()) {
     const queryText = `UPDATE "user" SET "name" = $1, "current_gym" = $2, "favorite_lift" = $3
-                       WHERE "id' = $4`;
+                       WHERE "id" = $4`;
     pool.query(queryText, [req.body.name, req.body.current_gym, req.body.favorite_lift, req.params.id])
       .then(() => {
         res.sendStatus(200);

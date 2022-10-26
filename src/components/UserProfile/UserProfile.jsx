@@ -14,11 +14,15 @@ function UserProfile() {
   return (
     <Box className="container">
       <center>
-      <h3>Hello, {user.username}!</h3>
+      <h2>Hello, {user.name}!</h2>
       {/* <p>Your ID is: {user.id}</p> */}
       <br />
       <FitnessCenterIcon></FitnessCenterIcon>
       <br />
+      <h3>My Info</h3>
+      <h4>Name: {user.name}</h4>
+      <h4>Current Gym: {user.current_gym}</h4>
+      <h4>Favorite Lift: {user.favorite_lift}</h4>
       <br />
       <Button onClick={() => history.push('/edit/profile')}>Edit Profile</Button>
       <br />
