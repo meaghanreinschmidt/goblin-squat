@@ -24,6 +24,7 @@ const EditProfile = () => {
                 console.log(error);
                 alert('Something went wrong!');
             });
+        history.push('/user/profile');
     };
 
 
