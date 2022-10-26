@@ -14,7 +14,6 @@ const EditProfile = () => {
                 <br />
 
                 <FitnessCenterIcon></FitnessCenterIcon>
-                <h5>username: {user.username}</h5>
                 <h5>name:</h5>
                 <h5>current gym:</h5>
                 <h5>favorite lift:</h5>

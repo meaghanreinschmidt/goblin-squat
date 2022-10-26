@@ -47,4 +47,30 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.put('/:id', (req, res) => {
+  if (req.isAuthenticated()) {
+    const queryText = `UPDATE "user" SET "name" = $1, "current_gym" = $2, "favorite_lift" = $3
+                       WHERE "id' = $4`;
+    pool.query(queryText, [req.body.name, req.body.current_gym, req.body.favorite_lift, req.params.id])
+      .then(() => {
+        res.sendStatus(200);
+      }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  } else {
+    res.sendStatus(403); // Forbidden
+  }
+});
+
+router.get('/all', rejectUnauthenticated, (req, res) => {
+  let queryText = `SELECT * FROM "user";`
+  pool.query(queryText)
+    .then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

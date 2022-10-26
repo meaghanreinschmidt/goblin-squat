@@ -26,7 +26,6 @@ function EditExercise() {
                 <br />
             <h3>{exercises.name}</h3>
             {/* STILL TRYING TO GET SETS */}
-            <h5>Sets: </h5>
                 <table>
                     <tr>
                         <th>Set #</th>
