@@ -85,7 +85,22 @@ router.get('/details/:id', (req, res) => {
   }
 })
 
+// PUT edit exercise
+router.put('/edit/:id/:id', (req, res) => {
+  console.log('in /edit/:id/:id', req.body);
+  const queryText = `UPDATE "exercise" SET "name" = $1, "notes" = $2, "workout_id" = $3
+                    WHERE "id" = $4;`;
+  pool.query(queryText, [req.body.exerciseName.name, req.body.notesField, req.body.workout_id, req.body.exercise_id])
+    .then(results => {
+      res.sendStatus(200);
+    }).catch(error => {
+      console.log('ERROR: editing exercise', error);
+      res.sendStatus(500);
+    })
+})
 
+
+// GOOD DON'T MESS UP
 // PUT mark exercise complete
 router.put('/:id', (req, res) => {
   if (req.isAuthenticated()) {

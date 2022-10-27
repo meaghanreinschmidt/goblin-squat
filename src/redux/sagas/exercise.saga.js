@@ -26,50 +26,30 @@ function* fetchExerciseDetails(action) {
   }
 }
 
-// function* fetchCompleteExerciseDetails(action) {
-//   try {
-//     const completeExerciseDetails = yield axios.get(
-//       `/api/exercise/completed/${action.payload}`,
-//     );
-//     const completeExerciseSets = yield axios.get(
-//       `/api/set/completed/${action.payload}`,
-//     );
-//     const completeExerciseNotes = yield axios.get(
-//       `/api/workout/${action.payload}`,
-//     );
-//     yield put({
-//       type: "SET_COMPLETE_EXERCISE_DETAILS",
-//       payload: completeExerciseDetails.data,
-//     });
-//     yield put({ type: "SET_SETS", payload: completeExerciseSets.data });
-//     yield put({ type: "SET_WORKOUT", payload: completeExerciseNotes.data });
-//   } catch (error) {
-//     console.log("Error fetching completed exercise details", error);
-//     alert("Something went wrong!");
-//   }
-// }
 
 // CREATE
 function* addExercise(action) {
+  const workoutId = action.payload.workout_id;
+  console.log('this is action:', action.payload);
   try {
     yield axios.post('/api/exercise/', action.payload);
-    yield put({ type: 'FETCH_EXERCISES' });
+    yield put({ type: 'FETCH_EXERCISES', payload: workoutId});
   } catch (error) {
     console.log("Add exercise failed", error);
     alert("Something went wrong");
   }
 }
 
-// // Complete Exercise
-// function* completeExercise() {
-//   try {
-//     yield axios.put(`/api/workout/complete/${action.payload}`);
-//     yield put({ type: "FETCH_ACTIVE_WORKOUT" });
-//   } catch (error) {
-//     console.log("Error with completeWorkout saga:", error);
-//     alert("Something went wrong!");
-//   }
-// }
+function* editExercise(action) {
+  try {
+    yield axios.put(`/api/exercise/edit/${action.payload.workout_id}/${action.payload.exercise_id}`, action.payload);
+    if (action.history) {
+        action.history.goBack();
+    }
+  } catch (error) {
+    console.log('Edit exercise failed', error);
+  }
+}
 
 // DELETE
 function* deleteExercise(action) {
@@ -85,15 +65,9 @@ function* deleteExercise(action) {
 
 function* exerciseSaga() {
   yield takeLatest('FETCH_EXERCISES', fetchExercise);
-  // yield takeLatest("FETCH_COMPLETE_EXERCISES", fetchCompleteExercises);
-  // yield takeLatest('FETCH_EXERCISE', fetchWorkoutExercises)
-  yield takeLatest("FETCH_EXERCISE_DETAILS", fetchExerciseDetails);
-  // yield takeLatest(
-  //   "FETCH_COMPLETE_EXERCISE_DETAILS",
-  //   fetchCompleteExerciseDetails,
-  // );
-  yield takeLatest("ADD_EXERCISE", addExercise);
-  // yield takeLatest("CLICK_COMPLETE_EXERCISE", completeExercise);
+  yield takeLatest('FETCH_EXERCISE_DETAILS', fetchExerciseDetails);
+  yield takeLatest('ADD_EXERCISE', addExercise);
+  yield takeLatest('EDIT_EXERCISE', editExercise);
   yield takeLatest('DELETE_EXERCISE', deleteExercise);
 }
 

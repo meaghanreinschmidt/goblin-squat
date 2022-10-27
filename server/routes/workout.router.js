@@ -147,34 +147,4 @@ router.delete('/delete/:id', (req, res) => {
 });
 
 
-
-// router.get('/completed/:id', (req, res) => {
-//     console.log('/workout/completed/:id')
-//     let queryText = `SELECT "exercise"."name" FROM "workout"
-//                      JOIN "exercise" ON "exercise"."id" = "workout"."exercise_id"
-//                      WHERE "exercise"."id" = $1`;
-//     pool.query(queryText, [req.params.id]).then((result) => {
-//         console.log('in workout router', result.rows);
-//         res.send(result.rows);
-//     }).catch((error) => {
-//         console.log('ERROR: getting exercise name', error);
-//         res.sendStatus(500);
-//     });
-// });
-
-// router.get('/completed/:id', (req, res) => {
-//   if (req.isAuthenticated()) {
-//     console.log(req.params.id);
-//     const queryText = `SELECT * FROM "exercise" WHERE "id" = $1;`
-//     pool.query(queryText, [req.params.id])
-//       .then((result) => {
-//         res.send(result.rows[0]);
-//       })
-//       .catch((err) => {
-//         console.log('Error: getting completed workout exercises', err);
-//         res.sendStatus(500);
-//       });
-//   }
-// });
-
 module.exports = router;
