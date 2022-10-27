@@ -3,28 +3,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 const AddExercise = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log('id:', id);
+  const { workout_id } = useParams();
+  const { exercise_id } = useParams();
+  const params = useParams();
+  // console.log('id:', id);
+  // console.log('this is params:', JSON.stringify(params));
+  // console.log(params.workout_id)
+  
 
-  // const exercise = useSelector((store) => store.exercises);
-  // const set = useSelector((store) => store.set);
-  // const workout = useSelector((store) => store.workout);
   const [exerciseName, setExerciseName] = useState("");
   const [setList, setSetList] = useState([]);
   const [notesField, setNotesField] = useState("");
-
-  // useEffect(() => {
-  //   fetchExercises();
-  // }, []);
-
-  // const fetchExercises = () => {
-  //   dispatch({ type: 'FETCH_EXERCISES' });
-  // };
-
+  // console.log(workout_id);
+  useEffect(() => {
+      if (exercise_id) { // Return false if exercise_id is undefined
+        axios.get(`/api/workout/${workout_id}`).then(response => {
+          const exercise = response.data;
+          setExerciseName(exercise.name);
+          setSetList(setList);
+          setNotesField(notesField);
+        }).catch(error => {
+          console.log(error);
+          alert('Something went wrong!');
+        })
+      } // else do nothing
+  }, [exercise_id]);
 
   const handleSetChange = (e, index) => {
     const { name, value } = e.target;
@@ -50,34 +59,31 @@ const AddExercise = () => {
     setSetList(list);
   };
 
-  // const deleteNote = (index) => {
-  //   const field = [...notesField];
-  //   field.splice(index, 1);
-  //   setNotesField(field);
-  // };
-
   const handleSubmit = (event) => {
     // Don't reload on form submit
     event.preventDefault();
-    // Tell redux that we want to add a new exercise
-    //   console.log('Adding exercise name', {exerciseName});
-    // DISPATCH HERE -- examples commented out
-    dispatch({
-      type: "ADD_EXERCISE",
-      payload: {
-        name: exerciseName.name,
-        sets: setList,
-        notes: notesField,
-        workout_id: id
+    if (exercise_id) {
+      // EDIT AN EXISTING EXERCISE
+      dispatch({ type: 'EDIT_EXERCISE', payload: {exerciseName, setList, notesField, workout_id, exercise_id}, history });
+    } else {
+      // ADD AN EXERCISE
+      dispatch({
+        type: "ADD_EXERCISE",
+        payload: {
+          name: exerciseName.name,
+          sets: setList,
+          notes: notesField,
+          workout_id: id
       },
-    });
-    history.push('/');
-    // post exercise.name/card to home
-    // post name, set.set_number, set.reps, set.weight to edit exercise/complete exercise
+    }
+    
+    )
+    history.goBack();};
   };
 
   return (
     <center>
+      <h1>{ exercise_id ? 'Edit Exercise' : 'Add Exercise' }</h1>
       <br />
       <br />
       <form onSubmit={handleSubmit}>
@@ -145,9 +151,6 @@ const AddExercise = () => {
             value={notesField.notes}
             onChange={(e) => handleNotesChange(e)}
           />
-          {/* <Button type="button" value="Remove" onClick={() => deleteNote(i)}>
-            X
-          </Button> */}
           <br />
           <br />
         </div>

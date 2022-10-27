@@ -21,6 +21,7 @@ import axios from "axios";
 function ExerciseItem({exercise}) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const workout = useSelector(store => store.workouts.workouts);
   const { id } = useParams();
   const [checked, setChecked] = useState(false);
 
@@ -37,9 +38,10 @@ function ExerciseItem({exercise}) {
       });
   };
 
-  const handleView = () => {
+  const handleEdit = () => {
     console.log('clicked on single exercise');
-    history.push(`/exercise/details/${exercise.id}`);
+    // push to /add/exercise/:id/ with another id?
+    history.push(`/edit/${id}/${exercise.id}`);
   }
 
   const handleDelete = () => {
@@ -54,7 +56,7 @@ function ExerciseItem({exercise}) {
           <Typography sx={{ fontSize: 20 }}>{exercise.name}</Typography>
           <CardActions>
             {/* This button should take the user to the edit page */}
-            <Button onClick={handleView}>
+            <Button onClick={handleEdit}>
               <EditIcon className="edit-icon"></EditIcon>
             </Button>
             <Button>
