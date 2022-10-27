@@ -83,7 +83,7 @@ const AddExercise = () => {
 
   return (
     <center>
-      <h1>{ exercise_id ? 'Edit Exercise' : 'Add Exercise' }</h1>
+      <h3>{ exercise_id ? 'Edit Exercise' : 'Add Exercise' }</h3>
       <br />
       <br />
       <form onSubmit={handleSubmit}>
