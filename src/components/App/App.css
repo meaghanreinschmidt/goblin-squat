@@ -4,15 +4,19 @@ body,
   height: 100%;
 }
 
-.box {
-  
-}
+/* .box {
+  border: thick white;
+} */
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: whitesmoke;
   background-color: #2d2d2d;
   margin: 0px;
+  /* margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px; */
   padding-bottom: 300px;
 }
 

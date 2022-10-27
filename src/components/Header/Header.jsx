@@ -8,7 +8,7 @@ const Header = () => {
         <>
             <center>
             <header className="App-header">
-                <h1>goblin squat</h1>
+                <h1>LOGO HERE</h1>
             </header>
             </center>
         </>

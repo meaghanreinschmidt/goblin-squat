@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Footer from '../Footer/Footer';
+import './LoginForm.css';
 
 function LoginForm() {
   const [heading, setHeading] = useState('Goblin Squat');
@@ -31,11 +32,11 @@ function LoginForm() {
   return (
     <div className="container">
       <center>
-    <h2 className="App-header">Welcome to goblin squat!</h2>
     </center>
     <br />
     <center>
-    <form onSubmit={login}>
+    <form className="formPanel"onSubmit={login}>
+    <h2 className="App-header">Welcome to goblin squat!</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -69,7 +70,7 @@ function LoginForm() {
     </center>
     <br />
     <center>
-      <p>New User?</p>
+      <p className="newUser">New User?</p>
     <input
       type="button"
       className="btn"
@@ -78,8 +79,6 @@ function LoginForm() {
         history.push('/registration');
       }}
     />
-  <br />
-  <br />
   <br />
   <br />
   <Footer />
