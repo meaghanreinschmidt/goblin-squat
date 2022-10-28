@@ -70,7 +70,7 @@ function ActiveWorkoutItem({workout}) {
                         aria-describedby="alert-dialog-description"
                     >
                         <DialogTitle id="alert-dialog-title">
-                            {"Delete?"}
+                            {"Are you sure?"}
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
@@ -79,7 +79,7 @@ function ActiveWorkoutItem({workout}) {
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={handleClose}>Cancel</Button>
-                            <Button onClick={() => handleDelete(workout.id)} autoFocus>
+                            <Button onClick={() => handleDelete(workout.id)} autoFocus color="error">
                                 Delete
                             </Button>
                         </DialogActions>

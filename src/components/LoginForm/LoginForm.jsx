@@ -73,7 +73,7 @@ function LoginForm() {
       <p className="newUser">New User?</p>
     <input
       type="button"
-      className="btn"
+      className="other-btn"
       value="Register"
       onClick={() => {
         history.push('/registration');
