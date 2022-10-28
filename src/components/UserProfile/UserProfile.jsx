@@ -37,7 +37,7 @@ function UserProfile() {
       <h4>Favorite Lift: {user.favorite_lift}</h4>
       <br />
       <ThemeProvider theme={theme}>
-      <Button variant="contained" onClick={() => history.push('/edit/profile')}>Edit Profile</Button>
+      <Button variant="outlined" onClick={() => history.push('/edit/profile')}>Edit Profile</Button>
       </ThemeProvider>
       <br />
       <br />

@@ -7,6 +7,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import ExerciseItem from '../ExerciseItem/ExerciseItem';
+import './ActiveWorkoutDetails.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#2d2d2d'
+      }
+    }
+  })
 
 function ActiveWorkoutDetails() {
     const dispatch = useDispatch();
@@ -29,18 +39,25 @@ function ActiveWorkoutDetails() {
     }, [id]);
 
     return (
-        <center>
-            <h3>{workout.name}</h3>
-            <Button onClick={handleAdd}>Add Exercise</Button>
+        <Box className="container">
+            <ThemeProvider theme={theme}>
+            <center>
+                <div className="active-container">
+                <h3 className="App-header">{workout.name}</h3>
                 <br />
-                <br />
-                {exercises.map(exercise => {
-                    return (
-                        <ExerciseItem exercise={exercise} />
-                    )
-                })}
-        <Button onClick={() => history.goBack()}>Back</Button>
-        </center>
+                <Button variant="outlined" onClick={handleAdd}>Add Exercise</Button>
+                    <br />
+                    <br />
+                    {exercises.map(exercise => {
+                        return (
+                            <ExerciseItem exercise={exercise} />
+                        )
+                    })}
+            <Button variant="outlined" onClick={() => history.goBack()}>Back</Button>
+            </div>
+            </center>
+            </ThemeProvider>
+        </Box>
     )
 }
 

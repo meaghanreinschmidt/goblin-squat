@@ -64,7 +64,7 @@ function Home() {
         <div className="home-container">
       <h3 className="App-header">Active Workouts</h3>
         <br />
-      <Button variant="contained" onClick={handleClickOpen}>Start Workout</Button>
+      <Button variant="outlined" onClick={handleClickOpen}>Start Workout</Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Enter Name of Workout</DialogTitle>
           <DialogContent>
