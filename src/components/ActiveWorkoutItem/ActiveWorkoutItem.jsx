@@ -50,7 +50,7 @@ function ActiveWorkoutItem({workout}) {
 
     return (
         <Grid>
-            <Card>
+            <Card variant="outlined" sx={{ maxWidth: 230 }}>
                 <CardContent>
                     <Typography>{workout.name}</Typography>
                     <Button onClick={handleDetails}>
@@ -90,9 +90,6 @@ function ActiveWorkoutItem({workout}) {
                         className="complete-icon"
                     ></CheckCircleOutlineIcon>
                     </Button>
-                    {/* <Button onClick={() => history.push("/add/exercise")}>
-                    Add Exercise
-                    </Button> */}
                 </CardContent>
             </Card>
         </Grid>

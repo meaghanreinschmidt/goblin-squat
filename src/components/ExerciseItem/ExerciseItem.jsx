@@ -16,7 +16,9 @@ import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from '@mui/material/Checkbox';
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import axios from "axios";
+import './ExerciseItem.css';
 
 function ExerciseItem({exercise}) {
   const history = useHistory();
@@ -51,29 +53,31 @@ function ExerciseItem({exercise}) {
 
   return (
     <Grid>
-      <Card variant="outlined" sx={{ maxWidth: 230 }}>
+      <Card variant="outlined" sx={{ maxWidth: 230, maxHeight: 100 }}>
         <CardContent>
-          <Typography sx={{ fontSize: 20 }}>{exercise.name}</Typography>
-          <CardActions>
+          <Typography>{exercise.name}</Typography>
             {/* This button should take the user to the edit page */}
+            {/* <CardActions sx={{ justifyContent: 'center'}}> */}
             <Button onClick={handleEdit}>
               <EditIcon className="edit-icon"></EditIcon>
             </Button>
-            <Button>
+            <Button className="remove-margin">
               <DeleteIcon
                 onClick={() => handleDelete()}
                 className="delete-icon"
               ></DeleteIcon>
             </Button>
+            <Button>
             <Checkbox 
+              icon={<CheckCircleOutlineIcon />}
               checked={checked} 
               onClick={handleChange}
               inputProps={{ 'aria-label': 'controlled' }}
             />
-          </CardActions>
+            </Button>
+           {/* </CardActions> */}
         </CardContent>
       </Card>
-      <br />
     </Grid>
   );
 }

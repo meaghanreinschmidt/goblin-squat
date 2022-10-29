@@ -50,7 +50,10 @@ function ActiveWorkoutDetails() {
                     <br />
                     {exercises.map(exercise => {
                         return (
-                            <ExerciseItem exercise={exercise} />
+                            <>
+                            <ExerciseItem exercise={exercise}/>
+                            <br />
+                            </>
                         )
                     })}
             <Button variant="outlined" onClick={() => history.goBack()}>Back</Button>
