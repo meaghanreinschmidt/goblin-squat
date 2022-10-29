@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import Box from '@mui/material/Box';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import './AddExercise.css';
 
 const AddExercise = () => {
   const history = useHistory();
@@ -11,11 +13,6 @@ const AddExercise = () => {
   const { id } = useParams();
   const { workout_id } = useParams();
   const { exercise_id } = useParams();
-  const params = useParams();
-  // console.log('id:', id);
-  // console.log('this is params:', JSON.stringify(params));
-  // console.log(params.workout_id)
-  
 
   const [exerciseName, setExerciseName] = useState("");
   const [setList, setSetList] = useState([]);
@@ -82,8 +79,10 @@ const AddExercise = () => {
   };
 
   return (
+    <Box className="container">
     <center>
-      <h3>{ exercise_id ? 'Edit Exercise' : 'Add Exercise' }</h3>
+      <div className="add-container">
+      <h3 className="App-header">{ exercise_id ? 'Edit Exercise' : 'Add Exercise' }</h3>
       <br />
       <br />
       <form onSubmit={handleSubmit}>
@@ -159,7 +158,9 @@ const AddExercise = () => {
         {/* This button should save all of the input fields and title and post them to the home page */}
         <Button type="submit">Save</Button>
       </form>
+      </div>
     </center>
+    </Box>
   );
 };
 

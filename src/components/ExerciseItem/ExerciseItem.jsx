@@ -25,6 +25,7 @@ function ExerciseItem({exercise}) {
   const dispatch = useDispatch();
   const workout = useSelector(store => store.workouts.workouts);
   const { id } = useParams();
+  const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
@@ -39,6 +40,14 @@ function ExerciseItem({exercise}) {
         alert('Something went wrong!');
       });
   };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  }
 
   const handleEdit = () => {
     console.log('clicked on single exercise');
@@ -57,7 +66,6 @@ function ExerciseItem({exercise}) {
         <CardContent>
           <Typography>{exercise.name}</Typography>
             {/* This button should take the user to the edit page */}
-            {/* <CardActions sx={{ justifyContent: 'center'}}> */}
             <Button onClick={handleEdit}>
               <EditIcon className="edit-icon"></EditIcon>
             </Button>
@@ -75,7 +83,6 @@ function ExerciseItem({exercise}) {
               inputProps={{ 'aria-label': 'controlled' }}
             />
             </Button>
-           {/* </CardActions> */}
         </CardContent>
       </Card>
     </Grid>
