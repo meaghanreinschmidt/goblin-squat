@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FA6318'
+      main: '#f5f5f5'
     }
   }
 })
@@ -36,11 +36,12 @@ function Nav() {
 
   return (
       <div className="navbar">
-        <ThemeProvider theme={theme}>
         {/* If a user is logged in, show these links */}
         {user.id && (
           <BottomNavigation
-            sx={{ width: 350 }}
+            sx={{ width: 350, backgroundColor: '#2d2d2d', "& .MuiBottomNavigationAction-root, svg": {
+              color: '#f5f5f5'
+            } }}
             value={value}
             onChange={(event, setValue) => handleChange(event, setValue)}  
           >
@@ -58,7 +59,6 @@ function Nav() {
 
           </BottomNavigation>
         )}
-      </ThemeProvider>
         {/* <Link className="navLink" to="/about">
           About
         </Link> */}

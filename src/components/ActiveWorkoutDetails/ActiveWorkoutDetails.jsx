@@ -56,7 +56,7 @@ function ActiveWorkoutDetails() {
                             </>
                         )
                     })}
-            <Button variant="outlined" onClick={() => history.goBack()}>Back</Button>
+            <Button variant="contained" onClick={() => history.goBack()}>Back</Button>
             </div>
             </center>
             </ThemeProvider>
