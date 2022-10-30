@@ -86,7 +86,7 @@ function ActiveWorkoutItem({workout}) {
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
-                                Are you sure you want to delete this item?
+                                Are you sure you want to delete this workout?
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
