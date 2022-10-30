@@ -1,7 +1,5 @@
 import {
   HashRouter as Router,
-  Route,
-  Link,
   useHistory,
   useParams,
 } from "react-router-dom";
@@ -10,7 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
@@ -19,8 +21,20 @@ import Checkbox from '@mui/material/Checkbox';
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import axios from "axios";
 import './ExerciseItem.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function ExerciseItem({exercise}) {
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2d2d2d'
+    },
+    secondary: {
+      main: '#FA6318'
+    }
+  }
+})
+
+function ExerciseItem({ exercise }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const workout = useSelector(store => store.workouts.workouts);
@@ -58,34 +72,58 @@ function ExerciseItem({exercise}) {
   const handleDelete = () => {
     console.log("handling Delete", exercise.id);
     dispatch({ type: 'DELETE_EXERCISE', payload: exercise });
+    setOpen(false);
   };
 
   return (
     <Grid>
       <Card variant="outlined" sx={{ maxWidth: 230, maxHeight: 100 }}>
         <CardContent>
-          <Typography>{exercise.name}</Typography>
+          <ThemeProvider theme={theme}>
+            <Typography>{exercise.name}</Typography>
             {/* This button should take the user to the edit page */}
             <Button onClick={handleEdit}>
               <EditIcon className="edit-icon"></EditIcon>
             </Button>
             <Button className="remove-margin">
               <DeleteIcon
-                onClick={() => handleDelete()}
+                onClick={handleClickOpen}
                 className="delete-icon"
               ></DeleteIcon>
             </Button>
-            <Button>
-            <Checkbox 
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Are you sure?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure you want to delete this item?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button color="primary" onClick={handleClose}>Cancel</Button>
+                <Button color="secondary" onClick={() => handleDelete()} autoFocus>
+                  Delete
+                </Button>
+              </DialogActions>
+          </Dialog>
+          <Button>
+            <Checkbox
               icon={<CheckCircleOutlineIcon />}
-              checked={checked} 
+              checked={checked}
               onClick={handleChange}
               inputProps={{ 'aria-label': 'controlled' }}
             />
-            </Button>
-        </CardContent>
-      </Card>
-    </Grid>
+          </Button>
+        </ThemeProvider>
+      </CardContent>
+    </Card>
+    </Grid >
   );
 }
 
