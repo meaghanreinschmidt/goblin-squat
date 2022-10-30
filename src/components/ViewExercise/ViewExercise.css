@@ -30,8 +30,8 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-  color: whitesmoke;
-  background-color: #2d2d2d;
+  background-color: whitesmoke;
+  color: #2d2d2d;
 }
 
   .view-container {

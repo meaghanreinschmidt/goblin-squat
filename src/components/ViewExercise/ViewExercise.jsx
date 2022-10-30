@@ -57,7 +57,7 @@ function ViewExercise() {
                 })}
                 </table>
                 <br />
-                <p>{exercises.notes}</p>
+                <h4>{exercises.notes}</h4>
                 <br />
                 <Button variant="contained" onClick={() => history.goBack()}>Back</Button>
                 </div>
