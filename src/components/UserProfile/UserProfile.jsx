@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import Footer from '../Footer/Footer';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import exerciseAvatar from '../../images/barbell.jpg';
 import Typography from '@mui/material/Typography';
@@ -32,30 +34,27 @@ function UserProfile() {
       <center>
       <ThemeProvider theme={theme}>
       <div className="profile-container">
-      <h3 className="App-header">Hello, {user.name}!</h3>
+      <h2 className="App-header">Hello, {user.name}!</h2>
       {/* <p>Your ID is: {user.id}</p> */}
       <br />
       <Avatar src={exerciseAvatar} sx={{ width: 60, height: 60 }} />
         {/* <FitnessCenterIcon />
       </Avatar> */}
       <br />
-      <h3>My Info</h3>
-      <h4>Name: {user.name}</h4>
-      <h4>Current Gym: {user.current_gym}</h4>
-      <h4>Favorite Lift: {user.favorite_lift}</h4>
+      <Card>
+        <CardContent>
+          <h3>My Info</h3>
+          <h4>Name: {user.name}</h4>
+          <h4>Current Gym: {user.current_gym}</h4>
+          <h4>Favorite Lift: {user.favorite_lift}</h4>
+        </CardContent>
+      </Card>
       <br />
-      
       <Button  color="secondary" variant="contained" onClick={() => history.push('/edit/profile')}>Edit Profile</Button>
-      
-      <br />
-      <br />
       <LogOutButton className="btn" />
       </div>
       </ThemeProvider>
       </center>
-      <br />
-      <br />
-      <br />
       <Footer />
     </Box>
   );

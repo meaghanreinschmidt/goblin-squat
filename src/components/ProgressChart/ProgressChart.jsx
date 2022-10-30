@@ -7,7 +7,7 @@ function ProgressChart() {
     <Box className="container">
       <center>
         <div className="chart-container">
-        <h3 className="App-header">Progress Chart</h3>
+        <h2 className="App-header">Progress Chart</h2>
         <p>Coming soon...</p>
         <br />
         <h4>Technologies Used</h4>

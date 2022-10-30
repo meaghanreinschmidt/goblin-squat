@@ -65,7 +65,7 @@ function Home() {
       <ThemeProvider theme={theme}>
       <center>
         <div className="home-container">
-      <h3 className="App-header">Active Workouts</h3>
+      <h2 className="App-header">Active Workouts</h2>
         <br />
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>Start Workout</Button>
         <Dialog open={open} onClose={handleClose}>

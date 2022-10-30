@@ -30,7 +30,7 @@ function WorkoutLog() {
             <ThemeProvider theme={theme}>
             <center>
                 <div className="log-container">
-                <h3 className="App-header">Completed Workouts</h3>
+                <h2 className="App-header">Completed Workouts</h2>
                 {workouts.map(workout => {
                     return (
                         <WorkoutItem key={workout.id} workout={workout} />
