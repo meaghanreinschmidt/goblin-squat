@@ -5,17 +5,22 @@ import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Avatar from '@mui/material/Avatar';
+import exerciseAvatar from '../../images/barbell.jpg';
 import axios from 'axios';
 import './EditProfile.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
     palette: {
-      primary: {
-        main: '#2d2d2d'
-      }
+        primary: {
+            main: '#2d2d2d'
+        },
+        secondary: {
+            main: '#FA6318'
+        }
     }
-  })
+})
 
 const EditProfile = () => {
     const history = useHistory();
@@ -28,7 +33,7 @@ const EditProfile = () => {
     const updateProfile = (event) => {
         event.preventDefault();
         console.log('update profile');
-        axios.put(`/api/user/${user.id}`, { name: name, current_gym: currentGym, favorite_lift: favoriteLift})
+        axios.put(`/api/user/${user.id}`, { name: name, current_gym: currentGym, favorite_lift: favoriteLift })
             .then(() => {
                 dispatch({ type: 'FETCH_USER' });
             }).catch((error) => {
@@ -39,65 +44,68 @@ const EditProfile = () => {
     };
 
 
-    
+
     return (
         <Box className="container">
             <center>
                 <div className="edit-profile-container">
-                <br />
-                <br />
-                <FitnessCenterIcon></FitnessCenterIcon>
-                <form onSubmit={updateProfile}>
-                    <div>
-                        <label htmlFor="name">
-                            Name:
-                            <br />
-                            <TextField
-                                type="text"
-                                name="name"
-                                value={name}
-                                onChange={(event) => setName(event.target.value)}
-                            /> 
-                        </label>
-                        <br />
-                    </div>
-                    <div>
-                        <label htmlFor="current_gym">
-                            Current Gym:
-                            <br />
-                            <TextField  
-                                type="text"
-                                name="current_gym"
-                                value={currentGym}
-                                onChange={(event) => setCurrentGym(event.target.value)}
-                            />
-                        </label>
-                        <br />
-                    </div>
-                    <div>
-                        <label htmlFor="favorite_lift">
-                            Favorite Lift:
-                            <br />
-                            <TextField
-                                type="text"
-                                name="favorite_lift"
-                                value={favoriteLift}
-                                onChange={(event) => setFavoriteLift(event.target.value)}
-                            />
-                        </label>
-                    </div>
                     <br />
-                    <div>
-                        <ThemeProvider theme={theme}>
-                        <Button variant="contained" type="submit">Save</Button>
-                        </ThemeProvider>
-                    </div>
-                </form>
-                <br />
-                <ThemeProvider theme={theme}>
-            <Button variant="outlined" onClick={() => history.push('/user/profile')}>Back</Button>
-            </ThemeProvider>
-            </div>
+                    <Avatar src={exerciseAvatar} sx={{ width: 60, height: 60 }} />
+                    <br />
+                    <br />
+                    <form onSubmit={updateProfile}>
+                        <div>
+                            <label htmlFor="name">
+                                Name
+                                <br />
+                                <TextField
+                                    type="text"
+                                    name="name"
+                                    value={name}
+                                    onChange={(event) => setName(event.target.value)}
+                                />
+                            </label>
+                            <br />
+                            <br />
+                        </div>
+                        <div>
+                            <label htmlFor="current_gym">
+                                Current Gym
+                                <br />
+                                <TextField
+                                    type="text"
+                                    name="current_gym"
+                                    value={currentGym}
+                                    onChange={(event) => setCurrentGym(event.target.value)}
+                                />
+                            </label>
+                            <br />
+                            <br />
+                        </div>
+                        <div>
+                            <label htmlFor="favorite_lift">
+                                Favorite Lift
+                                <br />
+                                <TextField
+                                    type="text"
+                                    name="favorite_lift"
+                                    value={favoriteLift}
+                                    onChange={(event) => setFavoriteLift(event.target.value)}
+                                />
+                            </label>
+                        </div>
+                        <br />
+                        <div>
+                            <ThemeProvider theme={theme}>
+                                <Button color="secondary" variant="contained" type="submit">Save</Button>
+                            </ThemeProvider>
+                        </div>
+                    </form>
+                    <br />
+                    <ThemeProvider theme={theme}>
+                        <Button variant="contained" onClick={() => history.push('/user/profile')}>Back</Button>
+                    </ThemeProvider>
+                </div>
             </center>
         </Box>
     )

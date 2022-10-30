@@ -44,9 +44,9 @@ function UserProfile() {
       <Card>
         <CardContent>
           <h3>My Info</h3>
-          <h4>Name: {user.name}</h4>
-          <h4>Current Gym: {user.current_gym}</h4>
-          <h4>Favorite Lift: {user.favorite_lift}</h4>
+          <h4>{user.name}</h4>
+          <h4>{user.current_gym}</h4>
+          <h4>{user.favorite_lift}</h4>
         </CardContent>
       </Card>
       <br />
