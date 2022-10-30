@@ -6,6 +6,18 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import './AddExercise.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2d2d2d'
+    },
+    secondary: {
+      main: '#FA6318'
+    }
+  }
+})
 
 const AddExercise = () => {
   const history = useHistory();
@@ -80,6 +92,7 @@ const AddExercise = () => {
 
   return (
     <Box className="container">
+      <ThemeProvider theme={theme}>
     <center>
       <div className="add-container">
       <h3 className="App-header">{ exercise_id ? 'Edit Exercise' : 'Add Exercise' }</h3>
@@ -136,7 +149,7 @@ const AddExercise = () => {
           );
         })}
         <br />
-        <Button type="button" value="Add" onClick={handleAddInput}>
+        <Button color="primary" variant="outlined" type="button" value="Add" onClick={handleAddInput}>
           + Add a Set
         </Button>
         <br />
@@ -154,12 +167,13 @@ const AddExercise = () => {
           <br />
         </div>
         <br />
-        <Button onClick={() => history.goBack()}>Cancel</Button>
+        <Button color="primary" variant="contained" onClick={() => history.goBack()}>Cancel</Button>
         {/* This button should save all of the input fields and title and post them to the home page */}
-        <Button type="submit">Save</Button>
+        <Button color="secondary" variant="contained" type="submit">Save</Button>
       </form>
       </div>
     </center>
+    </ThemeProvider>
     </Box>
   );
 };

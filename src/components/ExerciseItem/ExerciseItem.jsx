@@ -43,7 +43,6 @@ function ExerciseItem({ exercise }) {
   const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
-    event.preventDefault();
     setChecked(event.target.checked);
     console.log('check complete');
     axios.put(`/api/exercise/${exercise.id}`)
@@ -114,9 +113,9 @@ function ExerciseItem({ exercise }) {
           </Dialog>
           <Button>
             <Checkbox
-              icon={<CheckCircleOutlineIcon />}
+              // icon={<CheckCircleOutlineIcon />}
               checked={checked}
-              onClick={handleChange}
+              onChange={handleChange}
               inputProps={{ 'aria-label': 'controlled' }}
             />
           </Button>
