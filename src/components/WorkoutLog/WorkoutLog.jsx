@@ -4,6 +4,15 @@ import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import WorkoutItem from '../WorkoutItem/WorkoutItem';
 import './WorkoutLog.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2d2d2d'
+    }
+  }
+})
 
 function WorkoutLog() {
     const dispatch = useDispatch();
@@ -18,6 +27,7 @@ function WorkoutLog() {
     
     return (
         <Box className="container">
+            <ThemeProvider theme={theme}>
             <center>
                 <div className="log-container">
                 <h3 className="App-header">Completed Workouts</h3>
@@ -28,6 +38,7 @@ function WorkoutLog() {
                 })}
                 </div>
             </center>
+            </ThemeProvider>
         </Box>
     )
 }

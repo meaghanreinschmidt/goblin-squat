@@ -16,6 +16,9 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#2d2d2d'
+    },
+    secondary: {
+      main: '#FA6318'
     }
   }
 })
@@ -64,7 +67,7 @@ function Home() {
         <div className="home-container">
       <h3 className="App-header">Active Workouts</h3>
         <br />
-      <Button variant="outlined" onClick={handleClickOpen}>Start Workout</Button>
+      <Button variant="contained" color="secondary" onClick={handleClickOpen}>Start Workout</Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Enter Name of Workout</DialogTitle>
           <DialogContent>
@@ -82,8 +85,8 @@ function Home() {
               setWorkoutName({ ...workoutName, name: event.target.value })
             }
             />
-            <Button color="error" onClick={handleClose}>Cancel</Button>
-            <Button color="success" onClick={handleSubmit}>Add</Button>
+            <Button color="primary" onClick={handleClose}>Cancel</Button>
+            <Button color="secondary" onClick={handleSubmit}>Add</Button>
             </form>
           </DialogContent>
         </Dialog>

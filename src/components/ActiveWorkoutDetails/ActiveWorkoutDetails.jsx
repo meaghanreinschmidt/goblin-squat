@@ -11,6 +11,9 @@ const theme = createTheme({
     palette: {
       primary: {
         main: '#2d2d2d'
+      },
+      secondary: {
+        main: '#FA6318'
       }
     }
   })
@@ -42,7 +45,7 @@ function ActiveWorkoutDetails() {
                 <div className="active-container">
                 <h3 className="App-header">{workout.name}</h3>
                 <br />
-                <Button variant="outlined" onClick={handleAdd}>Add Exercise</Button>
+                <Button color="secondary" variant="contained" onClick={handleAdd}>Add Exercise</Button>
                     <br />
                     <br />
                     {exercises.map(exercise => {

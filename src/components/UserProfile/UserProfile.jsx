@@ -14,6 +14,9 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#2d2d2d'
+    }, 
+    secondary: {
+      main: '#FA6318'
     }
   }
 })
@@ -37,7 +40,7 @@ function UserProfile() {
       <h4>Favorite Lift: {user.favorite_lift}</h4>
       <br />
       <ThemeProvider theme={theme}>
-      <Button variant="outlined" onClick={() => history.push('/edit/profile')}>Edit Profile</Button>
+      <Button  color="secondary" variant="contained" onClick={() => history.push('/edit/profile')}>Edit Profile</Button>
       </ThemeProvider>
       <br />
       <br />

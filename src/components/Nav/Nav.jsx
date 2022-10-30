@@ -10,7 +10,15 @@ import HomeIcon from '@mui/icons-material/Home';
 import GradingIcon from '@mui/icons-material/Grading';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#FA6318'
+    }
+  }
+})
 
 function Nav() {
 
@@ -28,6 +36,7 @@ function Nav() {
 
   return (
       <div className="navbar">
+        <ThemeProvider theme={theme}>
         {/* If a user is logged in, show these links */}
         {user.id && (
           <BottomNavigation
@@ -49,7 +58,7 @@ function Nav() {
 
           </BottomNavigation>
         )}
-
+      </ThemeProvider>
         {/* <Link className="navLink" to="/about">
           About
         </Link> */}

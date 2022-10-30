@@ -16,6 +16,18 @@ import Typography from "@mui/material/Typography";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#2d2d2d'
+        }, 
+        secondary: {
+            main: '#FA6318'
+        }
+    }
+})
 
 function ActiveWorkoutItem({workout}) {
     const dispatch = useDispatch();
@@ -52,6 +64,7 @@ function ActiveWorkoutItem({workout}) {
         <Grid>
             <Card variant="outlined" sx={{ maxWidth: 230 }}>
                 <CardContent>
+                    <ThemeProvider theme={theme}>
                     <Typography>{workout.name}</Typography>
                     <Button onClick={handleDetails}>
                         <EditIcon className="edit-icon"></EditIcon>
@@ -78,8 +91,8 @@ function ActiveWorkoutItem({workout}) {
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose}>Cancel</Button>
-                            <Button onClick={() => handleDelete(workout.id)} autoFocus color="error">
+                            <Button color="primary" onClick={handleClose}>Cancel</Button>
+                            <Button color="secondary" onClick={() => handleDelete(workout.id)} autoFocus>
                                 Delete
                             </Button>
                         </DialogActions>
@@ -90,6 +103,7 @@ function ActiveWorkoutItem({workout}) {
                         className="complete-icon"
                     ></CheckCircleOutlineIcon>
                     </Button>
+                    </ThemeProvider>
                 </CardContent>
             </Card>
         </Grid>
