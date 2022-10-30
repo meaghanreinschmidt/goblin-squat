@@ -5,3 +5,42 @@ table, th, td {
   table {
     border-collapse: collapse;
   }
+
+.table-header {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: whitesmoke;
+  background: #2d2d2d;
+}
+
+.table-item {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* color: #2d2d2d; */
+  /* background: #FA6318; */
+}
+
+tr:nth-child(even) {
+  color: #2d2d2d;
+  background-color: #FA6318;
+}
+
+tr:nth-child(odd) {
+  color: whitesmoke;
+  background-color: #2d2d2d;
+}
+
+  .view-container {
+    box-sizing: border-box;
+    width: 400px;
+    max-width: 100%;
+    padding: 25px;
+    margin: 0 auto 20px;
+    background-color: #efefef;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+}
