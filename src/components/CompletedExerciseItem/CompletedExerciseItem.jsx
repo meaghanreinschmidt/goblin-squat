@@ -7,6 +7,18 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useEffect } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#2d2d2d'
+        }, 
+        secondary: {
+            main: '#FA6318'
+        }
+    }
+})
 
 function CompletedExerciseItem({exercise}) {
   const dispatch = useDispatch();
@@ -32,8 +44,8 @@ function CompletedExerciseItem({exercise}) {
       <Grid>
         <Card variant="outlined" sx={{ maxWidth: 230}}>
           <CardContent>
-          <h4>{exercise.name}</h4>
-          <Button onClick={handleDetails}>Details</Button>
+          <h3>{exercise.name}</h3>
+          <Button color="secondary" variant="outlined" onClick={handleDetails}>Details</Button>
           </CardContent>
         </Card>
         
