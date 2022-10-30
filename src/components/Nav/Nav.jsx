@@ -39,7 +39,7 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <BottomNavigation
-            sx={{ width: 350, backgroundColor: '#2d2d2d', "& .MuiBottomNavigationAction-root, svg": {
+            sx={{ width: 350, backgroundColor: '#2d2d2d', "& .MuiBottomNavigationAction-root, .Mui-selected, svg": {
               color: '#f5f5f5'
             } }}
             value={value}

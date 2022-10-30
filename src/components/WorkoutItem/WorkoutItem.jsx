@@ -13,6 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import DeleteIcon from "@mui/icons-material/Delete";
+import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -62,8 +63,11 @@ function WorkoutItem({ workout }) {
                     <ThemeProvider theme={theme}>
                         <Typography sx={{ fontSize: 20 }}>{workout.name}</Typography>
                         <Typography sx={{ fontSize: 15 }}>{formatDate(workout.completed_at)}</Typography>
-                        <CardActions>
-                            <Button onClick={handleDetailView}>Details</Button>
+                            <Button>
+                                <ViewTimelineIcon
+                                     onClick={handleDetailView}>
+                                </ViewTimelineIcon>
+                            </Button>
                             <Button>
                                 <DeleteIcon
                                     onClick={handleClickOpen}
@@ -91,7 +95,6 @@ function WorkoutItem({ workout }) {
                                     </Button>
                                 </DialogActions>
                             </Dialog>
-                        </CardActions>
                     </ThemeProvider>
                 </CardContent>
             </Card>
