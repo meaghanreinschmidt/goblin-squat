@@ -2,7 +2,6 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
-// GOOD
 // GET exercise for Add Exercise
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
@@ -20,7 +19,6 @@ router.get('/', (req, res) => {
   }
 })
 
-// GOOD
 // GET exercise names on ACTIVE workout details DELETES exercises
 router.get('/:id', (req, res) => {
   // console.log("/exercise GET route");
@@ -47,6 +45,7 @@ router.get('/:id', (req, res) => {
   }
 });
 
+// GET completed exercises
 router.get('/completed/:id', (req, res) => {
   // console.log("/exercise GET route");
   // console.log("is authenticated?", req.isAuthenticated());
@@ -69,7 +68,6 @@ router.get('/completed/:id', (req, res) => {
   }
 });
 
-// GOOD
 // GET exercise details on click
 router.get('/details/:id', (req, res) => {
   if (req.isAuthenticated()) {
@@ -99,8 +97,6 @@ router.put('/edit/:id/:id', (req, res) => {
     })
 })
 
-
-// GOOD DON'T MESS UP
 // PUT mark exercise complete
 router.put('/:id', (req, res) => {
   if (req.isAuthenticated()) {

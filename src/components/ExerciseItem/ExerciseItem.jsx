@@ -5,6 +5,10 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import './ExerciseItem.css';
+
+// MUI
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -18,11 +22,9 @@ import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from '@mui/material/Checkbox';
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import axios from "axios";
-import './ExerciseItem.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+// Page Colors
 const theme = createTheme({
   palette: {
     primary: {
@@ -37,11 +39,11 @@ const theme = createTheme({
 function ExerciseItem({ exercise }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const workout = useSelector(store => store.workouts.workouts);
   const { id } = useParams();
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
 
+  // Checkbox functionality
   const handleChange = (event) => {
     setChecked(event.target.checked);
     console.log('check complete');
@@ -64,7 +66,6 @@ function ExerciseItem({ exercise }) {
 
   const handleEdit = () => {
     console.log('clicked on single exercise');
-    // push to /add/exercise/:id/ with another id?
     history.push(`/edit/${id}/${exercise.id}`);
   }
 
@@ -110,19 +111,19 @@ function ExerciseItem({ exercise }) {
                   Delete
                 </Button>
               </DialogActions>
-          </Dialog>
-          <Button>
-            <Checkbox
-              // icon={<CheckCircleOutlineIcon />}
-              checked={checked}
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'controlled' }}
-            />
-          </Button>
-        </ThemeProvider>
-      </CardContent>
-    </Card>
-    </Grid >
+            </Dialog>
+            <Button>
+              <Checkbox
+                // icon={<CheckCircleOutlineIcon />}
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ 'aria-label': 'controlled' }}
+              />
+            </Button>
+          </ThemeProvider>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 }
 

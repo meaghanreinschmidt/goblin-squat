@@ -29,18 +29,8 @@ const exerciseDetails = (state = [], action) => {
   }
 }
 
-// const completedWorkoutExerciseDetails = (state = [], action) => {
-//   switch (action.type) {
-//     case 'SET_COMPLETE_EXERCISE_DETAILS':
-//       return action.payload;
-//     default:
-//       return state;
-//   }
-// }
-
 export default combineReducers({
   exercises,
   completedWorkoutExercises,
   exerciseDetails,
-  // completedExerciseDetails
 });

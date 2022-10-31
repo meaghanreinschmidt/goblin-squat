@@ -50,6 +50,7 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// Edit Profile
 router.put('/:id', (req, res) => {
   if (req.isAuthenticated()) {
     const queryText = `UPDATE "user" SET "name" = $1, "current_gym" = $2, "favorite_lift" = $3

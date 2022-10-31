@@ -1,49 +1,32 @@
-
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-
-CREATE TABLE "exercise" (
-	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR (25),
-    "completed" BOOLEAN DEFAULT 'false',
-    "completed_at" DATE DEFAULT '1111-11-11', 
-	"user_id" INT REFERENCES "user"
+    "password" VARCHAR (1000) NOT NULL,
+    "name" VARCHAR(80) NOT NULL DEFAULT '',
+    "current_gym" VARCHAR(80) NOT NULL DEFAULT '',
+    "favorite_lift" VARCHAR(80) NOT NULL DEFAULT ''
 );
 
 CREATE TABLE "workout" (
 	"id" SERIAL PRIMARY KEY,
-	"exercise_id" INT REFERENCES "exercise",
-	"notes" TEXT
+	"name" VARCHAR(80) NOT NULL DEFAULT '',
+	"completed" BOOLEAN DEFAULT 'false', 
+	"completed_at" DATE DEFAULT '1111-11-11',
+	"user_id" INT REFERENCES "user"
+);
+
+CREATE TABLE "exercise" (
+	"id" SERIAL PRIMARY KEY,
+	"name" VARCHAR (25) NOT NULL DEFAULT '',
+	"notes" TEXT NOT NULL DEFAULT '',
+	"workout_id" INT REFERENCES "workout"
 );
 
 CREATE TABLE "set" (
 	"id" SERIAL PRIMARY KEY,
-	"set_number" INT,
-	"reps" INT,
-	"weight" VARCHAR (25),
-	"workout_id" INT REFERENCES "workout" 
+	"set_number" INT NOT NULL DEFAULT '0',
+	"reps" INT NOT NULL DEFAULT '0',
+	"weight" VARCHAR (25) NOT NULL DEFAULT '',
+	"exercise_id" INT REFERENCES "exercise" 
 );
-
-INSERT INTO "exercise" ("name", "completed", "completed_at", "user_id")
-VALUES ('Bench Press', 'false', '1111-11-11', '1'), ('Front Squat', 'false', '1111-11-11', '1'), ('Mile Run', 'true', '2022-10-19', '1');
-
-INSERT INTO "workout" ("exercise_id", "notes")
-VALUES ('1', '1st set was light, maxed out on 2nd rep of 3rd set'),
-	   ('2', 'Easy lift today, knee pain'), 
-	   ('3', '10:30 time');
-	   
-INSERT INTO "set" ("set_number", "reps", "weight", "workout_id")
-VALUES ('1', '10', '85', '1'),
-	   ('2', '10', '95', '1'),
-	   ('3', '10', '105', '1'),
-	   ('1', '7', '65', '2'),
-	   ('2', '7', '70', '2'),
-	   ('3', '7', '75', '2');
 	   
