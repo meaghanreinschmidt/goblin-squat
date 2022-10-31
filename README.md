@@ -1,50 +1,55 @@
+# Goblin Squat
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+*Duration: 2 Week Sprint*
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+Goblin Squat is designed for users to plan, log, and track daily workouts. 
 
-## Use the Template for This Repository (Don't Clone)
+### Screenshot
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+![Screen Shot 2022-10-31 at 1 15 02 PM](https://user-images.githubusercontent.com/98852538/199080343-4e7fb683-ac50-4484-93d0-d36e9cc517a7.png)
+![Screen Shot 2022-10-31 at 1 15 21 PM](https://user-images.githubusercontent.com/98852538/199080357-bf72f966-1415-45fa-bc4c-73e7795da638.png)
 
+### Usage
 
-## Prerequisites
+1. As a user, I want to create a new workout
+2. As a user, I want to create an exercise within that workout
+3. As a user, I want to edit, complete, and delete workouts and exercises
+4. As a user, I want to view all completed workouts
+5. As a user, I want to view and update my information
 
-Before you get started, make sure you have the following software installed on your computer:
+## Getting Started
+
+### Prerequisites 
+
+Make sure you have the following software installed on your computer:
 
 - [Node.js](https://nodejs.org/en/)
 - [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+- [Nodemon](https://www.npmjs.com/package/nodemon)
 
-## Create database and table
 
-Create a new database called `prime_app` and create a `user` table:
+### Installation
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+1. Create a database named `goblin_squat` (Postico recommended)
+   - If you would like to name your databse something else, you will need to change `goblin-squat` to the name of your new database name in `server/modules/pool.js`
+2. Run the queries from the `database.sql` file into your database
+3. Run `npm install` in your terminal
+4. Create an `.env` file in the project and paste this line ino the file:
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
-
-## Development Setup Instructions
-
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
   ```
   SERVER_SESSION_SECRET=superDuperSecret
   ```
+  
   While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
 
-## Debugging
+5. Start postgres if not running already by using `brew services start postgresql`
+6. Run `npm run server` in your terminal. 
+7. Run `npm run client ` in another terminal. 
+8. Navigate to `localhost:3000`
+
+## Testing 
+
+### Debugging 
 
 To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
 
@@ -54,7 +59,7 @@ Then make sure `Launch Program` is selected from the dropdown, then click the gr
 
 ![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
-## Testing Routes with Postman
+### Testing Routes with Postman
 
 To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
 
@@ -69,7 +74,9 @@ Keep in mind that once you using the login route, Postman will manage your sessi
 
 After running the login route above, you can try any other route you've created that requires a logged in user!
 
-## Production Build
+## Deployment
+
+### Production Build
 
 Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
 
@@ -77,45 +84,35 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 - Run `npm start`
 - Navigate to `localhost:5000`
 
-## Lay of the Land
+## Built With
 
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
+1. ![image](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+2. ![image](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+3. ![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+4. 7. ![image](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+5. ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+6. ![image](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+7. ![image](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+8. ![image](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+9. ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+10. ![image](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+11. ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+12. ![image](https://img.shields.io/badge/Redux%20saga-86D46B?style=for-the-badge&logo=redux%20saga&logoColor=999999)
+13. ![image](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
+## Authors
+* **Meaghan Reinschmidt - *Initial Work* - [meaghanreinschmidt](https://github.com/meaghanreinschmidt)
 
-Directory Structure:
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
+## Acknowledgment 
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
+Thanks to [Prime Digital Academy](https://www.primeacademy.io/) and the members of the Phrygian cohort who equipped and helped me to make this application a reality.
 
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
+## Support
+If you have suggestions or issues, please email me at [reinschmidtmeaghan@gmail.com](mailto:reinschmidtmeaghan@gmail.com)
 
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+## The Future of Goblin Squat 
+1. A Progress Chart is in the works for the user to track their progress through workouts and exercises
+2. I would like to implement a social aspect of this app so that users can view and share workouts across other users
