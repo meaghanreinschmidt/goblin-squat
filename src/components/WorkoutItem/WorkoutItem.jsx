@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
+
+// MUI
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -16,6 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+// Page Colors
 const theme = createTheme({
     palette: {
         primary: {
@@ -63,38 +65,38 @@ function WorkoutItem({ workout }) {
                     <ThemeProvider theme={theme}>
                         <Typography sx={{ fontSize: 20 }}>{workout.name}</Typography>
                         <Typography sx={{ fontSize: 15 }}>{formatDate(workout.completed_at)}</Typography>
-                            <Button>
-                                <ViewTimelineIcon
-                                     onClick={handleDetailView}>
-                                </ViewTimelineIcon>
-                            </Button>
-                            <Button>
-                                <DeleteIcon
-                                    onClick={handleClickOpen}
-                                    className="delete-icon"
-                                ></DeleteIcon>
-                            </Button>
-                            <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="alert-dialog-title"
-                                aria-describedby="alert-dialog-description"
-                            >
-                                <DialogTitle id="alert-dialog-title">
-                                    {"Are you sure?"}
-                                </DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-description">
-                                        Are you sure you want to delete this workout?
-                                    </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button color="primary" onClick={handleClose}>Cancel</Button>
-                                    <Button color="secondary" onClick={() => handleDelete(workout.id)} autoFocus>
-                                        Delete
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
+                        <Button>
+                            <ViewTimelineIcon
+                                onClick={handleDetailView}>
+                            </ViewTimelineIcon>
+                        </Button>
+                        <Button>
+                            <DeleteIcon
+                                onClick={handleClickOpen}
+                                className="delete-icon"
+                            ></DeleteIcon>
+                        </Button>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">
+                                {"Are you sure?"}
+                            </DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Are you sure you want to delete this workout?
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button color="primary" onClick={handleClose}>Cancel</Button>
+                                <Button color="secondary" onClick={() => handleDelete(workout.id)} autoFocus>
+                                    Delete
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </ThemeProvider>
                 </CardContent>
             </Card>

@@ -2,7 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// GOOD AND WORKING
 // GET active workout on home page
 router.get('/', (req, res) => {
     // console.log("/workout GET route");
@@ -48,7 +47,6 @@ router.get('/completed', (req, res) => {
   }
 });
 
-// GOOD AND WORKING
 // GET active workout details on click
 router.get('/:id', (req, res) => {
   if (req.isAuthenticated()) {
@@ -79,7 +77,6 @@ router.get('/completed/details/:id', (req, res) => {
   }
 })
 
-// GOOD AND WORKING
 // PUT (complete workout)
 router.put('/complete/:id', (req, res) => {
   if (req.isAuthenticated()) {
@@ -99,7 +96,6 @@ router.put('/complete/:id', (req, res) => {
   }
 });
 
-//GOOD AND WORKING
 // POST workout to home page
 router.post('/', (req, res) => {
   if (req.isAuthenticated()) {
@@ -115,7 +111,6 @@ router.post('/', (req, res) => {
   };
 });
 
-// GOOD AND WORKING
 // DELETE workout 
 router.delete('/delete/:id', (req, res) => {
   if (req.isAuthenticated()) {

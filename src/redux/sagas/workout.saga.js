@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// READ GOOD
 // Gets incomplete workout on home page
 function* fetchActiveWorkout() {
     try {
@@ -23,7 +22,6 @@ function* fetchCompleteWorkout() {
   }
 }
 
-// GOOD
 // Gets workout details (name) and exercises
 function* fetchActiveWorkoutDetails(action) {
   try {
@@ -52,7 +50,6 @@ function* fetchCompletedWorkoutDetails(action) {
   }
 }
 
-  // GOOD AND WORKING
   // CREATE
   function* addWorkout(action) {
     try {
@@ -64,7 +61,6 @@ function* fetchCompletedWorkoutDetails(action) {
     }
   }
 
-  // GOOD AND WORKING
   // UPDATE
   function* completeWorkout(action) {
     try {
@@ -76,7 +72,6 @@ function* fetchCompletedWorkoutDetails(action) {
     }
   }
 
-  // GOOD AND WORKING
   // DELETE
   function* deleteWorkout(action) {
     try {
@@ -89,10 +84,6 @@ function* fetchCompletedWorkoutDetails(action) {
     }
   }
 
-
-
-
-
 function* workoutSaga() {
     yield takeLatest('FETCH_ACTIVE_WORKOUT', fetchActiveWorkout);
     yield takeLatest('FETCH_COMPLETE_WORKOUT', fetchCompleteWorkout);
@@ -101,7 +92,6 @@ function* workoutSaga() {
     yield takeLatest('ADD_WORKOUT', addWorkout);
     yield takeLatest('COMPLETE_WORKOUT', completeWorkout);
     yield takeLatest('DELETE_WORKOUT', deleteWorkout);
-    // yield takeLatest('FETCH_ONE_WORKOUT', fetchSingleWorkout);
 }
 
 export default workoutSaga;

@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Avatar from '@mui/material/Avatar';
 import exerciseAvatar from '../../images/barbell.jpg';
 import axios from 'axios';
 import './EditProfile.css';
+
+// MUI
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Avatar from '@mui/material/Avatar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+// Page Colors
 const theme = createTheme({
     palette: {
         primary: {
@@ -42,8 +44,6 @@ const EditProfile = () => {
             });
         history.push('/user/profile');
     };
-
-
 
     return (
         <Box className="container">

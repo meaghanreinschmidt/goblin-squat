@@ -5,7 +5,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
@@ -87,20 +86,11 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Completed else shows LoginPage
             exact
             path="/workout/completed/:id"
           >
             <CompletedWorkoutDetails />
           </ProtectedRoute>
-        
-          {/* <ProtectedRoute
-            // logged in shows Completed exercise else shows loginPage
-            exact 
-            path="/workout/exercise/completed/:id"
-          >
-            <CompletedExerciseDetails />
-          </ProtectedRoute> */}
 
           <ProtectedRoute 
             exact path="/completed/exercise/details/:id"
@@ -109,7 +99,6 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Progress Chart else shows LoginPage
             exact
             path="/progress/chart"
           >
@@ -117,7 +106,6 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows User Profile else shows LoginPage
             exact
             path="/user/profile"
           >

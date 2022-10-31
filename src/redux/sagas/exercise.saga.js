@@ -11,7 +11,6 @@ function* fetchExercise(action) {
   }
 }
 
-// GOOD
 // Gets exercise details (sets and notes)
 function* fetchExerciseDetails(action) {
   try {
@@ -40,6 +39,7 @@ function* addExercise(action) {
   }
 }
 
+// UPDATE
 function* editExercise(action) {
   try {
     yield axios.put(`/api/exercise/edit/${action.payload.workout_id}/${action.payload.exercise_id}`, action.payload);

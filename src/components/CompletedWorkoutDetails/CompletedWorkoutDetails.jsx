@@ -1,23 +1,25 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import CompletedExerciseItem from '../CompletedExerciseItem/CompletedExerciseItem';
 import './CompletedWorkoutDetails.css';
+
+// MUI
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+// Page Colors
 const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#2d2d2d'
-      },
-      secondary: {
-        main: '#FA6318'
-      }
+  palette: {
+    primary: {
+      main: '#2d2d2d'
+    },
+    secondary: {
+      main: '#FA6318'
     }
-  })
-
+  }
+})
 
 function CompletedWorkoutExercises() {
   const history = useHistory();
@@ -27,7 +29,7 @@ function CompletedWorkoutExercises() {
   const exercises = useSelector(store => store.exercises.exercises);
 
   const getWorkoutDetails = () => {
-    dispatch({ type: 'FETCH_COMPLETED_WORKOUT_DETAILS', payload: id})
+    dispatch({ type: 'FETCH_COMPLETED_WORKOUT_DETAILS', payload: id })
   }
 
   useEffect(() => {
@@ -37,22 +39,21 @@ function CompletedWorkoutExercises() {
   return (
     <Box className="container">
       <ThemeProvider theme={theme}>
-      <center>
-        <div className="completed-container">
-        <h3 className="App-header">{workout.name}</h3>
-        {exercises.map(exercise => {
-          return (
-            <>
-            <CompletedExerciseItem key={exercise.id} exercise={exercise}/>
+        <center>
+          <div className="completed-container">
+            <h3 className="App-header">{workout.name}</h3>
+            {exercises.map(exercise => {
+              return (
+                <>
+                  <CompletedExerciseItem key={exercise.id} exercise={exercise} />
+                  <br />
+                </>
+              )
+            })}
             <br />
-            </>
-          )
-            
-        })}
-        <br />
-      <Button variant="contained" onClick={() => history.goBack()}>Back</Button>
-        </div>
-      </center>
+            <Button variant="contained" onClick={() => history.goBack()}>Back</Button>
+          </div>
+        </center>
       </ThemeProvider>
     </Box>
   )
