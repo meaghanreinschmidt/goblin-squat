@@ -3,6 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import WorkoutItem from '../WorkoutItem/WorkoutItem';
+import './WorkoutLog.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2d2d2d'
+    }
+  }
+})
 
 function WorkoutLog() {
     const dispatch = useDispatch();
@@ -17,15 +27,18 @@ function WorkoutLog() {
     
     return (
         <Box className="container">
+            <ThemeProvider theme={theme}>
             <center>
-                
-                <h3>Completed Workouts</h3>
+                <div className="log-container">
+                <h2 className="App-header">Completed Workouts</h2>
                 {workouts.map(workout => {
                     return (
                         <WorkoutItem key={workout.id} workout={workout} />
                     )
                 })}
+                </div>
             </center>
+            </ThemeProvider>
         </Box>
     )
 }

@@ -10,7 +10,15 @@ import HomeIcon from '@mui/icons-material/Home';
 import GradingIcon from '@mui/icons-material/Grading';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#f5f5f5'
+    }
+  }
+})
 
 function Nav() {
 
@@ -31,7 +39,9 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <BottomNavigation
-            sx={{ width: 350 }}
+            sx={{ width: 350, backgroundColor: '#2d2d2d', "& .MuiBottomNavigationAction-root, .Mui-selected, svg": {
+              color: '#f5f5f5'
+            } }}
             value={value}
             onChange={(event, setValue) => handleChange(event, setValue)}  
           >
@@ -49,7 +59,6 @@ function Nav() {
 
           </BottomNavigation>
         )}
-
         {/* <Link className="navLink" to="/about">
           About
         </Link> */}

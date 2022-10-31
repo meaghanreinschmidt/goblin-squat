@@ -2,16 +2,26 @@ import React, { useEffect, useState } from "react";
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import axios from "axios";
 import ActiveWorkoutItem from "../ActiveWorkoutItem/ActiveWorkoutItem";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import './Home.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2d2d2d'
+    },
+    secondary: {
+      main: '#FA6318'
+    }
+  }
+})
 
 function Home() {
   const dispatch = useDispatch();
@@ -52,10 +62,12 @@ function Home() {
 
   return (
     <Box className="container">
+      <ThemeProvider theme={theme}>
       <center>
-        <h3>Active Workouts</h3>
+        <div className="home-container">
+      <h2 className="App-header">Active Workouts</h2>
         <br />
-      <Button variant="outlined" onClick={handleClickOpen}>Start Workout</Button>
+      <Button variant="contained" color="secondary" onClick={handleClickOpen}>Start Workout</Button>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Enter Name of Workout</DialogTitle>
           <DialogContent>
@@ -73,8 +85,8 @@ function Home() {
               setWorkoutName({ ...workoutName, name: event.target.value })
             }
             />
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleSubmit}>Add</Button>
+            <Button color="primary" onClick={handleClose}>Cancel</Button>
+            <Button color="secondary" onClick={handleSubmit}>Add</Button>
             </form>
           </DialogContent>
         </Dialog>
@@ -89,8 +101,9 @@ function Home() {
           )
         })}
 
-        
+          </div>
       </center>
+      </ThemeProvider>
     </Box>
   );
 }

@@ -13,7 +13,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Home from '../Home/Home';
 import ActiveWorkoutDetails from '../ActiveWorkoutDetails/ActiveWorkoutDetails';
 import AddExercise from '../AddExercise/AddExercise';
-import EditExercise from '../EditExercise/EditExercise';
 import WorkoutLog from '../WorkoutLog/WorkoutLog';
 import CompletedWorkoutDetails from '../CompletedWorkoutDetails/CompletedWorkoutDetails';
 import ViewExercise from '../ViewExercise/ViewExercise';
@@ -78,14 +77,6 @@ function App() {
             path="/edit/:workout_id/:exercise_id"
           >
             <AddExercise />
-          </ProtectedRoute>
-
-          {/* Edit Exercise page */}
-          <ProtectedRoute 
-            exact 
-            path="/exercise/details/:id"
-          >
-            <EditExercise />
           </ProtectedRoute>
 
           <ProtectedRoute 
