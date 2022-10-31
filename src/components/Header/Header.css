@@ -1,6 +1,19 @@
 .App-header {
     background-color: #2d2d2d;
-    color: whitesmoke;
+    color: white;
     padding: 15px;
-    position: sticky;
 }
+
+.App-main-header {
+    border-style: solid;
+    background-color: #2d2d2d;
+    border-color: #FA6318;
+    border-width: .4cm;
+    overflow: scroll;
+    position: fixed;
+    top: 0;
+    width: 84%;
+    padding: 16px;
+
+}
+
