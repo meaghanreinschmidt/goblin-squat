@@ -31,9 +31,6 @@ function LoginForm() {
 
   return (
     <div className="container">
-      <center>
-    </center>
-    <br />
     <center>
     <form className="formPanel"onSubmit={login}>
     <h2 className="App-header">Welcome to goblin squat!</h2>

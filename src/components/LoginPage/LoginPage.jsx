@@ -8,8 +8,6 @@ function LoginPage() {
   return (
     <div>
       <LoginForm />
-
-      
     </div>
   );
 }

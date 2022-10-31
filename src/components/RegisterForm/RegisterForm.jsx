@@ -3,6 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './RegisterForm.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2d2d2d'
+    },
+    secondary: {
+      main: '#FA6318'
+    }
+  }
+})
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -93,16 +105,18 @@ function RegisterForm() {
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
       <br />
+      <ThemeProvider theme={theme}>
       <Button
           className="btn btn_asLink"
           variant="contained"
-          color="error"
+          color="secondary"
           onClick={() => {
             history.push('/user');
           }}
         >
           Cancel
         </Button>
+        </ThemeProvider>
     </form>
     </center>
     </div>
