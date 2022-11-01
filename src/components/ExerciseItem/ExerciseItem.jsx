@@ -41,15 +41,15 @@ function ExerciseItem({ exercise }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [open, setOpen] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(exercise.completed);
 
   // Checkbox functionality
   const handleChange = (event) => {
     setChecked(event.target.checked);
     console.log('check complete');
-    axios.put(`/api/exercise/${exercise.id}`)
+    axios.put(`/api/exercise/${exercise.id}`, {completed: event.target.checked})
       .then(() => {
-        dispatch({ type: 'FETCH_ACTIVE_EXERCISES' });
+        dispatch({ type: 'FETCH_ACTIVE_WORKOUT_DETAILS', payload: id });
       }).catch((error) => {
         console.log(error);
         alert('Something went wrong!');
@@ -114,7 +114,6 @@ function ExerciseItem({ exercise }) {
             </Dialog>
             <Button>
               <Checkbox
-                // icon={<CheckCircleOutlineIcon />}
                 checked={checked}
                 onChange={handleChange}
                 inputProps={{ 'aria-label': 'controlled' }}

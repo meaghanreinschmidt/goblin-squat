@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
   console.log('req params', req.params.id);
 
   if (req.isAuthenticated()) {
-    let queryText = `SELECT "exercise"."name", "exercise"."id", "exercise"."workout_id" FROM "exercise"
+    let queryText = `SELECT "exercise"."name", "exercise"."id", "exercise"."workout_id", "exercise"."completed" FROM "exercise"
                      LEFT JOIN "workout" ON "workout"."id" = "exercise"."workout_id"
                      WHERE "workout"."id" = $1 AND "workout"."user_id" = $2`;
     pool
@@ -138,8 +138,8 @@ router.put('/edit/:workout_id/:exercise_id', async (req, res) => {
 // PUT mark exercise complete
 router.put('/:id', (req, res) => {
   if (req.isAuthenticated()) {
-    const queryText = `UPDATE "exercise" SET "completed" = 'TRUE' WHERE "id" = $1;`
-    pool.query(queryText, [req.params.id])
+    const queryText = `UPDATE "exercise" SET "completed" = $1 WHERE "id" = $2;`
+    pool.query(queryText, [req.body.completed, req.params.id])
       .then(() => {
         res.sendStatus(200);
       }).catch((error) => {

@@ -53,10 +53,10 @@ function ActiveWorkoutDetails() {
                         <br />
                         {exercises.map(exercise => {
                             return (
-                                <>
+                                <div key={exercise.id}>
                                     <ExerciseItem exercise={exercise} />
                                     <br />
-                                </>
+                                </div>
                             )
                         })}
                         <Button variant="contained" onClick={() => history.goBack()}>Back</Button>
