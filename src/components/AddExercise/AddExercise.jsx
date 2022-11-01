@@ -35,11 +35,15 @@ const AddExercise = () => {
 
   useEffect(() => {
     if (exercise_id) { // Return false if exercise_id is undefined
-      axios.get(`/api/workout/${workout_id}`).then(response => {
+      axios.get(`/api/exercise/sets/${exercise_id}`).then(response => {
         const exercise = response.data;
-        setExerciseName(exercise.name);
-        setSetList(setList);
-        setNotesField(notesField);
+        if (exercise) {
+          const setList = exercise.sets;
+          console.log('this is response:', response);
+          setExerciseName(exercise.name);
+          setSetList(setList);
+          setNotesField(exercise.notes);
+        }
       }).catch(error => {
         console.log(error);
         alert('Something went wrong!');
@@ -77,13 +81,13 @@ const AddExercise = () => {
     event.preventDefault();
     if (exercise_id) {
       // EDIT AN EXISTING EXERCISE
-      dispatch({ type: 'EDIT_EXERCISE', payload: { exerciseName, setList, notesField, workout_id, exercise_id }, history });
+      dispatch({ type: 'EDIT_EXERCISE', payload: { exerciseName, setList, notes: notesField, workout_id, exercise_id }, history });
     } else {
       // ADD AN EXERCISE
       dispatch({
         type: "ADD_EXERCISE",
         payload: {
-          name: exerciseName.name,
+          name: exerciseName,
           sets: setList,
           notes: notesField,
           workout_id: id
@@ -107,9 +111,9 @@ const AddExercise = () => {
                 type="text"
                 name="name"
                 placeholder="name of exercise"
-                value={exerciseName.name}
+                value={exerciseName}
                 onChange={(event) =>
-                  setExerciseName({ ...exerciseName, name: event.target.value })
+                  setExerciseName(event.target.value)
                 }
               />
               <br />
@@ -164,7 +168,7 @@ const AddExercise = () => {
                   name="notes"
                   multiline
                   placeholder="notes"
-                  value={notesField.notes}
+                  value={notesField}
                   onChange={(e) => handleNotesChange(e)}
                 />
                 <br />
