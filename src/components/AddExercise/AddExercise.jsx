@@ -35,11 +35,21 @@ const AddExercise = () => {
 
   useEffect(() => {
     if (exercise_id) { // Return false if exercise_id is undefined
-      axios.get(`/api/workout/${workout_id}`).then(response => {
+      axios.get(`/api/exercise/sets/${exercise_id}`).then(response => {
         const exercise = response.data;
-        setExerciseName(exercise.name);
-        setSetList(setList);
-        setNotesField(notesField);
+        if (exercise) {
+          const setList = exercise.map(item => {
+            return {
+              set_number: item.set_number,
+              reps: item.reps,
+              weight: item.weight
+            }
+          });
+          console.log('this is response:', response);
+          setExerciseName(exercise[0].name);
+          setSetList(setList);
+          setNotesField(exercise[0].notes);
+        }
       }).catch(error => {
         console.log(error);
         alert('Something went wrong!');
@@ -83,7 +93,7 @@ const AddExercise = () => {
       dispatch({
         type: "ADD_EXERCISE",
         payload: {
-          name: exerciseName.name,
+          name: exerciseName,
           sets: setList,
           notes: notesField,
           workout_id: id
@@ -107,9 +117,9 @@ const AddExercise = () => {
                 type="text"
                 name="name"
                 placeholder="name of exercise"
-                value={exerciseName.name}
+                value={exerciseName}
                 onChange={(event) =>
-                  setExerciseName({ ...exerciseName, name: event.target.value })
+                  setExerciseName(event.target.value)
                 }
               />
               <br />
@@ -164,7 +174,7 @@ const AddExercise = () => {
                   name="notes"
                   multiline
                   placeholder="notes"
-                  value={notesField.notes}
+                  value={notesField}
                   onChange={(e) => handleNotesChange(e)}
                 />
                 <br />

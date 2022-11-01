@@ -55,18 +55,19 @@ const Header = () => {
                                 tabIndex={-1}
                             >
                                 <h3>Technologies Used</h3>
-                                HTML, CSS, JavaSCript, Node.js,
+                                HTML, CSS, JavaScript, Node.js,
                                 Express.js, React, Redux, Redux Sagas,
                                 Material UI, PostgresSQL
                                 <br />
                                 <h3>Reflections</h3>
                                 The most challenging aspect of this project
                                 was targeting and pulling data throughout the many different pages of this app.
-                                I am excited to implement the Progress Chart so users can track their progress for different workouts and exercises.
+                                I am excited to implement the Progress Chart so users can track their progress for different workouts and exercises as well as share their progress with other users.
                                 <br />
                                 <h3>Ackowledgements</h3>
                                 My partner Maddie, friends, and family
                                 Prime faculty and staff
+                                <br />
                                 Members of the Phrygian cohort
                             </DialogContentText>
                         </DialogContent>

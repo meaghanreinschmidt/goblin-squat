@@ -3,19 +3,20 @@ const pool = require("../modules/pool");
 const router = express.Router();
 
 // GET exercise for Add Exercise
-router.get('/', (req, res) => {
+router.get('/sets/:id', (req, res) => {
   if (req.isAuthenticated()) {
     let queryText = `SELECT "exercise"."workout_id", "exercise"."name", "exercise"."notes", "set"."set_number", "set"."reps", "set"."weight" FROM "exercise"
                      JOIN "set" ON "set"."exercise_id" = "exercise"."id"
                      WHERE "exercise"."id" = $1;`;
     pool.query(queryText, [req.params.id]).then((result) => {
+      console.log(result.rows);
       res.send(result.rows);
     }).catch((error) => {
       console.log(error);
       res.sendStatus(500);
     });
   } else {
-    res.sendStatus(403);``
+    res.sendStatus(403);
   }
 })
 
@@ -114,7 +115,7 @@ router.put('/:id', (req, res) => {
 });
 
 
-// POST exercise to home page
+// POST exercise to workout details page
 router.post("/", async (req, res) => {
   if (req.isAuthenticated()) {
     const db = await pool.connect();
@@ -123,8 +124,8 @@ router.post("/", async (req, res) => {
         await db.query("BEGIN");
         // INSERT exercise into workout - HOW DO I TARGET workout_id
         const queryText1 = `INSERT INTO "exercise" ("name", "notes", "workout_id")
-                          VALUES ($1, $2, $3) 
-                          RETURNING "id"`;
+                            VALUES ($1, $2, $3) 
+                            RETURNING "id"`;
         const result = await db.query(queryText1, [
           req.body.name,
           req.body.notes,
