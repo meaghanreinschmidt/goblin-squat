@@ -38,17 +38,11 @@ const AddExercise = () => {
       axios.get(`/api/exercise/sets/${exercise_id}`).then(response => {
         const exercise = response.data;
         if (exercise) {
-          const setList = exercise.map(item => {
-            return {
-              set_number: item.set_number,
-              reps: item.reps,
-              weight: item.weight
-            }
-          });
+          const setList = exercise.sets;
           console.log('this is response:', response);
-          setExerciseName(exercise[0].name);
+          setExerciseName(exercise.name);
           setSetList(setList);
-          setNotesField(exercise[0].notes);
+          setNotesField(exercise.notes);
         }
       }).catch(error => {
         console.log(error);
@@ -87,7 +81,7 @@ const AddExercise = () => {
     event.preventDefault();
     if (exercise_id) {
       // EDIT AN EXISTING EXERCISE
-      dispatch({ type: 'EDIT_EXERCISE', payload: { exerciseName, setList, notesField, workout_id, exercise_id }, history });
+      dispatch({ type: 'EDIT_EXERCISE', payload: { exerciseName, setList, notes: notesField, workout_id, exercise_id }, history });
     } else {
       // ADD AN EXERCISE
       dispatch({
