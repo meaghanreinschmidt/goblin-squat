@@ -57,7 +57,7 @@ const Header = () => {
                                 <h3>Technologies Used</h3>
                                 HTML, CSS, JavaScript, Node.js,
                                 Express.js, React, Redux, Redux Sagas,
-                                Material UI, PostgresSQL
+                                Material UI, PostgreSQL
                                 <br />
                                 <h3>Reflections</h3>
                                 The most challenging aspect of this project
