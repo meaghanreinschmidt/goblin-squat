@@ -1,8 +1,8 @@
-# Goblin Squat
+# goblin squat
 
 *Duration: 2 Week Sprint*
 
-Goblin Squat is designed for users to plan, log, and track daily workouts. 
+goblin squat is designed for users to plan, log, and track daily workouts. 
 
 ### Screenshot
 
