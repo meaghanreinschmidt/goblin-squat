@@ -4,6 +4,8 @@
 
 Goblin Squat is designed for users to plan, log, and track daily workouts. 
 
+[Deployed version of app here](https://goblin-squat.herokuapp.com/)
+
 ### Screenshot
 
 ![Screen Shot 2022-10-31 at 1 15 02 PM](https://user-images.githubusercontent.com/98852538/199080343-4e7fb683-ac50-4484-93d0-d36e9cc517a7.png)
