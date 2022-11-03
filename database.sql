@@ -1,3 +1,5 @@
+-- Change each Foreign Key to ON DELETE CASCADE --
+
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -19,7 +21,8 @@ CREATE TABLE "exercise" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR (25) NOT NULL DEFAULT '',
 	"notes" TEXT NOT NULL DEFAULT '',
-	"workout_id" INT REFERENCES "workout"
+	"workout_id" INT REFERENCES "workout",
+	"completed" BOOLEAN DEFAULT 'false'
 );
 
 CREATE TABLE "set" (
