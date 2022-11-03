@@ -1,5 +1,6 @@
 -- Change each Foreign Key to ON DELETE CASCADE --
 
+
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
